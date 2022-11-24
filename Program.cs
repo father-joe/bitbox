@@ -39,7 +39,9 @@ namespace bitbox
                     switch(_menu.GetPressedItem())
                     {
                         case 0:
-                            Console.WriteLine("Button 1 has been pressed");                 
+                            Console.WriteLine("Button 1 has been pressed");
+                            SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
+                            spaceInvaders.run();
                             return;
                         case 1:
                             Console.WriteLine("Button 2 has been pressed");
