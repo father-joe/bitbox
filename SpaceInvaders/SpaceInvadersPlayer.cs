@@ -17,11 +17,11 @@ namespace bitbox
 
         public void PlayerControls()
         {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D))
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 playerSpeed.X = 3;
             }
-            else if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
                 playerSpeed.X = -3;
             }
