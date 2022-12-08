@@ -26,8 +26,17 @@ namespace bitbox
 
         private Vector2i grid;
 
+        public List<SpaceInvadersProjectile> projectiles = new List<SpaceInvadersProjectile>();
+
+        Random random1;
+        Random random2;
+        Random randomShoot;
+
         public SpaceInvadersInvader(Vector2i position, int gridX, int gridY)
         {
+            random1 = new Random(position.X * position.Y * 10);
+            random2 = new Random((position.Y + 1) / (position.X + 1) * 100);
+            randomShoot = new Random(invaderPosition.X + invaderPosition.Y + gridX + gridY);
             grid = new Vector2i(gridX, gridY);
 
             invaderPosition = position;
@@ -47,6 +56,23 @@ namespace bitbox
             randomTime = randomClock.ElapsedTime;
 
             MoveInvader();
+
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                if (!projectiles[i].isDead)
+                {
+                    projectiles[i].Update();
+                }
+                else
+                {
+                    projectiles.RemoveAt(i);
+                }
+            }
+
+            if (invaderPosition.Y == 4)
+            {
+                Fire();
+            }
 
         }
 
@@ -79,6 +105,19 @@ namespace bitbox
         private void UpdateLevel()
         {
             newLevelPosition = ((SpaceInvadersGame.windowSize.Y / invaderRect.Size.Y * 3) * invaderPosition.Y) + 20 * level;
-        }        
+        }   
+
+        private void Fire()
+        {
+            if (randomTime.AsSeconds() > randomShoot.Next(1, 20))
+            {
+                if (random1.Next(1, 20) == random2.Next(1, 20))
+                {
+                    projectiles.Add(new SpaceInvadersProjectile(invaderRect.Position.X + invaderRect.Size.X / 2, invaderRect.Position.Y));
+                }
+
+                randomClock.Restart();
+            }
+        }     
     }
 }

@@ -15,10 +15,11 @@ namespace bitbox
         public static Vector2i windowSize = new Vector2i(1920 / 2, (int)((double)1080 / (double)1.2));
 
         SpaceInvadersPlayer player = new SpaceInvadersPlayer();
-        SpaceInvadersInvader[,] invaders = new SpaceInvadersInvader[5, 11];
+        
 
         public void run()
         {
+            SpaceInvadersInvader[,] invaders = new SpaceInvadersInvader[5, 11];
             InitializeInvaders(ref invaders);
 
             _window = new RenderWindow(new VideoMode((uint)windowSize.X, (uint)windowSize.Y), "Space Invaders");
@@ -31,6 +32,7 @@ namespace bitbox
 
                 player.PlayerControls();
                 Loop(ref player, ref invaders);
+
                 DrawPlayer(ref player);
                 DrawInvaders(ref invaders);
 
@@ -59,7 +61,11 @@ namespace bitbox
             {
                 for (int j = 0; j < invaders.GetLength(1); j++)
                 {
-                    _window.Draw(invaders[i, j].invaderRect);                    
+                    _window.Draw(invaders[i, j].invaderRect);
+                    for (int p = 0; p < invaders[i, j].projectiles.Count; p++)
+                    {
+                        _window.Draw(invaders[i, j].projectiles[p].projectileRect);
+                    }                    
                 }
             }
         }
