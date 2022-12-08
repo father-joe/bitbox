@@ -12,7 +12,7 @@ namespace bitbox
     {
         public RectangleShape invaderRect = new RectangleShape(new Vector2f(40, 40));
         public bool isDead = false;
-        private static Vector2f velocity = new Vector2f(SpaceInvadersGame.windowSize.X/80, 0);
+        private static Vector2f speed = new Vector2f(SpaceInvadersGame.windowSize.X/80, 0);
         private Vector2i invaderPosition = new Vector2i(0, 0);
 
         private static float newLevelPosition;
@@ -52,18 +52,18 @@ namespace bitbox
 
         private void MoveInvader()
         {
-            if (!(invaderRect.Position.X < 0 && velocity.X < 0) &&
-                !((invaderRect.Position.X + invaderRect.Size.X) > SpaceInvadersGame.windowSize.X && velocity.X > 0))
+            if (!(invaderRect.Position.X < 0 && speed.X < 0) &&
+                !((invaderRect.Position.X + invaderRect.Size.X) > SpaceInvadersGame.windowSize.X && speed.X > 0))
             {
                 if (moveStep.AsSeconds() > 1f / (float)tempLevel)
                 {
-                    invaderRect.Position = new Vector2f(invaderRect.Position.X + velocity.X, invaderRect.Position.Y + velocity.Y);                 
+                    invaderRect.Position = new Vector2f(invaderRect.Position.X + speed.X, invaderRect.Position.Y + speed.Y);                 
                     moveClock.Restart();
                 }
             }
             else
             {
-                velocity.X *= -1;
+                speed.X *= -1;
                 if(level < 10)
                     level++;
             }

@@ -46,6 +46,11 @@ namespace bitbox
         private void DrawPlayer(ref SpaceInvadersPlayer player)
         {
             _window.Draw(player.playerRect);
+
+            for (int i = 0; i < player.projectiles.Count; i++)
+            {
+                _window.Draw(player.projectiles[i].projectileRect);
+            }
         }
 
         private void DrawInvaders(ref SpaceInvadersInvader[,] invaders)
