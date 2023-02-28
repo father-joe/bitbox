@@ -1,24 +1,23 @@
-/***************************************************
-**
-** Projectileclass for the Space Invaders Game
-**
-***************************************************/
 using SFML.Graphics;
 using SFML.System;
+/*
+using SFML.Window;
+using System;
+*/
 
 namespace bitbox
 {
-    class SpaceInvadersProjectile
+    class Projectile
     {
         public bool playerProjectile = false;
         public bool isDead = false;
         public RectangleShape projectileRect = new RectangleShape(new Vector2f(5, 20));
-        private Vector2f speed = new Vector2f(0, 05f);
-        
-        public SpaceInvadersProjectile(float positionX, float positionY, bool playerProjectile = false)
+        private Vector2f velocity = new Vector2f(0, 05f);
+
+        public Projectile(float positionX, float positionY, bool playerProjectile = false)
         {
             this.playerProjectile = playerProjectile;
-            Vector2f position = new Vector2f(positionX, positionY);
+            Vector2f position = new Vector2f(positionX, positionY); // for convertion reasons
             projectileRect.Position = position;
         }
 
@@ -26,23 +25,23 @@ namespace bitbox
         {
             if (playerProjectile)
             {
-                projectileRect.Position -= speed;
+                projectileRect.Position -= velocity;
             }
             else
             {
-                projectileRect.Position += speed;
+                projectileRect.Position += velocity;
             }
 
             LifeSpan();
         }
 
-        public void LifeSpan()
+        public void LifeSpan() // Add a life span for the projectile
         {
             if (projectileRect.Position.Y < 0 && playerProjectile)
             {
                 isDead = true;
             }
-            else if(projectileRect.Position.Y > SpaceInvadersGame.windowSize.Y && !playerProjectile)
+            else if(projectileRect.Position.Y > Globals.windowSize.Y && !playerProjectile)
             {
                 isDead = true;
             }

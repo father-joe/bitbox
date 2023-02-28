@@ -1,87 +1,68 @@
-/***************************************************
-**
-** Logic for the Space Invaders Game
-**
-***************************************************/
 using SFML.System;
-using SFML.Graphics;
-using SFML.Window;
+//using SpaceInvaderGame;
 
 namespace bitbox
 {
     class SpaceInvadersGame
     {
-        private static RenderWindow _window;
-        public static Vector2i windowSize = new Vector2i(1920 / 2, (int)((double)1080 / (double)1.2));
-
-        SpaceInvadersPlayer player = new SpaceInvadersPlayer();
-        
+        static bool gameOver = false;
+        static int invaderCount = 0;
 
         public void run()
         {
-            SpaceInvadersInvader[,] invaders = new SpaceInvadersInvader[5, 11];
+            Globals g = new Globals();// DO NOT USE
+            Barrier[] barriers = new Barrier[4]; // The original had 4 barriers
+            InitializeBarriers(ref barriers);
+            Invader[,] invaders = new Invader[5, 11]; // The original had a grid of 5 x 11 invaders
             InitializeInvaders(ref invaders);
 
-            _window = new RenderWindow(new VideoMode((uint)windowSize.X, (uint)windowSize.Y), "Space Invaders");
-            _window.SetVisible(true);
-            _window.Closed += new EventHandler(OnClosed);
-            while (_window.IsOpen)
+            Player player = Player.GetInstance();
+
+            Display display = Display.GetInstance();
+            display.Init();
+            while (display.IsOpen())
             {
-                _window.DispatchEvents();
-                _window.Clear(Color.Black);
+                display.Clear(); // Clears the window from the previous display
+                display.CheckForEvents(); // Checks for events such as closing the window
 
                 player.PlayerControls();
-                Loop(ref player, ref invaders);
+                Loop(ref player, ref invaders, ref barriers);
 
-                DrawPlayer(ref player);
-                DrawInvaders(ref invaders);
-
-                _window.Display();
-            }
-        }
-
-        private static void OnClosed(Object sender, EventArgs e)
-        {
-            _window.Close();
-        }
-
-        private void DrawPlayer(ref SpaceInvadersPlayer player)
-        {
-            _window.Draw(player.playerRect);
-
-            for (int i = 0; i < player.projectiles.Count; i++)
-            {
-                _window.Draw(player.projectiles[i].projectileRect);
-            }
-        }
-
-        private void DrawInvaders(ref SpaceInvadersInvader[,] invaders)
-        {
-            for (int i = 0; i < invaders.GetLength(0); i ++)
-            {
-                for (int j = 0; j < invaders.GetLength(1); j++)
+                if (player.isDead || gameOver)
                 {
-                    _window.Draw(invaders[i, j].invaderRect);
-                    for (int p = 0; p < invaders[i, j].projectiles.Count; p++)
+                    display.Close();
+                    for (int i = 0; i < 100; i++)
                     {
-                        _window.Draw(invaders[i, j].projectiles[p].projectileRect);
-                    }                    
+                        Console.WriteLine("YOU LOST!");
+                    }
                 }
+
+                display.DrawPlayer(ref player); // Player rectangle being passed to draw
+                display.DrawInvaders(ref invaders); // Invader rectangle being passed to draw
+                display.DrawBarriers(ref barriers);
+                display.Update(); // Draws on the window from the buffer
             }
         }
 
-        static void InitializeInvaders(ref SpaceInvadersInvader[,] invaders)
+        static void InitializeInvaders(ref Invader[,] invaders)
         {
-            for(int i = 0; i < invaders.GetLength(0); i++)
+            for (int i = 0; i < invaders.GetLength(0); i++)
             {
                 for (int j = 0; j < invaders.GetLength(1); j++)
                 {
-                    invaders[i, j] = new SpaceInvadersInvader(new Vector2i(j, i), j, i); // j is row, i is column
+                    invaders[i, j] = new Invader(new Vector2i(j, i), j, i); // j is row, i is column
                 }
             }
         }
+        static void InitializeBarriers(ref Barrier[] barriers)
+        {
+            for (int i = 0; i < barriers.Length; i++)
+            {
+                barriers[i] = new Barrier(i);
+            }
+        }
 
-        static void Loop(ref SpaceInvadersPlayer player, ref SpaceInvadersInvader[,] invaders)
+        static void Loop(ref Player player, ref Invader[,] invaders, ref Barrier[] barriers) // Loops through all the invaders and updates their position
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -91,7 +72,15 @@ namespace bitbox
                     {
                         if (!invaders[i, j].isDead)
                         {
-                            invaders[i, j].UpdateInvader();                                                                               
+                            invaders[i, j].UpdateInvader();
+                            invaders[i, j].TrackPlayerProjectile(ref player.projectiles); // tracks if the player hit invader
+                            player.TrackInvaderProjectile(ref invaders[i, j].projectiles); // tracks if the invader hit the player
+
+                            for (int p = 0; p < barriers.Length; p++)
+                            {
+                                barriers[p].TrackProjectile(ref invaders[i, j].projectiles);
+                            }
+
                         }
                         else
                         {
@@ -99,6 +88,15 @@ namespace bitbox
                         }
                     }
                 }
+            }
+            for (int i = 0; i < barriers.Length; i++)
+            {
+                barriers[i].TrackProjectile(ref player.projectiles);
+            }
+
+            if (invaderCount == invaders.GetLength(0) * invaders.GetLength(1))
+            {
+                gameOver = true;
             }
         }
     }

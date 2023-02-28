@@ -1,84 +1,107 @@
-/***************************************************
-**
-** Playerclass for the Space Invaders Game
-**
-***************************************************/
-using SFML.System;
+//using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.Window;
+using SFML.System;
 
 namespace bitbox
 {
-    class SpaceInvadersPlayer
+    class Player
     {
-        public Vector2f playerSpeed = new Vector2f(0, 0);
+        public Vector2f velocity = new Vector2f(0, 0);
         public RectangleShape playerRect = new RectangleShape(new Vector2f(100, 50));
         public bool isDead = false;
+        //public bool isFired = false;
 
-        private Time shootDelay = new Time();
-        private Clock shootClock = new Clock();
+        private Time moveStep = new Time();
+        private Clock moveClock = new Clock();
 
-        public List<SpaceInvadersProjectile> projectiles = new List<SpaceInvadersProjectile>();
+        public List<Projectile> projectiles = new List<Projectile>();
 
-        public void PlayerControls()
+        public void PlayerControls() // Player controls
         {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) // Right
             {
-                playerSpeed.X = 3;
+                velocity.X = 3;
             }
-            else if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.A)) // Left
             {
-                playerSpeed.X = -3;
+                velocity.X = -3;
             }
-            else
+            else // Stop
             {
-                playerSpeed.X = 0;
+                velocity.X = 0;
             }
 
-            if (shootDelay.AsSeconds() > 0.3f)
+            if (moveStep.AsSeconds() > 0.3f)
             {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) // Fire
                 {
                     Fire();
+                    //isFired = true;
                 }
-                shootClock.Restart();
+                moveClock.Restart();
             }
 
-            updatePlayer();
+            UpdatePlayer(); // Updates the player
         }
-
-        private void updatePlayer()
+        private void UpdatePlayer()
         {
-            shootDelay = shootClock.ElapsedTime;
+            moveStep = moveClock.ElapsedTime;
 
-            if (!(playerRect.Position.X < 0 && playerSpeed.X < 0) && !((playerRect.Position.X + playerRect.Size.X) > SpaceInvadersGame.windowSize.X && playerSpeed.X > 0))
+            if (!(playerRect.Position.X < 0 && velocity.X < 0) &&
+                !((playerRect.Position.X + playerRect.Size.X) > Globals.windowSize.X && velocity.X > 0)) //Window bounds
             {
-                playerRect.Position = new Vector2f(playerRect.Position.X + playerSpeed.X, playerRect.Position.Y + playerSpeed.Y);
+                playerRect.Position = new Vector2f(playerRect.Position.X + velocity.X, playerRect.Position.Y + velocity.Y); //Sets the players position
             }
-            
-            for (int i = 0; i < projectiles.Count; i++)
+            //if (isFired)
             {
-                if (!projectiles[i].isDead)
+                for (int i = 0; i < projectiles.Count; i++)
                 {
-                    projectiles[i].Update();
+                    if (!projectiles[i].isDead)
+                    {
+                        projectiles[i].Update(); // Call the method shoot which will update projectiles position;
+                    }
+                    else
+                    {
+                        projectiles.RemoveAt(i); // Removes the instance of the, out of window bounds, projectile
+                        //isFired = false; // When the projectile gets destroyed isFired turns to false
+                    }
                 }
-                else
+            }
+        }
+        private void Fire() // Fires the projectile upwards
+        {
+            projectiles.Add(new Projectile(playerRect.Position.X + playerRect.Size.X/2, playerRect.Position.Y, true));
+        }
+        public void TrackInvaderProjectile(ref List<Projectile> invaderProjectile)
+        {
+            for (int i = 0; i < invaderProjectile.Count; i++)
+            {
+                if (invaderProjectile[i].projectileRect.GetGlobalBounds().Intersects(playerRect.GetGlobalBounds())) // checks if the projectile is within the bounds
                 {
-                    projectiles.RemoveAt(i);
+                    isDead = true;
+                    invaderProjectile[i].isDead = true;
                 }
             }
         }
 
-        private void Fire()
-        {
-            projectiles.Add(new SpaceInvadersProjectile(playerRect.Position.X + playerRect.Size.X/2, playerRect.Position.Y, true));
-        }
+        private static Player _Instance; //Singleton
+        private Player()
+        {   //Setting up starting position(bottom middle)
+            playerRect.Position = new Vector2f(playerRect.Position.X + Globals.windowSize.X/2 - playerRect.Size.X/2, Globals.windowSize.Y - (int)(playerRect.Size.Y*1.5));
+            //playerRect.FillColor = new Color(0, 255, 0);
 
-        public SpaceInvadersPlayer()
+            Texture playertxr = new Texture("Assets/Textures/player.png");
+            playerRect.Texture = playertxr;
+        }
+        public static Player GetInstance()
         {
-            playerRect.Position = new Vector2f(playerRect.Position.X + SpaceInvadersGame.windowSize.X/2 - playerRect.Size.X/2, SpaceInvadersGame.windowSize.Y - (int)(playerRect.Size.Y*1.5));
-            // Texture playerTexture
-            // playerRect.Texture = playerTexture
+            if (_Instance == null)
+            {
+                _Instance = new Player();
+            }
+
+            return _Instance;
         }
     }
 }
