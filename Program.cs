@@ -11,9 +11,11 @@ namespace bitbox
 
         public static void Main(String[] args)
         {
-            _window = new RenderWindow(new VideoMode(600, 600), "Test");
+            const int WINDOW_WIDTH = 640;
+            const int WINDOW_HEIGHT = 480;
+            _window = new RenderWindow(new VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Bitbox");
             _window.SetVisible(true);
-            _menu = new Menu(600, 600);
+            _menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
             _window.KeyPressed += new EventHandler<KeyEventArgs>(onKeyPressed);
             while (_window.IsOpen)
@@ -39,12 +41,17 @@ namespace bitbox
                     switch(_menu.GetPressedItem())
                     {
                         case 0:
-                            Console.WriteLine("Button 1 has been pressed");                 
+                            Console.WriteLine("Try to open Space Invaders");                 
                             return;
                         case 1:
-                            Console.WriteLine("Button 2 has been pressed");
+                            Console.WriteLine("Try to open Tetris");
                             return;
-                        case 2:
+                        case 2:                            
+                            Console.WriteLine("Try to open Highscore");
+                            Highscores highscores = new Highscores();
+                            highscores.Show(_window);
+                            return;
+                        case 3:
                             _window.Close();
                             return;
                     }
