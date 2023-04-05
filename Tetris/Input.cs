@@ -25,7 +25,8 @@ namespace bitbox
     //    LBracket, RBracket, Semicolon, Comma, Perios, Slash, Backslash, Tilde, Equal, Hyphen
     //}
 
-    public class Keyboard
+    
+    public class TetrisKeyboard
     {
         public KeyState A = KeyState.released;
         public KeyState B = KeyState.released; 
@@ -130,11 +131,11 @@ namespace bitbox
 
     public static class Input
     {
-        public static Keyboard Keyboard { get; private set; } = new Keyboard();
+        public static TetrisKeyboard Keyboard { get; private set; } = new TetrisKeyboard();
 
         public static void Update()
         {
-            foreach (var key in typeof(Keyboard).GetFields())
+            foreach (var key in typeof(TetrisKeyboard).GetFields())
             {
                 foreach (SFML.Window.Keyboard.Key SFMLKey in Enum.GetValues(typeof(SFML.Window.Keyboard.Key)))
                 {
