@@ -33,22 +33,22 @@ namespace bitbox
         public static void LoadAssets()
         {
             // Load Background Texture
-            Background = new Texture("Assets/Textures/Background.png");
+            Background = new Texture("./Textures/Background.png");
 
             // Load Block Textures
-            Block.Add(new Texture("Assets/Textures/blocks32.png", new IntRect(256, 0, 32, 32)));
+            Block.Add(new Texture("./Textures/blocks32.png", new IntRect(256, 0, 32, 32)));
             for (int i = 0; i < 8; i++)
             {
-                Block.Add(new Texture("Assets/Textures/blocks32.png", new IntRect(i * 32, 0, 32, 32)));
+                Block.Add(new Texture("./Textures/blocks32.png", new IntRect(i * 32, 0, 32, 32)));
             }
 
             // Load Preview
             for (int i = 0; i < 5; i++)
             {
-                Preview.Add(new Texture("Assets/Textures/Prev_Tetromino.png", new IntRect(i * 96, 0, 96, 64)));
+                Preview.Add(new Texture("./Textures/Prev_Tetromino.png", new IntRect(i * 96, 0, 96, 64)));
             }
-            Preview.Add(new Texture("Assets/Textures/Prev_Tetromino.png", new IntRect(480, 0, 64, 64)));
-            Preview.Add(new Texture("Assets/Textures/Prev_Tetromino.png", new IntRect(545, 16, 128, 32)));
+            Preview.Add(new Texture("./Textures/Prev_Tetromino.png", new IntRect(480, 0, 64, 64)));
+            Preview.Add(new Texture("./Textures/Prev_Tetromino.png", new IntRect(545, 16, 128, 32)));
 
             // Fix order
             Texture temp = Preview[2];
@@ -56,17 +56,17 @@ namespace bitbox
             Preview[3] = temp;
 
             // Load font
-            Font = new SFML.Graphics.Font("Assets/Fonts/Font.ttf");
+            Font = new SFML.Graphics.Font("./Fonts/Font.ttf");
 
             // Load icon
-            Icon = new Texture("Assets/Textures/Icon.png");
+            Icon = new Texture("./Textures/Icon.png");
 
             // Load Sounds
-            Die = new Sound(new SoundBuffer("Assets/Audio/Die.wav"));
-            Move = new Sound(new SoundBuffer("Assets/Audio/Move.wav"));
-            Place = new Sound(new SoundBuffer("Assets/Audio/Place.wav"));
-            ClrLn = new Sound(new SoundBuffer("Assets/Audio/LnClear.wav"));
-            Tetris = new Sound(new SoundBuffer("Assets/Audio/Tetris.wav"));
+            Die = new Sound(new SoundBuffer("./Audio/Die.wav"));
+            Move = new Sound(new SoundBuffer("./Audio/Move.wav"));
+            Place = new Sound(new SoundBuffer("./Audio/Place.wav"));
+            ClrLn = new Sound(new SoundBuffer("./Audio/LnClear.wav"));
+            Tetris = new Sound(new SoundBuffer("./Audio/Tetris.wav"));
         }
 
         public static void SaveHighScore(int score)

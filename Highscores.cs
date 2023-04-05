@@ -5,7 +5,7 @@ using SFML.Window;
 
 namespace bitbox;
 
-public class Highscores
+public class Highscores : IHighscores
 {
     public void Show(RenderWindow window)
     {
@@ -24,3 +24,4 @@ public class Highscores
         window.Display();
     }
 }
+

@@ -18,6 +18,8 @@ namespace bitbox
             _menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
             _window.KeyPressed += new EventHandler<KeyEventArgs>(onKeyPressed);
+
+
             while (_window.IsOpen)
             {               
                 _window.DispatchEvents();
@@ -41,19 +43,19 @@ namespace bitbox
                     switch(_menu.GetPressedItem())
                     {
                         case 0:
-                            Console.WriteLine("Button 1 has been pressed");
+                            Console.WriteLine("Try to open Space Invaders");
                             SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
                             spaceInvaders.run();
                             return;
                         case 1:
-                            Console.WriteLine("Button 2 has been pressed");
+                            Console.WriteLine("Try to open Tetris");
                             Tetris tetris = new Tetris();
                             tetris.Run();
                             return;
                         case 2:                            
                             Console.WriteLine("Try to open Highscore");
-                            Highscores highscores = new Highscores();
-                            highscores.Show(_window);
+                            //Highscores highscores = new Highscores();
+                            //highscores.Show(_window);
                             return;
                         case 3:
                             _window.Close();

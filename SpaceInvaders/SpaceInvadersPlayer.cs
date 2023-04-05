@@ -91,7 +91,7 @@ namespace bitbox
             playerRect.Position = new Vector2f(playerRect.Position.X + Globals.windowSize.X/2 - playerRect.Size.X/2, Globals.windowSize.Y - (int)(playerRect.Size.Y*1.5));
             //playerRect.FillColor = new Color(0, 255, 0);
 
-            Texture playertxr = new Texture("Assets/Textures/player.png");
+            Texture playertxr = new Texture("./Textures/player.png");
             playerRect.Texture = playertxr;
         }
         public static Player GetInstance()

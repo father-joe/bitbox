@@ -10,8 +10,8 @@ namespace bitbox
 
         public Globals()
         {
-            playertxr[0] = new Texture("Assets/Textures/invader1.png");
-            playertxr[1] = new Texture("Assets/Textures/invader2.png");
+            playertxr[0] = new Texture("./Textures/invader1.png");
+            playertxr[1] = new Texture("./Textures/invader2.png");
         }
 
         public static void InvaderTexture(ref RectangleShape rect, int index)
