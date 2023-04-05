@@ -41,10 +41,14 @@ namespace bitbox
                     switch(_menu.GetPressedItem())
                     {
                         case 0:
-                            Console.WriteLine("Try to open Space Invaders");                 
+                            Console.WriteLine("Button 1 has been pressed");
+                            SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
+                            spaceInvaders.run();
                             return;
                         case 1:
-                            Console.WriteLine("Try to open Tetris");
+                            Console.WriteLine("Button 2 has been pressed");
+                            Tetris tetris = new Tetris();
+                            tetris.Run();
                             return;
                         case 2:                            
                             Console.WriteLine("Try to open Highscore");
