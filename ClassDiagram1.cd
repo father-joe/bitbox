@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="bitbox.Barrier" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceInvaders\SpaceInvadersBarrier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Display" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAAggAAAAAAAAEAAAABAAAAAAAAAICAADAQAQ=</HashCode>
+      <FileName>SpaceInvaders\SpaceInvadersDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.SpaceInvadersGame" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAKEAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>SpaceInvaders\SpaceInvadersGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Globals" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceInvaders\SpaceInvadersGlobal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Invader" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAQIAEAAAHAIAAIAAABEEACAQAQRAQACQBAA=</HashCode>
+      <FileName>SpaceInvaders\SpaceInvadersInvader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Player" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAEAAAABBAGAiAAAARAAAEQAAA=</HashCode>
+      <FileName>SpaceInvaders\SpaceInvadersPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Projectile" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAgAAAABAEAAAABAQAAAAAAAA=</HashCode>
+      <FileName>SpaceInvaders\SpaceInvadersProjectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Tetris" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAAAAAAAAAAAAAIAAAAAAAAAAAAEQAAAAAAAAAI=</HashCode>
+      <FileName>Tetris\App.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Assets" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAIAAgABgACACAAEAAAAAAIAAAEQoAAECAQA=</HashCode>
+      <FileName>Tetris\Assets.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Draw" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQwAAgAAiCAAAAICAAAAAAAABAAAAAgAACEAQAEAQIA=</HashCode>
+      <FileName>Tetris\Draw.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Grid" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAEAAAAAAAAAAAIAAAACAAAAABAAQEAAAAAAAAA=</HashCode>
+      <FileName>Tetris\Grid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.TetrisKeyboard" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIqAGYQAYAgAEBojoL/4R+EkgUMAAgCCECIvv//YUM=</HashCode>
+      <FileName>Tetris\Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Input" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tetris\Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Level" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAABAIAAAAAAAAAAAAAAAAAAAAAAAAYAAAAA=</HashCode>
+      <FileName>Tetris\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Tetromino" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAICAAIAAAAABAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Tetris\MainLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.MainLogic" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQQgAkCAUEAABAIAQoAoAAAIEAAACAABEKABAAIAKOA=</HashCode>
+      <FileName>Tetris\MainLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Score" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAICAAAAAAAAEAAAAAAQAEDCAAAAAAAAQA=</HashCode>
+      <FileName>Tetris\Score.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Tetrominos" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAgCyFAAE=</HashCode>
+      <FileName>Tetris\Tetrominos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.TetrisTime" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAEAAAAAAAAAAgAIAQAAAAAAAAECAAAAAAA=</HashCode>
+      <FileName>Tetris\Time.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Window" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACQAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Tetris\Window.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bitbox.Highscores" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Highscores.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="bitbox.Menu" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAABBAACAAAAAAAIAAAgAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Menu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="bitbox.Program" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQIAAgAAAAAAAAAAAAgAAAAAAAAAAAAABCAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utility.Vector2" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAAAEAAEYAWBAgAAAAAAQAAAAABgAAAAByA=</HashCode>
+      <FileName>Tetris\Vector2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utility.Vector2i" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAAAAAAE4AWBAgAAAAAAQAAAAABgAAAAByA=</HashCode>
+      <FileName>Tetris\Vector2i.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="bitbox.IHighscores" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IHighscores.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="bitbox.IMenu" Collapsed="true">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAACAAAAAAAIAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>IMenu.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="bitbox.KeyState" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAACAAAAAAAAAAAAAQAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Tetris\Input.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
