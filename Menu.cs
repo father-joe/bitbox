@@ -13,7 +13,7 @@ namespace bitbox
 
         public Menu(float width, float height)
         {
-            font = new Font("Fonts/Anonymice Powerline Bold Italic.ttf");
+            font = new Font("Assets/Fonts/Anonymice Powerline Bold Italic.ttf");
             
             menu[0] = new Text("Space Invaders", font, 24);
             // get width of the text
