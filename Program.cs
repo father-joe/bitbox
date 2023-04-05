@@ -45,6 +45,8 @@ namespace bitbox
                             return;
                         case 1:
                             Console.WriteLine("Button 2 has been pressed");
+                            Tetris tetris = new Tetris();
+                            tetris.Run();
                             return;
                         case 2:
                             _window.Close();
