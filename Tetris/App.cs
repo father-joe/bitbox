@@ -21,13 +21,13 @@ namespace bitbox
             {
                 while (Window.RenderWindow.IsOpen)
                 {
-                    Time.Update();
+                    TetrisTime.Update();
 
-                    if (timeTillUpdate < Time.deltaTime)
+                    if (timeTillUpdate < TetrisTime.deltaTime)
                     {
                         Input.Update();
                         Update();
-                        Time.NextFrame();
+                        TetrisTime.NextFrame();
                     }
                 }
             }

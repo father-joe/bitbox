@@ -312,8 +312,8 @@ namespace bitbox
 
             DrawText(text, new Vector2i((int)Window.WINDOW_WIDTH / 2, clearLineY), color: new SFML.Graphics.Color(255, 255, 255, (byte)clearTextOpacity));
 
-            if (clearTextOpacity > 180) clearTextOpacity -= Time.deltaTime * 75;
-            else clearTextOpacity -= Time.deltaTime * 150;
+            if (clearTextOpacity > 180) clearTextOpacity -= TetrisTime.deltaTime * 75;
+            else clearTextOpacity -= TetrisTime.deltaTime * 150;
 
             if (clearTextOpacity < 100)
             {

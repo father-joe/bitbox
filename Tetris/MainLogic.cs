@@ -92,7 +92,7 @@ namespace bitbox
 
             if (clrAnim)
             {
-                clrAnimTimer -= Time.deltaTime;
+                clrAnimTimer -= TetrisTime.deltaTime;
                 if (clrAnimTimer <= 0)
                 {
                     // Get next tetromino
@@ -115,7 +115,7 @@ namespace bitbox
                 return;
             }
 
-            timeTillDrop -= Time.deltaTime;
+            timeTillDrop -= TetrisTime.deltaTime;
             clearText = 0;
 
             // Handle placing of tetromino along with line clears
@@ -128,7 +128,7 @@ namespace bitbox
                     lockTimer = 0.5f;
                     return;
                 }
-                lockTimer -= Time.deltaTime;
+                lockTimer -= TetrisTime.deltaTime;
                 if (lockTimer <= 0 || skipDrop)
                 {
 
@@ -251,7 +251,7 @@ namespace bitbox
             } 
             else if (Input.Keyboard.Left == KeyState.pressed)
             {
-                DASTimer -= Time.deltaTime;
+                DASTimer -= TetrisTime.deltaTime;
                 if (DASTimer < 0)
                 {
                     if (!Grid.CheckCollisionAt(CurrTetromino, -1, 0))
@@ -278,7 +278,7 @@ namespace bitbox
             } 
             else if (Input.Keyboard.Right == KeyState.pressed)
             {
-                DASTimer -= Time.deltaTime;
+                DASTimer -= TetrisTime.deltaTime;
                 if (DASTimer < 0)
                 {
                     if (!Grid.CheckCollisionAt(CurrTetromino, 1, 0))

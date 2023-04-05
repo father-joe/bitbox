@@ -2,7 +2,7 @@ using SFML.System;
 
 namespace bitbox
 {
-    internal static class Time
+    internal static class TetrisTime
     {
         private static Clock clock;
 
@@ -12,7 +12,7 @@ namespace bitbox
 
         private static float lastTime = 0;
 
-        static Time()
+        static TetrisTime()
         {
             clock = new Clock();
         }
