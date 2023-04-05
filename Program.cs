@@ -5,6 +5,12 @@ namespace bitbox
 {
     class Program
     {
+        static void Main()
+        {
+            Tetris tetris = new Tetris();
+            tetris.Run();
+        }
+        /*
         private static RenderWindow _window;
         private static Menu _menu;
         private static readonly EventHandler<KeyEventArgs> onKeyPress;
@@ -56,5 +62,6 @@ namespace bitbox
         {
             _window.Close();
         }
+        */
     }
 }
