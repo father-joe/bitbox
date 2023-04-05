@@ -13,7 +13,7 @@ namespace bitbox
 
         public Menu(float width, float height)
         {
-            font = new Font("Fonts/Anonymice Powerline Bold Italic.ttf");
+            font = new Font("Assets01/Fonts/Anonymice Powerline Bold Italic.ttf");
             menu[0] = new Text("Button 1", new Font(font));
 			menu[0].FillColor = Color.Red;			
 			menu[0].Position = new Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 1);            
