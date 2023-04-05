@@ -18,7 +18,7 @@ namespace bitbox
         {
             barrierRect.Position = new Vector2f(barrierRect.Size.X/2 + (barrierRect.Size.X*2) * position, 600);
 
-            Texture playertxr = new Texture("Assets/Textures/barrier.png");
+            Texture playertxr = new Texture("./Textures/barrier.png");
             barrierRect.Texture = playertxr;
         }
 
