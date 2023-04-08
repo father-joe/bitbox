@@ -18,7 +18,7 @@ namespace bitbox
             _menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
             _window.KeyPressed += new EventHandler<KeyEventArgs>(onKeyPressed);
-
+            
 
             while (_window.IsOpen)
             {               
@@ -31,6 +31,8 @@ namespace bitbox
 
         private static void onKeyPressed(object sender, SFML.Window.KeyEventArgs e)
         {
+            Game game = new Game();
+            
             switch(e.Code)
             {
                 case Keyboard.Key.Up:
@@ -44,13 +46,21 @@ namespace bitbox
                     {
                         case 0:
                             Console.WriteLine("Try to open Space Invaders");
+                            SpaceInvadersObserver spaceInvadersObserver = new SpaceInvadersObserver();
+                            game.Attach(spaceInvadersObserver);
                             SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
+                            game.Notify();
                             spaceInvaders.run();
+                            game.Detach(spaceInvadersObserver);
                             return;
                         case 1:
                             Console.WriteLine("Try to open Tetris");
+                            TetrisObserver tetrisObserver = new TetrisObserver();
+                            game.Attach(tetrisObserver);
                             Tetris tetris = new Tetris();
+                            game.Notify();
                             tetris.Run();
+                            game.Detach(tetrisObserver);
                             return;
                         case 2:                            
                             Console.WriteLine("Try to open Highscore");
