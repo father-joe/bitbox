@@ -1,5 +1,7 @@
+using SFML.Audio;
 using SFML.Graphics;
 using SFML.Window;
+using System.Runtime.CompilerServices;
 
 namespace bitbox
 {
@@ -22,7 +24,10 @@ namespace bitbox
 
         private static void Close(object sender, EventArgs e)
         {
+            Assets.DisposeAssets();
             RenderWindow.Close();
+            
+
         }
     }
 }

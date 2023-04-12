@@ -31,6 +31,7 @@ namespace bitbox
                 if (player.isDead || gameOver)
                 {
                     display.Close();
+
                     for (int i = 0; i < 100; i++)
                     {
                         Console.WriteLine("YOU LOST!");

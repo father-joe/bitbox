@@ -69,6 +69,21 @@ namespace bitbox
             Tetris = new Sound(new SoundBuffer("./Audio/Tetris.wav"));
         }
 
+        public static void DisposeAssets()
+        {
+            Background.Dispose();
+            foreach (Texture t in Tetrominos) t.Dispose();
+            foreach (Texture t in Block) t.Dispose();
+            foreach (Texture t in Preview) t.Dispose();
+            Font.Dispose();
+            Icon.Dispose();
+            Move.Dispose();
+            ClrLn.Dispose();
+            Tetris.Dispose();
+            Place.Dispose();
+            Die.Dispose();
+        }
+
         public static void SaveHighScore(int score)
         {
             // Data to save

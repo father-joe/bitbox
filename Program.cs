@@ -18,15 +18,17 @@ namespace bitbox
             _menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
             _window.KeyPressed += new EventHandler<KeyEventArgs>(onKeyPressed);
-            
 
             while (_window.IsOpen)
-            {               
+            {
                 _window.DispatchEvents();
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
+                    _window.Close();
                 _window.Clear(Color.Black);
                 _menu.draw(_window);
                 _window.Display();
             }
+
         }
 
         private static void onKeyPressed(object sender, SFML.Window.KeyEventArgs e)
@@ -45,21 +47,29 @@ namespace bitbox
                     switch(_menu.GetPressedItem())
                     {
                         case 0:
-                            Console.WriteLine("Try to open Space Invaders");
+                            //Console.WriteLine("Try to open Space Invaders");
                             SpaceInvadersObserver spaceInvadersObserver = new SpaceInvadersObserver();
                             game.Attach(spaceInvadersObserver);
                             SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
-                            game.Notify();
+                            game.Notify_open();
+                            //game.Detach(spaceInvadersObserver);
                             spaceInvaders.run();
+                            //game.Attach(spaceInvadersObserver);
+                            //spaceInvaders = null;
+                            game.Notify_close();
                             game.Detach(spaceInvadersObserver);
                             return;
                         case 1:
-                            Console.WriteLine("Try to open Tetris");
+                            //Console.WriteLine("Try to open Tetris");
                             TetrisObserver tetrisObserver = new TetrisObserver();
                             game.Attach(tetrisObserver);
                             Tetris tetris = new Tetris();
-                            game.Notify();
+                            game.Notify_open();
+                            //game.Detach(tetrisObserver);
                             tetris.Run();
+                            //game.Attach(tetrisObserver);
+                            //tetris = null;
+                            game.Notify_close();
                             game.Detach(tetrisObserver);
                             return;
                         case 2:                            
@@ -77,7 +87,9 @@ namespace bitbox
 
         private static void OnClosed(Object sender, EventArgs e)
         {
+            
             _window.Close();
+            //_window.Dispose();
         }
     }
 }
