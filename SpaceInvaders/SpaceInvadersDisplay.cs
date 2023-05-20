@@ -12,7 +12,7 @@ using SFML.Window;
 
 namespace bitbox
 {
-    class Display
+    class Display : IDisplay
     {
         private RenderWindow _window;
 
@@ -27,7 +27,7 @@ namespace bitbox
             _window.SetFramerateLimit(60);
         }
 
-        void OnClose(object sender, EventArgs e)
+        public void OnClose(object sender, EventArgs e)
         {
             // Close the window when OnClose event is received
             Close();

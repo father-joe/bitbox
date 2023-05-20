@@ -3,7 +3,7 @@ using SFML.System;
 
 namespace bitbox
 {
-    class SpaceInvadersGame
+    class SpaceInvadersGame : IGame
     {
         static bool gameOver = false;
         static int invaderCount = 0;

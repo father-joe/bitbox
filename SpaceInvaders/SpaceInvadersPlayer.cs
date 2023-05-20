@@ -5,7 +5,7 @@ using SFML.System;
 
 namespace bitbox
 {
-    class Player
+    class Player : IPlayer
     {
         public Vector2f velocity = new Vector2f(0, 0);
         public RectangleShape playerRect = new RectangleShape(new Vector2f(100, 50));
@@ -42,9 +42,9 @@ namespace bitbox
                 moveClock.Restart();
             }
 
-            UpdatePlayer(); // Updates the player
+            PlayerUpdate(); // Updates the player
         }
-        private void UpdatePlayer()
+        public void PlayerUpdate()
         {
             moveStep = moveClock.ElapsedTime;
 
