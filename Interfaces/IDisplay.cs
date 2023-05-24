@@ -7,5 +7,10 @@ namespace bitbox
         void Close();
         void Clear();
         void Update();
+        //void DrawPlayer(ref Player player);
+        //void DrawInvaders(ref Invader[,] invaders);
+        //void DrawBarriers(ref Barrier[] barriers);
+        void CheckForEvents();
+        bool IsOpen();
     }
 }

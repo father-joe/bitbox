@@ -7,7 +7,7 @@ using System;
 
 namespace bitbox
 {
-    class Projectile
+    class Projectile : IProjectile
     {
         public bool playerProjectile = false;
         public bool isDead = false;

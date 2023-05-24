@@ -12,7 +12,7 @@ using SFML.Window;
 
 namespace bitbox
 {
-    class Display : IDisplay
+    class Display
     {
         private RenderWindow _window;
 
