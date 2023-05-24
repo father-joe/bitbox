@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace bitbox
+namespace bitbox.Interfaces
 {
 	public interface IProjectile
 	{

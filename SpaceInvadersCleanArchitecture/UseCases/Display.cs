@@ -1,18 +1,9 @@
-/*
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SFML;
-using SFML.System;
-*/
+﻿using System;
 using SFML.Graphics;
 using SFML.Window;
 
-namespace bitbox.weg
+namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
-    /*
     class Display
     {
         private RenderWindow _window;
@@ -52,12 +43,12 @@ namespace bitbox.weg
         {
             _window.Draw(player.playerRect);
 
-            for(int i = 0; i < player.projectiles.Count; i++)
+            for (int i = 0; i < player.projectiles.Count; i++)
             {
                 _window.Draw(player.projectiles[i].projectileRect);
             }
         }
-        public void DrawInvaders(ref Invader[,] invaders)
+        public void DrawInvaders(ref InvaderController[,] invaders)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -66,10 +57,12 @@ namespace bitbox.weg
                     if (invaders[i, j] != null) // checks if the element is null
                     {
                         _window.Draw(invaders[i, j].invaderRect);
+                        /*
                         for (int p = 0; p < invaders[i, j].projectiles.Count; p++)
                         {
                             _window.Draw(invaders[i, j].projectiles[p].projectileRect);
                         }
+                        */
                     }
                 }
             }
@@ -77,7 +70,7 @@ namespace bitbox.weg
         public void DrawBarriers(ref Barrier[] barriers)
         {
             for (int i = 0; i < barriers.Length; i++)
-            { 
+            {
                 _window.Draw(barriers[i].barrierRect);
             }
         }
@@ -107,5 +100,5 @@ namespace bitbox.weg
             return _Instance;
         }
     }
-    */
 }
+

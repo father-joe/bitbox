@@ -1,10 +1,11 @@
+﻿using System.Numerics;
+using bitbox.Interfaces;
 using SFML.System;
-//using SpaceInvaderGame;
+using bitbox.SpaceInvadersCleanArchitecture.Entitys;
 
-namespace bitbox.weg
+namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
-    /*
-    class SpaceInvadersGame : //IGame
+    class TestGame
     {
         static bool gameOver = false;
         static int invaderCount = 0;
@@ -14,7 +15,10 @@ namespace bitbox.weg
             Globals g = new Globals();// DO NOT USE
             Barrier[] barriers = new Barrier[4]; // The original had 4 barriers
             InitializeBarriers(ref barriers);
-            Invader[,] invaders = new Invader[5, 11]; // The original had a grid of 5 x 11 invaders
+
+            InvaderController[,] invaders = new InvaderController[5, 11];
+
+            //IInvader[,] invaders = new Invader[5, 11]; // The original had a grid of 5 x 11 invaders
             InitializeInvaders(ref invaders);
 
             Player player = Player.GetInstance();
@@ -45,13 +49,13 @@ namespace bitbox.weg
             }
         }
 
-        static void InitializeInvaders(ref Invader[,] invaders)
+        static void InitializeInvaders(ref InvaderController[,] invaders)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
                 for (int j = 0; j < invaders.GetLength(1); j++)
                 {
-                    invaders[i, j] = new Invader(new Vector2i(j, i), j, i); // j is row, i is column
+                    invaders[i, j] = new InvaderController(new Vector2(j, i), new Vector2(i, j), i , j); // j is row, i is column
                 }
             }
         }
@@ -63,7 +67,7 @@ namespace bitbox.weg
             }
         }
 
-        static void Loop(ref Player player, ref Invader[,] invaders, ref Barrier[] barriers) // Loops through all the invaders and updates their position
+        static void Loop(ref Player player, ref InvaderController[,] invaders, ref Barrier[] barriers) // Loops through all the invaders and updates their position
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -71,9 +75,11 @@ namespace bitbox.weg
                 {
                     if (invaders[i, j] != null) // checks if the element is already null
                     {
-                        if (!invaders[i, j].isDead)
+                        
+                        if (/*!invaders[i, j].isDead*/ 0 == 0)
                         {
-                            invaders[i, j].UpdateInvader();
+                            invaders[i, j].Update(4, 4);
+                            /*
                             invaders[i, j].TrackPlayerProjectile(ref player.projectiles); // tracks if the player hit invader
                             player.TrackInvaderProjectile(ref invaders[i, j].projectiles); // tracks if the invader hit the player
 
@@ -81,12 +87,14 @@ namespace bitbox.weg
                             {
                                 barriers[p].TrackProjectile(ref invaders[i, j].projectiles);
                             }
+                            */
 
                         }
                         else
                         {
-                            invaders[i, j] = null;
+                            //invaders[i, j] = null;
                         }
+                        
                     }
                 }
             }
@@ -101,5 +109,5 @@ namespace bitbox.weg
             }
         }
     }
-    */
 }
+

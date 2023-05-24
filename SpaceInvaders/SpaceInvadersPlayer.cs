@@ -5,7 +5,7 @@ using SFML.System;
 
 namespace bitbox
 {
-    class Player : IPlayer
+    class Player
     {
         public Vector2f velocity = new Vector2f(0, 0);
         public RectangleShape playerRect = new RectangleShape(new Vector2f(100, 50));

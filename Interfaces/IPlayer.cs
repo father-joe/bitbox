@@ -1,4 +1,4 @@
-namespace bitbox
+namespace bitbox.Interfaces
 {
     public interface IPlayer
     {

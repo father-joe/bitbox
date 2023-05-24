@@ -1,5 +1,5 @@
 ﻿using System;
-namespace bitbox.SpaceInvadersCleanArchitecture
+namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
 	public class Player
 	{

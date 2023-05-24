@@ -1,6 +1,8 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
 
+using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+
 namespace bitbox
 {
     class Program
@@ -44,8 +46,10 @@ namespace bitbox
                     {
                         case 0:
                             Console.WriteLine("Try to open Space Invaders");
-                            SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
-                            spaceInvaders.run();
+                            //SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
+                            //spaceInvaders.run();
+                            TestGame testGame = new TestGame();
+                            testGame.run();
                             return;
                         case 1:
                             Console.WriteLine("Try to open Tetris");
