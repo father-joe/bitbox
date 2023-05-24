@@ -18,4 +18,12 @@
     </ContentWithTargetPath>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="SpaceInvadersCleanArchitecture\" />
+    <None Remove="SpaceInvadersCleanArchitecture\Entitys\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SpaceInvadersCleanArchitecture\" />
+    <Folder Include="SpaceInvadersCleanArchitecture\Entitys\" />
+  </ItemGroup>
 </Project>

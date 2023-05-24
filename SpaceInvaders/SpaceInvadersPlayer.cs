@@ -44,6 +44,7 @@ namespace bitbox
 
             PlayerUpdate(); // Updates the player
         }
+
         public void PlayerUpdate()
         {
             moveStep = moveClock.ElapsedTime;
@@ -69,10 +70,12 @@ namespace bitbox
                 }
             }
         }
+
         private void Fire() // Fires the projectile upwards
         {
             projectiles.Add(new Projectile(playerRect.Position.X + playerRect.Size.X/2, playerRect.Position.Y, true));
         }
+
         public void TrackInvaderProjectile(ref List<Projectile> invaderProjectile)
         {
             for (int i = 0; i < invaderProjectile.Count; i++)
@@ -94,6 +97,7 @@ namespace bitbox
             Texture playertxr = new Texture("./Textures/player.png");
             playerRect.Texture = playertxr;
         }
+
         public static Player GetInstance()
         {
             if (_Instance == null)
