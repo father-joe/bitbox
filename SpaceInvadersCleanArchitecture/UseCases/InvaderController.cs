@@ -1,8 +1,7 @@
 ﻿using System.Numerics;
 using SFML.System;
 using bitbox.SpaceInvadersCleanArchitecture.Entitys;
-using System.Reflection.Emit;
-using SFML.Graphics;
+using System.Diagnostics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
@@ -10,22 +9,26 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
     {
         private IInvader invader;
         private List<IProjectile> projectiles;
-        private RectangleShape _invaderRect = new RectangleShape(new Vector2f(40, 40));
+        //private RectangleShape _invaderRect = new RectangleShape(new Vector2f(40, 40));
 
-        public RectangleShape invaderRect { get { return _invaderRect; } }
+        //public RectangleShape invaderRect { get { return _invaderRect; } }
         private Vector2i grid;
         private float invaderPositionInGrid;
 
-        private int hight = 1;
-        private int speed = 0;
+        private Vector2 _position = new Vector2();
+        public Vector2 position { get { return _position; } }
+        private Vector2 _size = new Vector2(40, 40);
+        public Vector2 size { get { return _size; } }
 
-        private Time moveStep = new Time();
-        private Time randomTime = new Time();
-        private Clock moveClock = new Clock();
-        private Clock randomClock = new Clock();
-        Random rnd1; // random projectile fire
-        Random rnd2; // random projectile fire
-        Random rndShoot; // random projectile fire
+        private int hight = 1;
+        private int speed = 0;       
+
+        Stopwatch watch = new Stopwatch();
+        bool watchOff = true;
+        long duration;
+        
+
+        public InvaderController() { }
 
         public InvaderController(Vector2 position, Vector2 velocity, int gridX, int gridY)
         {
@@ -33,20 +36,30 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             projectiles = new List<IProjectile>();
             grid = new Vector2i(gridX, gridY);
             UpdateInvaderLevel();
-            _invaderRect.Position = new Vector2f(_invaderRect.Size.X * 2 + (Globals.windowSize.X / _invaderRect.Size.X * 3) * invader.InvaderPosition.X, _invaderRect.Position.Y);
+            _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.InvaderPosition.X, _position.Y); //TODO: Windowsizeentity verwednen
+            //_invaderRect.Position = new Vector2f(_invaderRect.Size.X * 2 + (Globals.windowSize.X / _invaderRect.Size.X * 3) * invader.InvaderPosition.X, _invaderRect.Position.Y);
             // Weitere Initialisierungen
         }
 
         public void Update()
         {
+            if(watchOff)
+            {
+                watch.Start();
+                watchOff = false;
+            }
             /*if (hight < 7)
             {
                 speed = hight; // at high speeds the invaders get out of sequence so I limited them to speed 10 as max
             }*/
             speed = 8;
 
-            moveStep = moveClock.ElapsedTime;
-            randomTime = randomClock.ElapsedTime;
+
+
+            //moveStep = moveClock.ElapsedTime;
+            //randomTime = randomClock.ElapsedTime;
+            duration = watch.ElapsedMilliseconds;
+            
 
             MoveInvader(speed);
 
@@ -73,17 +86,15 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private void MoveInvader(int speed)
         {
             
-            if (!(_invaderRect.Position.X < 0 && invader.Velocity.X < 0) &&
-                !((_invaderRect.Position.X + _invaderRect.Size.X) > Globals.windowSize.X && invader.Velocity.X > 0))
+            if (!(_position.X < 0 && invader.Velocity.X < 0) &&
+                !((_position.X + _size.X) > Globals.windowSize.X && invader.Velocity.X > 0))
             {
-                //Console.WriteLine("invaderRect.Position.X = " + invaderRect.Position.X);
-                //Console.WriteLine("invader.Velocity.X = " + invader.Velocity.X);
 
-                if (moveStep.AsSeconds() > 1f / (float)speed)
+                if (duration > 1000 / (long)speed)
                 {
                     //Console.WriteLine("invaderRect.Position.X alt = " + invaderRect.Position.X);
 
-                    _invaderRect.Position = new Vector2f(_invaderRect.Position.X + invader.Velocity.X, _invaderRect.Position.Y + invader.Velocity.Y);
+                    _position = new Vector2(_position.X + invader.Velocity.X, _position.Y + invader.Velocity.Y);
 
                     //Console.WriteLine("Position Y = " + _invaderRect.Position.Y);
 
@@ -100,10 +111,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                     {
                         animation = 0;
                     }*/
-                    
-                    
-
-                   moveClock.Restart();
+                                                          
+                   watch.Restart();
                 }
             }
             else
@@ -126,7 +135,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         private void UpdateInvaderLevel()
         {
-            _invaderRect.Position = new Vector2f(_invaderRect.Position.X, ((Globals.windowSize.Y / _invaderRect.Size.Y * 3) * invader.InvaderPosition.Y) + 20 * hight);
+            _position = new Vector2(_position.X, ((Globals.windowSize.Y / _size.Y * 3) * invader.InvaderPosition.Y) + 20 * hight);
         }
 
     }
