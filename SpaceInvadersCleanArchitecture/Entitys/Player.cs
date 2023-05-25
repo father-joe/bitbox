@@ -1,10 +1,12 @@
 ﻿using System.Numerics;
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
-	public class Player : IPlayer
+	public class Player:IPlayer
 	{
-		public Vector2 Velocity = new Vector2(0, 0);
-		public bool isDead = false;
+		//public Vector2 Velocity = new Vector2(0, 0);
+		public Vector2 Velocity { get; set; }
+	
+		public bool isDead { get; set; }
 
 		public Player(Vector2 velocity)
 		{
@@ -21,6 +23,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         {
             // Logik zur Verfolgung des Spielerprojektils
         }
+		
 	}
 }
 

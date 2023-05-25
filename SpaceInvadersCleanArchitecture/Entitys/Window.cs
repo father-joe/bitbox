@@ -6,7 +6,7 @@ public class Window:IWindow
 
     public int width { get; }
 
-    public Window(int height, int width)
+    public Window()
     {
         this.height = 1920 / 2;
         this.width = (int)((double)1080 / (double)1.2);

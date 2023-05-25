@@ -1,4 +1,4 @@
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
     public interface IInputController
     {
