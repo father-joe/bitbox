@@ -6,7 +6,7 @@ using System;
 using SFML.Graphics;
 using SFML.System;
 
-namespace bitbox.SpaceInvaders.weg
+namespace bitbox.SpaceInvaders
 {
     class Invader
     {

@@ -1,8 +1,9 @@
 ﻿using System;
 using SFML.Graphics;
 using SFML.Window;
+using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
     class Display
     {
@@ -39,16 +40,16 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             _window.Display();
         }
 
-        public void DrawPlayer(ref Player player)
+        public void DrawPlayer(ref IPlayerController player)
         {
-            _window.Draw(player.playerRect);
+            _window.Draw(player.PlayerRect);
 
-            for (int i = 0; i < player.projectiles.Count; i++)
+            /*for (int i = 0; i < player.projectiles.Count; i++)
             {
                 _window.Draw(player.projectiles[i].projectileRect);
-            }
+            }*/
         }
-        public void DrawInvaders(ref InvaderController[,] invaders)
+        public void DrawInvaders(ref IInvaderController[,] invaders)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -67,7 +68,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                 }
             }
         }
-        public void DrawBarriers(ref Barrier[] barriers)
+        public void DrawBarriers(ref IBarrierController[] barriers)
         {
             for (int i = 0; i < barriers.Length; i++)
             {

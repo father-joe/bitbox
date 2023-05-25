@@ -16,6 +16,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 
         public void Fire();
 
+        public void ChangeDirektion();
+
         public void TrackPlayerProjectile(ref List<Projectile> playerProjectiles);
     }
 }

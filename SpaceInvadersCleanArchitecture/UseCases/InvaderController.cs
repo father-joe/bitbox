@@ -6,14 +6,18 @@ using SFML.Graphics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
-    public class InvaderController
+    public class InvaderController :IInvaderController
     {
         private IInvader invader;
         private List<IProjectile> projectiles;
+        private RectangleShape _invaderRect = new RectangleShape(new Vector2f(40, 40));
 
-        public RectangleShape invaderRect = new RectangleShape(new Vector2f(40, 40));
+        public RectangleShape invaderRect { get { return _invaderRect; } }
         private Vector2i grid;
         private float invaderPositionInGrid;
+
+        private int hight = 1;
+        private int speed = 0;
 
         private Time moveStep = new Time();
         private Time randomTime = new Time();
@@ -28,21 +32,23 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             invader = new Invader(position, velocity);
             projectiles = new List<IProjectile>();
             grid = new Vector2i(gridX, gridY);
-            invaderRect.Position = new Vector2f(invaderRect.Size.X * 2 + (Globals.windowSize.X / invaderRect.Size.X * 3) * invader.InvaderPosition.X, invaderPositionInGrid);
+            UpdateInvaderLevel();
+            _invaderRect.Position = new Vector2f(_invaderRect.Size.X * 2 + (Globals.windowSize.X / _invaderRect.Size.X * 3) * invader.InvaderPosition.X, _invaderRect.Position.Y);
             // Weitere Initialisierungen
         }
 
-        public void Update(int level, int tempLevel)
+        public void Update()
         {
-            if (level < 7)
+            /*if (hight < 7)
             {
-                tempLevel = level; // at high speeds the invaders get out of sequence so I limited them to speed 10 as max
-            }
+                speed = hight; // at high speeds the invaders get out of sequence so I limited them to speed 10 as max
+            }*/
+            speed = 8;
 
             moveStep = moveClock.ElapsedTime;
             randomTime = randomClock.ElapsedTime;
 
-            MoveInvader(level, tempLevel);
+            MoveInvader(speed);
 
             /*
             for (int i = 0; i < projectiles.Count; i++)
@@ -64,14 +70,24 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             }
         }
 
-        private void MoveInvader(int level, int tempLevel)
+        private void MoveInvader(int speed)
         {
-            if (!(invaderRect.Position.X < 0 && invader.Velocity.X < 0) &&
-                !((invaderRect.Position.X + invaderRect.Size.X) > Globals.windowSize.X && invader.Velocity.X > 0))
+            
+            if (!(_invaderRect.Position.X < 0 && invader.Velocity.X < 0) &&
+                !((_invaderRect.Position.X + _invaderRect.Size.X) > Globals.windowSize.X && invader.Velocity.X > 0))
             {
-                if (moveStep.AsSeconds() > 1f / (float)tempLevel)
+                //Console.WriteLine("invaderRect.Position.X = " + invaderRect.Position.X);
+                //Console.WriteLine("invader.Velocity.X = " + invader.Velocity.X);
+
+                if (moveStep.AsSeconds() > 1f / (float)speed)
                 {
-                    invaderRect.Position = new Vector2f(invaderRect.Position.X + invader.Velocity.X, invaderRect.Position.Y + invader.Velocity.Y);
+                    //Console.WriteLine("invaderRect.Position.X alt = " + invaderRect.Position.X);
+
+                    _invaderRect.Position = new Vector2f(_invaderRect.Position.X + invader.Velocity.X, _invaderRect.Position.Y + invader.Velocity.Y);
+
+                    //Console.WriteLine("Position Y = " + _invaderRect.Position.Y);
+
+                    //Console.WriteLine("invaderRect.Position.X neu = " + invaderRect.Position.X);
                     
 
                     /*Globals.InvaderTexture(ref invader.InvaderRect, animation);
@@ -83,32 +99,34 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                     else if (animation == 1)
                     {
                         animation = 0;
-                    }
-                    */
+                    }*/
+                    
                     
 
-                    moveClock.Restart();
+                   moveClock.Restart();
                 }
             }
             else
-            {
-                //invader.Velocity.X *= -1;
-                if (level < 10)
-                    level++;
+            {                
+                invader.ChangeDirektion();
+                //if (hight < 10)
+                //    hight++;
+                hight++;
+                UpdateInvaderLevel();
             }
 
-            UpdateInvaderLevel(level);
+            //UpdateInvaderLevel(hight);
 
-            if (invaderRect.Position.Y != invaderPositionInGrid)
+            /*if (invaderRect.Position.Y != invaderPositionInGrid)
             {
                 invaderRect.Position = new Vector2f(invaderRect.Position.X, invaderPositionInGrid);
-            }
+            }*/
          
         }
 
-        void UpdateInvaderLevel(int level)
+        private void UpdateInvaderLevel()
         {
-            invaderPositionInGrid = ((Globals.windowSize.Y / invaderRect.Size.Y * 3) * invader.InvaderPosition.Y) + 20 * level;
+            _invaderRect.Position = new Vector2f(_invaderRect.Position.X, ((Globals.windowSize.Y / _invaderRect.Size.Y * 3) * invader.InvaderPosition.Y) + 20 * hight);
         }
 
     }

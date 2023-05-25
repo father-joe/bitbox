@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 */
 
-namespace bitbox
+namespace bitbox.SpaceInvaders
 {
     class Barrier
     {

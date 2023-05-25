@@ -3,7 +3,7 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 
-namespace bitbox
+namespace bitbox.SpaceInvaders
 {
     class Player
     {

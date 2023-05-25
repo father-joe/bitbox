@@ -1,7 +1,7 @@
 using SFML.System;
 //using SpaceInvaderGame;
 
-namespace bitbox.weg
+namespace bitbox.SpaceInvaders
 {
     /*
     class SpaceInvadersGame : //IGame

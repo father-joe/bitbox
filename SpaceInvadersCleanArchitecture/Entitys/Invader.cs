@@ -6,7 +6,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
     public class Invader : IInvader
     {
-        public bool IsDead { get; private set; }
+        public bool IsDead { get {return _IsDead;} }
+        private bool _IsDead = false;
         //public RectangleShape InvaderRect { get; private set; }
         //public Vector2i InvaderPosition { get; private set; }
         //public Vector2f Velocity { get; private set; }
@@ -20,12 +21,17 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
             //InvaderRect = new RectangleShape(new Vector2f(40, 40));
             InvaderPosition = position;
             Velocity = velocity;
-            IsDead = false;
+            _IsDead = false;
         }
 
         public void Fire()
         {
+            //Console.WriteLine("Peng");
+        }
 
+        public void ChangeDirektion()
+        {
+            Velocity *= -1;
         }
 
         public void TrackPlayerProjectile(ref List<Projectile> playerProjectiles)

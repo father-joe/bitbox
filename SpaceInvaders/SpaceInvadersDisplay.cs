@@ -10,7 +10,7 @@ using SFML.System;
 using SFML.Graphics;
 using SFML.Window;
 
-namespace bitbox.weg
+namespace bitbox.SpaceInvaders
 {
     /*
     class Display

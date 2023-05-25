@@ -5,7 +5,7 @@ using SFML.Window;
 using System;
 */
 
-namespace bitbox
+namespace bitbox.SpaceInvaders
 {
     class Projectile
     {
