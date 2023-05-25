@@ -33,7 +33,7 @@ namespace bitbox
 
         private static void onKeyPressed(object sender, SFML.Window.KeyEventArgs e)
         {
-            Game game = new Game();
+            //Game game = new Game();
             
             switch(e.Code)
             {
@@ -48,29 +48,33 @@ namespace bitbox
                     {
                         case 0:
                             //Console.WriteLine("Try to open Space Invaders");
-                            SpaceInvadersObserver spaceInvadersObserver = new SpaceInvadersObserver();
-                            game.Attach(spaceInvadersObserver);
+                            IObserver spaceInvadersObserver = new SpaceInvadersObserver();
                             SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
-                            game.Notify_open();
+                            spaceInvaders.Attach(spaceInvadersObserver);
+                            //game.Notify_open();
                             //game.Detach(spaceInvadersObserver);
                             spaceInvaders.run();
                             //game.Attach(spaceInvadersObserver);
                             //spaceInvaders = null;
-                            game.Notify_close();
-                            game.Detach(spaceInvadersObserver);
+                            //game.Notify_close();
+                            spaceInvaders.Detach(spaceInvadersObserver);
                             return;
                         case 1:
                             //Console.WriteLine("Try to open Tetris");
-                            TetrisObserver tetrisObserver = new TetrisObserver();
-                            game.Attach(tetrisObserver);
+                            IObserver tetrisObserver = new TetrisObserver();
                             Tetris tetris = new Tetris();
-                            game.Notify_open();
+
+                            //tetris.Attach(tetrisObserver);
+
+                            //game.Notify_open();
                             //game.Detach(tetrisObserver);
                             tetris.Run();
                             //game.Attach(tetrisObserver);
                             //tetris = null;
-                            game.Notify_close();
-                            game.Detach(tetrisObserver);
+                            //game.Notify_close();
+
+                            //tetris.Detach(tetrisObserver);
+
                             return;
                         case 2:                            
                             Console.WriteLine("Try to open Highscore");
@@ -89,7 +93,6 @@ namespace bitbox
         {
             
             _window.Close();
-            //_window.Dispose();
         }
     }
 }

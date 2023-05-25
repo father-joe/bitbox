@@ -3,10 +3,56 @@ using SFML.System;
 
 namespace bitbox
 {
-    class SpaceInvadersGame
+    class SpaceInvadersGame: IGame
     {
         static bool gameOver = false;
         static int invaderCount = 0;
+
+        // List of observers
+        private List<IObserver> _observers = new List<IObserver>();
+
+        // Method for adding an observer
+        public void Attach(IObserver observer)
+        {
+            Console.WriteLine("Subject: Attached an observer.");
+            _observers.Add(observer);
+        }
+
+        // Method for removing an observer
+        public void Detach(IObserver observer)
+        {
+            Console.WriteLine("Subject: Detached an observer.");
+            _observers.Remove(observer);
+        }
+
+        // Method for notifying the observers
+        //public void Notify_open()
+        //{
+        //    Console.WriteLine("Subject: Notifying observers...");
+        //    foreach (IObserver observer in _observers)
+        //    {
+        //        observer.Open(this);
+        //    }
+        //}
+
+        //// Method for notifying the observers
+        //public void Notify_close()
+        //{
+        //    Console.WriteLine("Subject: Notifying observers...");
+        //    foreach (IObserver observer in _observers)
+        //    {
+        //        observer.Close(this);
+        //    }
+        //}
+
+        public void Notify()
+        {
+            Console.WriteLine("SpaceInvaders: Notifying observers...");
+            foreach(IObserver observer in  _observers)
+            {
+                observer.Update(this);
+            }
+        }
 
         public void run()
         {
@@ -19,6 +65,10 @@ namespace bitbox
             Player player = Player.GetInstance();
 
             Display display = Display.GetInstance();
+
+            //this.Notify_open();
+            this.Notify();
+
             display.Init();
             while (display.IsOpen())
             {
@@ -36,6 +86,9 @@ namespace bitbox
                     {
                         Console.WriteLine("YOU LOST!");
                     }
+
+                    //this.Notify_close();
+                    this.Notify();
                 }
 
                 display.DrawPlayer(ref player); // Player rectangle being passed to draw

@@ -2,7 +2,8 @@ namespace bitbox;
 
 public interface IObserver
 {
-    void Open(Game game);
+    //void Open(IGame game);
 
-    void Close(Game game);
+    //void Close(IGame game);
+    void Update(IGame game);
 }
