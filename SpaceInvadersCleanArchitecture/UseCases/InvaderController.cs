@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
-using SFML.System;
+//using SFML.System;
 using bitbox.SpaceInvadersCleanArchitecture.Entitys;
 using System.Diagnostics;
 
@@ -12,7 +12,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         //private RectangleShape _invaderRect = new RectangleShape(new Vector2f(40, 40));
 
         //public RectangleShape invaderRect { get { return _invaderRect; } }
-        private Vector2i grid;
+        private Vector2 grid;
         private float invaderPositionInGrid;
 
         private Vector2 _position = new Vector2();
@@ -34,7 +34,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {
             invader = new Invader(position, velocity);
             projectiles = new List<IProjectile>();
-            grid = new Vector2i(gridX, gridY);
+            grid = new Vector2(gridX, gridY);
             UpdateInvaderLevel();
             _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.InvaderPosition.X, _position.Y); //TODO: Windowsizeentity verwednen
             //_invaderRect.Position = new Vector2f(_invaderRect.Size.X * 2 + (Globals.windowSize.X / _invaderRect.Size.X * 3) * invader.InvaderPosition.X, _invaderRect.Position.Y);
