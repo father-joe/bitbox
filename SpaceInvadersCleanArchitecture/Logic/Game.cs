@@ -12,7 +12,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
         public void run()
         {
-            //Globals g = new Globals();// DO NOT USE
+            //Globals g = new Globals();// DO NOT USE 
             //Barrier[] barriers = new Barrier[4]; // Th original had 4 barriers
             IBarrierController[] barriers = new BarrierController[4];
             InitializeBarriers(ref barriers);
@@ -25,7 +25,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             //playerRect.Position.X + Globals.windowSize.X/2 - playerRect.Size.X/2, Globals.windowSize.Y - (int)(playerRect.Size.Y*1.5)
 
             Vector2 velocity = new Vector2(0, 0);
-            IPlayerController player = new PlayerController(velocity);
+            IPlayerController player = new PlayerController();
 
             IInputController input = new InputController();
 
@@ -37,8 +37,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 display.CheckForEvents(); // Checks for events such as closing the window
 
                 //player.PlayerControls();
+                //TODO: check if really Clean architecture
                 player.PlayerMovement(input.GetPlayerInput());
+                //input.PlayerControl();//get Playerinput and set velocity
+                Console.WriteLine("Player: " + player.PlayerRect.Position.X);
                 Loop(ref player, ref invaders, ref barriers);
+                
 
                 /*if (player.isDead || gameOver)
                 {
@@ -48,6 +52,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                         Console.WriteLine("YOU LOST!");
                     }
                 }*/
+                
 
                 display.DrawPlayer(ref player); // Player rectangle being passed to draw
                 display.DrawInvaders(ref invaders); // Invader rectangle being passed to draw

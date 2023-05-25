@@ -56,6 +56,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
         public void DrawPlayer(ref IPlayerController player)
         {
+            Console.WriteLine(player.PlayerRect.Position.X);
             _window.Draw(player.PlayerRect);
 
             /*for (int i = 0; i < player.projectiles.Count; i++)
