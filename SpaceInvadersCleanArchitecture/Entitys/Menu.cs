@@ -8,9 +8,9 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
     public class Menu:IMenu
     {
-        public int height { get; }
+        public uint height { get; }
 
-        public int width { get; }
+        public uint width { get; }
 
         public int numberItems { get; }
 

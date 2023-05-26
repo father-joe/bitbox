@@ -8,8 +8,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
     public interface IMenu
     {
-        int height { get; }
-        int width { get; }
+        uint height { get; }
+        uint width { get; }
 
         int numberItems { get; }
 

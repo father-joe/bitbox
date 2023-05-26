@@ -9,20 +9,18 @@ using System.Threading.Tasks;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    public class ShowMenu:IShowMenu
+    public class MenuView:IMenuView
     {
 
         private int selectedItemIndex;
         private Font font;
         private IMenu menuWindow;
-        const int MAX_NUMBER_OF_ITEMS = 4;
+        const int MAX_NUMBER_OF_ITEMS = 3;
         private Text[] menu = new Text[MAX_NUMBER_OF_ITEMS];
 
-        public ShowMenu()
+        public MenuView()
         {
             menuWindow = new Menu();
-
-            // int MAX_NUMBER_OF_ITEMS = menuWindow.numberItems;
             
             font = new Font("./Fonts/Anonymice Powerline Bold Italic.ttf");
 
@@ -37,18 +35,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             float textWidth1 = menu[1].GetLocalBounds().Width;
             menu[1].FillColor = Color.White;
             menu[1].Position = new Vector2f((menuWindow.width - textWidth1) / 2, menuWindow.height / (MAX_NUMBER_OF_ITEMS + 1) * 2);
-
-            menu[2] = new Text("Highscores", font, 24);
+            
+            menu[2] = new Text("Exit", font, 24);
             // get width of the text
             float textWidth2 = menu[2].GetLocalBounds().Width;
             menu[2].FillColor = Color.White;
             menu[2].Position = new Vector2f((menuWindow.width - textWidth2) / 2, menuWindow.height / (MAX_NUMBER_OF_ITEMS + 1) * 3);
-
-            menu[3] = new Text("Exit", font, 24);
-            // get width of the text
-            float textWidth3 = menu[3].GetLocalBounds().Width;
-            menu[3].FillColor = Color.White;
-            menu[3].Position = new Vector2f((menuWindow.width - textWidth3) / 2, menuWindow.height / (MAX_NUMBER_OF_ITEMS + 1) * 4);
 
             selectedItemIndex = 0;
         }
@@ -86,6 +78,16 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         {
             return selectedItemIndex;
         }
+
+        // public void hideMenu()
+        // {
+        //     _window.setVisible = false;
+        // }
+        //
+        // public void showMenu()
+        // {
+        //     _window.setVisible = true;
+        // }
 
     }
 }

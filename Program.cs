@@ -10,32 +10,28 @@ namespace bitbox
     class Program
     {
         private static RenderWindow _window;
-        // private static IShowMenu _menu;
+        // private static IMenu _menu;
         private static readonly EventHandler<KeyEventArgs> onKeyPress;
-        private static IShowMenu showMenu;
+        private static IMenuView menuView;
         private static IMenu menu;
 
         public static void Main(String[] args)
         {
-            showMenu = new ShowMenu();
+            menuView = new MenuView();
             menu = new Menu();
-            const int WINDOW_WIDTH = 640;
-            const int WINDOW_HEIGHT = 480;
-            _window = new RenderWindow(new VideoMode(640, 480), "Bitbox");
+            // const int WINDOW_WIDTH = 640;
+            // const int WINDOW_HEIGHT = 480;
+            _window = new RenderWindow(new VideoMode(menu.width, menu.height), menu.name);
             _window.SetVisible(true);
             //_menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
             _window.KeyPressed += new EventHandler<KeyEventArgs>(onKeyPressed);
             
-
-
-
             while (_window.IsOpen)
             {               
-                
                 _window.DispatchEvents();
                 _window.Clear(Color.Black);
-                showMenu.draw(_window);
+                menuView.draw(_window);
                 _window.Display();
             }
         }
@@ -45,13 +41,13 @@ namespace bitbox
             switch(e.Code)
             {
                 case Keyboard.Key.Up:
-                    showMenu.moveUp();
+                    menuView.moveUp();
                     break;
                 case Keyboard.Key.Down:
-                    showMenu.moveDown();
+                    menuView.moveDown();
                     break;
                 case Keyboard.Key.Enter:
-                    switch(showMenu.GetPressedItem())
+                    switch(menuView.GetPressedItem())
                     {
                         case 0:
                             Console.WriteLine("Try to open Space Invaders");
@@ -67,12 +63,7 @@ namespace bitbox
                             Tetris tetris = new Tetris();
                             tetris.Run();
                             return;
-                        case 2:                            
-                            Console.WriteLine("Try to open Highscore");
-                            //Highscores highscores = new Highscores();
-                            //highscores.Show(_window);
-                            return;
-                        case 3:
+                        case 2:
                             _window.Close();
                             return;
                     }

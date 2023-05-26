@@ -7,12 +7,15 @@ using SFML.Graphics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    public interface IShowMenu
+    public interface IMenuView
     {
         public void draw(RenderWindow window);
         public void moveUp();
         public void moveDown();
         public int GetPressedItem();
+        // public void hideMenu();
+        // public void showMenu();
+        
 
     }
 }
