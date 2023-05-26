@@ -18,10 +18,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 
         public Menu()
         {
-            this.height = 640;
-            this.width = 480;
+            this.height = 480;
+            this.width = 640;
             this.numberItems = 3;
-            this.name = "bitbox";
+            this.name = "Bitbox";
         }
     }
 }

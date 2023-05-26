@@ -9,25 +9,21 @@ using System.Threading.Tasks;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    public class ShowMenu
+    public class ShowMenu:IShowMenu
     {
 
         private int selectedItemIndex;
         private Font font;
         private IMenu menuWindow;
+        const int MAX_NUMBER_OF_ITEMS = 4;
+        private Text[] menu = new Text[MAX_NUMBER_OF_ITEMS];
 
         public ShowMenu()
         {
             menuWindow = new Menu();
 
-            private int MAX_NUMBER_OF_ITEMS = menuWindow.numberItems;
-            private Text[] menu = new Text[MAX_NUMBER_OF_ITEMS];
-            selectedItemIndex = CreateMenu(Menu, MAX_NUMBER_OF_ITEMS);
-        }
-
-
-        public int CreateMenu(Text[] menu, MAX_NUMBER_OF_ITEMS)
-        {
+            // int MAX_NUMBER_OF_ITEMS = menuWindow.numberItems;
+            
             font = new Font("./Fonts/Anonymice Powerline Bold Italic.ttf");
 
             menu[0] = new Text("Space Invaders", font, 24);
@@ -55,7 +51,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             menu[3].Position = new Vector2f((menuWindow.width - textWidth3) / 2, menuWindow.height / (MAX_NUMBER_OF_ITEMS + 1) * 4);
 
             selectedItemIndex = 0;
-            return selectedItemIndex;
         }
 
 

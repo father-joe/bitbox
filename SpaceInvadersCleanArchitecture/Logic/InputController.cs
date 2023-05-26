@@ -4,16 +4,17 @@ using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    public class InputController :IInputController
+    public class InputController : IInputController
     {
         private IPlayerController playerController;
         private Time moveStep = new Time();
         private Clock moveClock = new Clock();
-        
+
         public InputController()
         {
             this.playerController = new PlayerController();
         }
+
         public int GetPlayerInput()
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) // Right
@@ -42,9 +43,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                     // playerController.PlayerFire();
                     //isFired = true;
                 }
+
                 moveClock.Restart();
             }
-            
+
             //Console.WriteLine("Input: " + playerController.PlayerRect.Position.X);
         }
 
@@ -64,6 +66,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 return 10;
             }
             else return 0;
-            
+
         }
+    }
 }
