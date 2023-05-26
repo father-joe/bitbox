@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using bitbox.SpaceInvadersCleanArchitecture.Entitys;
+using SFML.Graphics;
 using SFML.Window;
 
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
@@ -9,25 +10,32 @@ namespace bitbox
     class Program
     {
         private static RenderWindow _window;
-        private static Menu _menu;
+        // private static IShowMenu _menu;
         private static readonly EventHandler<KeyEventArgs> onKeyPress;
+        private static IShowMenu showMenu;
+        private static IMenu menu;
 
         public static void Main(String[] args)
         {
+            showMenu = new ShowMenu();
+            menu = new Menu();
             const int WINDOW_WIDTH = 640;
             const int WINDOW_HEIGHT = 480;
-            _window = new RenderWindow(new VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Bitbox");
+            _window = new RenderWindow(new VideoMode(640, 480), "Bitbox");
             _window.SetVisible(true);
-            _menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
+            //_menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
             _window.KeyPressed += new EventHandler<KeyEventArgs>(onKeyPressed);
+            
+
 
 
             while (_window.IsOpen)
             {               
+                
                 _window.DispatchEvents();
                 _window.Clear(Color.Black);
-                _menu.draw(_window);
+                showMenu.draw(_window);
                 _window.Display();
             }
         }
@@ -37,20 +45,22 @@ namespace bitbox
             switch(e.Code)
             {
                 case Keyboard.Key.Up:
-                    _menu.moveUp();
+                    showMenu.moveUp();
                     break;
                 case Keyboard.Key.Down:
-                    _menu.moveDown();
+                    showMenu.moveDown();
                     break;
                 case Keyboard.Key.Enter:
-                    switch(_menu.GetPressedItem())
+                    switch(showMenu.GetPressedItem())
                     {
                         case 0:
                             Console.WriteLine("Try to open Space Invaders");
                             //SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
                             //spaceInvaders.run();
                             IGame invaders = new TestGame();
-                            invaders.run();                        
+                            _window.SetVisible(false);
+                            invaders.run();
+                            _window.SetVisible(true);
                             return;
                         case 1:
                             Console.WriteLine("Try to open Tetris");
@@ -74,5 +84,6 @@ namespace bitbox
         {
             _window.Close();
         }
+
     }
 }
