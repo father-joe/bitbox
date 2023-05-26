@@ -11,6 +11,7 @@ namespace bitbox
         private static RenderWindow _window;
         private static Menu _menu;
         private static readonly EventHandler<KeyEventArgs> onKeyPress;
+        private IShowMenu showMenu;
 
         public static void Main(String[] args)
         {
@@ -21,10 +22,13 @@ namespace bitbox
             _menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
             _window.KeyPressed += new EventHandler<KeyEventArgs>(onKeyPressed);
+            showMenu = new ShowMenu();
+
 
 
             while (_window.IsOpen)
             {               
+                
                 _window.DispatchEvents();
                 _window.Clear(Color.Black);
                 _menu.draw(_window);
@@ -50,7 +54,9 @@ namespace bitbox
                             //SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
                             //spaceInvaders.run();
                             IGame invaders = new TestGame();
-                            invaders.run();                        
+                            _window.SetVisible(false);
+                            invaders.run();
+                            _window.SetVisible(true);
                             return;
                         case 1:
                             Console.WriteLine("Try to open Tetris");
@@ -74,5 +80,6 @@ namespace bitbox
         {
             _window.Close();
         }
+
     }
 }
