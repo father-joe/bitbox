@@ -1,5 +1,4 @@
-﻿using System;
-using SFML.Graphics;
+﻿using System.Numerics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
@@ -7,9 +6,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 	{
         bool PlayerProjectile { get; }
         bool IsDead { get; }
-        RectangleShape ProjectileRect { get; }
 
-        void Update();
+        public Vector2 ProjectilePosition { get; }
+        public Vector2 velocity { get; }
+
+        void LifeSpan();
     }
 }
 

@@ -9,6 +9,9 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public Vector2 position { get; }
         public Vector2 size { get; }
+
+        public bool isFire { get; }
+        public int GetAnimation();
         public void Update();
     }
 }

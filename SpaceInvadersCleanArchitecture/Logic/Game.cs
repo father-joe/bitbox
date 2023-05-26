@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 using bitbox.Interfaces;
-using SFML.System;
+//using SFML.System;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
@@ -9,6 +9,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
     {
         static bool gameOver = false;
         static int invaderCount = 0;
+        private int _invaderAnimation;
+
+        List<ProjectileController> projectiles = new List<ProjectileController>(); //TODO: Interface verwenden (aber wie?)
+        //IProjectileController[] projectiles;
 
         public void run()
         {
@@ -29,7 +33,9 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
             IInputController input = new InputController();
 
-            Display display = Display.GetInstance();
+            IDisplay display = new Display();
+
+            //Display display = Display.GetInstance();
             display.Init();
             while (display.IsOpen())
             {
@@ -39,10 +45,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 //player.PlayerControls();
                 //TODO: check if really Clean architecture
                 player.PlayerMovement(input.GetPlayerInput());
+                if(input.Fire())
+                {
+                    AddProjectile(player.position.X + player.size.X/2, player.position.Y, true);
+                }
                 //input.PlayerControl();//get Playerinput and set velocity
-                Console.WriteLine("Player: " + player.PlayerRect.Position.X);
-                Loop(ref player, ref invaders, ref barriers);
-                
+                //Console.WriteLine("Player: " + player.PlayerRect.Position.X);
+                Loop(ref player, ref invaders, ref barriers, ref projectiles);            
 
                 /*if (player.isDead || gameOver)
                 {
@@ -52,11 +61,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                         Console.WriteLine("YOU LOST!");
                     }
                 }*/
-                
+
+                CheckCollision(ref player, ref invaders, ref barriers, ref projectiles);
 
                 display.DrawPlayer(ref player); // Player rectangle being passed to draw
-                display.DrawInvaders(ref invaders); // Invader rectangle being passed to draw
+                display.DrawInvaders(ref invaders, GetInvaderAnimation()); // Invader rectangle being passed to draw
                 display.DrawBarriers(ref barriers);
+                display.DrawProjectiles(ref projectiles);
                 display.Update(); // Draws on the window from the buffer
             }
         }
@@ -79,7 +90,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        private void Loop(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers) // Loops through all the invaders and updates their position
+        private void Loop(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles) // Loops through all the invaders and updates their position
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -88,9 +99,14 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                     if (invaders[i, j] != null) // checks if the element is already null
                     {
                         
-                        if (/*!invaders[i, j].isDead*/ 0 == 0)
+                        if (true) //TODO if(!invader.idDead) implementieren
                         {
                             invaders[i, j].Update();
+                            if(invaders[i, j].isFire)
+                            {
+                                AddProjectile(invaders[i, j].position.X + invaders[i, j].size.X/2, invaders[i, j].position.Y, false);
+                            }
+                            SetInvaderAnimation(invaders[i, j].GetAnimation());
                             
                             /*
                             invaders[i, j].TrackPlayerProjectile(ref player.projectiles); // tracks if the player hit invader
@@ -105,7 +121,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                         }
                         else
                         {
-                            //invaders[i, j] = null;
+                            invaders[i, j] = null;
                         }
                         
                     }
@@ -116,11 +132,131 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 //barriers[i].TrackProjectile(ref player.projectiles);
             }
 
+            for(int i = 0; i < projectiles.Count; i++)
+            {
+                if(projectiles[i] != null)
+                {
+                    projectiles[i].Update();
+                }
+            }
+
             if (invaderCount == invaders.GetLength(0) * invaders.GetLength(1))
             {
                 gameOver = true;
             }
         }
+
+        private void CheckCollision(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        {
+            CheckCollisionWithBorders(ref projectiles);
+            CheckCollisionWithBarriers(ref barriers, ref projectiles);
+            CheckCollisionWithPlayer(ref player, ref projectiles);
+            CheckCollisionWithInvader(ref invaders, ref projectiles);                      
+        }
+
+        private void CheckCollisionWithBorders(ref List<ProjectileController> projectiles)
+        {
+            for(int i = 0; i < projectiles.Count; i++)
+            {
+                if(projectiles[i] != null)
+                {
+                    if(projectiles[i].position.Y == 0 || projectiles[i].position.Y > 1920 / 2)
+                    {
+                        projectiles[i] = null;
+                    }
+                }
+            }
+
+        }
+
+        private void CheckCollisionWithBarriers(ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        {
+            for(int i = 0; i < projectiles.Count; i++)
+            {                
+                for(int j = 0; j < barriers.Length; j++)
+                { 
+                    if(projectiles[i] != null)
+                    {
+                        if(!projectiles[i].isPlayerProjectile)
+                        {
+                            if(projectiles[i].position.Y > (barriers[j].position.Y) &&
+                            ((projectiles[i].position.X >= barriers[j].position.X) && (projectiles[i].position.X <= (barriers[j].position.X + barriers[j].size.X))))
+                            {
+                                projectiles[i] = null;
+                            }
+                        }
+                        else
+                        {
+                            if(projectiles[i].position.Y < (barriers[j].position.Y + barriers[j].size.Y) &&
+                            ((projectiles[i].position.X >= barriers[j].position.X) && (projectiles[i].position.X <= (barriers[j].position.X + barriers[j].size.X))))
+                            {
+                                projectiles[i] = null;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+                                                                              
+        private void CheckCollisionWithPlayer(ref IPlayerController player, ref List<ProjectileController> projectiles)
+        {
+            for(int i = 0; i < projectiles.Count; i++)
+            {
+                if(projectiles[i] != null)
+                {
+                    if(!projectiles[i].isPlayerProjectile)
+                    {
+                        if(projectiles[i].position.Y > (player.position.Y) &&
+                        ((projectiles[i].position.X >= player.position.X) && (projectiles[i].position.X <= (player.position.X + player.size.X))))
+                        {
+                            projectiles[i] = null;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CheckCollisionWithInvader(ref IInvaderController[,] invaders, ref List<ProjectileController> projectiles)
+        {
+            for(int i = 0; i < projectiles.Count; i++)
+            {
+                for (int j = 0; j < invaders.GetLength(0); j++)
+                {
+                    for (int k = 0; k < invaders.GetLength(1); k++)
+                    {
+                        if(projectiles[i] != null)
+                        {
+                            if(projectiles[i].isPlayerProjectile)
+                            {
+                                if(projectiles[i].position.Y < (invaders[j, k].position.Y) &&
+                                ((projectiles[i].position.X >= invaders[j, k].position.X) && (projectiles[i].position.X <= (invaders[j, k].position.X + invaders[j, k].size.X))))
+                                {
+                                    projectiles[i] = null;
+                                }
+                            }                            
+                        }
+                    }
+                }
+            }            
+        }        
+            
+        
+
+        private void AddProjectile(float positionX, float positionY, bool playerProjectile)
+        {
+
+            projectiles.Add(new ProjectileController(new Vector2(positionX, positionY), playerProjectile));
+        }
+
+        private void SetInvaderAnimation(int animation)
+        {
+            _invaderAnimation = animation;
+        }
+
+        private int GetInvaderAnimation()
+        {
+            return _invaderAnimation;
+        }
     }
 }
-

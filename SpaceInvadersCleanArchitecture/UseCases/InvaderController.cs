@@ -5,10 +5,10 @@ using System.Diagnostics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
-    public class InvaderController :IInvaderController
+    public class InvaderController : IInvaderController
     {
         private IInvader invader;
-        private List<IProjectile> projectiles;
+        //private List<IProjectile> projectiles;
         //private RectangleShape _invaderRect = new RectangleShape(new Vector2f(40, 40));
 
         //public RectangleShape invaderRect { get { return _invaderRect; } }
@@ -20,20 +20,28 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private Vector2 _size = new Vector2(40, 40);
         public Vector2 size { get { return _size; } }
 
+        private bool _isFire;
+        public bool isFire { get { return _isFire; } }
+
+        private int _animation = 0;
+        public int GetAnimation() { return _animation;}
+
         private int hight = 1;
         private int speed = 0;       
 
-        Stopwatch watch = new Stopwatch();
-        bool watchOff = true;
-        long duration;
-        
+        private Stopwatch watch = new Stopwatch();
+        private bool watchOff = true;
+        private long duration;
+
+        Random rand = new Random();
+        private int randShoot;
 
         public InvaderController() { }
 
         public InvaderController(Vector2 position, Vector2 velocity, int gridX, int gridY)
         {
             invader = new Invader(position, velocity);
-            projectiles = new List<IProjectile>();
+            //projectiles = new List<IProjectile>();
             grid = new Vector2(gridX, gridY);
             UpdateInvaderLevel();
             _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.InvaderPosition.X, _position.Y); //TODO: Windowsizeentity verwednen
@@ -53,6 +61,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                 speed = hight; // at high speeds the invaders get out of sequence so I limited them to speed 10 as max
             }*/
             speed = 8;
+            _isFire = false;
 
 
 
@@ -79,7 +88,16 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
             if (invader.InvaderPosition.Y == 4)
             {
-                invader.Fire();
+                Fire();
+            }
+        }
+
+        private void Fire()
+        {
+            randShoot = rand.Next(0, 300);
+            if (randShoot < 1)
+            {                
+                _isFire = true;
             }
         }
 
@@ -101,16 +119,16 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                     //Console.WriteLine("invaderRect.Position.X neu = " + invaderRect.Position.X);
                     
 
-                    /*Globals.InvaderTexture(ref invader.InvaderRect, animation);
+                    //Globals.InvaderTexture(ref invader.InvaderRect, animation);
 
-                    if (animation == 0)
+                    if (_animation == 0)
                     {
-                        animation = 1;
+                        _animation = 1;
                     }
-                    else if (animation == 1)
+                    else if (_animation == 1)
                     {
-                        animation = 0;
-                    }*/
+                        _animation = 0;
+                    }
                                                           
                    watch.Restart();
                 }
@@ -135,7 +153,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         private void UpdateInvaderLevel()
         {
-            _position = new Vector2(_position.X, ((Globals.windowSize.Y / _size.Y * 3) * invader.InvaderPosition.Y) + 20 * hight);
+            _position = new Vector2(_position.X, ((Globals.windowSize.Y / _size.Y * 3) * invader.InvaderPosition.Y) + 33 * hight);
         }
 
     }

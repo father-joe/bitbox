@@ -35,7 +35,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 return 0;
             }
 
-            if (moveStep.AsSeconds() > 0.3f)
+            /*if (moveStep.AsSeconds() > 0.3f)
             {
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) // Fire
                 {
@@ -43,9 +43,21 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                     //isFired = true;
                 }
                 moveClock.Restart();
-            }
+            }*/
             
             //Console.WriteLine("Input: " + playerController.PlayerRect.Position.X);
+        }
+
+        public bool Fire()
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) // Fire
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
         }
     }
 }

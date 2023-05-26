@@ -1,8 +1,8 @@
 using bitbox.SpaceInvadersCleanArchitecture.Entitys;
 using System.Numerics;
-using SFML.Graphics;
-using SFML.Window;
-using SFML.System;
+//using SFML.Graphics;
+//using SFML.Window;
+//using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
@@ -12,22 +12,25 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private IWindow window;
 
         public Vector2 velocity = new Vector2(0, 0);
-        private RectangleShape _playerRect = new RectangleShape(new Vector2f(100, 50));
+        //private RectangleShape _playerRect = new RectangleShape(new Vector2f(100, 50));
 
-        private Time moveStep = new Time();
-        private Clock moveClock = new Clock();
+        private Vector2 _position = new Vector2();
+        public Vector2 position { get { return _position; } }
+        private Vector2 _size = new Vector2(120, 70);
+        public Vector2 size { get { return _size; } }
 
-        public RectangleShape PlayerRect { get {return _playerRect;}}
+        //private Time moveStep = new Time();
+        //private Clock moveClock = new Clock();
+
+        //public RectangleShape PlayerRect { get {return _playerRect;}}
         //public bool isDead = false;
         //public bool isFired = false;
-
-        //public List<Projectile> projectiles = new List<Projectile>();
 
         public PlayerController()
         {
             this.window = new Entitys.Window();
             this.player = new Player(velocity);
-            PlayerRect.Position = new Vector2f(PlayerRect.Position.X + window.width/2 - PlayerRect.Size.X/2, window.height - (int)(PlayerRect.Size.Y*5));
+            _position = new Vector2(_position.X + window.width/2 - _size.X/2, window.height - (int)(_size.Y*2));
         }
 
         /*public void PlayerControls() // Player controls
@@ -74,6 +77,14 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             PlayerUpdate();
         }
 
+        public void PlayerShoot(bool shoot)
+        {
+            if(shoot)
+            {
+                Console.WriteLine("peng peng");
+            }
+        }
+
         // public void PlayerMoveRight()
         // {
         //     velocity.X = 3;
@@ -98,12 +109,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public void PlayerUpdate()
         {
-            moveStep = moveClock.ElapsedTime;
+            //moveStep = moveClock.ElapsedTime;
 
-            if (!(_playerRect.Position.X < 0 && velocity.X < 0) &&
-                !((_playerRect.Position.X + _playerRect.Size.X) > window.width && velocity.X > 0)) //Window bounds
+            if (!(_position.X < 0 && velocity.X < 0) &&
+                !((_position.X + _size.X) > window.width && velocity.X > 0)) //Window bounds
             {
-                _playerRect.Position = new Vector2f(_playerRect.Position.X + velocity.X, _playerRect.Position.Y + velocity.Y); //Sets the players position
+                _position = new Vector2(_position.X + velocity.X, _position.Y + velocity.Y); //Sets the players position
                 //Console.WriteLine("Position: " + _playerRect.Position);
             }
             //if (isFired)

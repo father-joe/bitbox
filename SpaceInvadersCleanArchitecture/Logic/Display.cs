@@ -6,15 +6,21 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    class Display
+    class Display : IDisplay
     {
         private RenderWindow _window;
 
         private IBarrierController initBarrier;
         private IInvaderController initInvader;
+        private IPlayerController initPlayer;
+        private ITextureManager textureManager;
+        private IProjectileController initProjectile;
 
-        RectangleShape barrierRect;
-        RectangleShape invaderRect;
+        private RectangleShape barrierRect;
+        private RectangleShape invaderRect;
+        private RectangleShape playerRect;
+        private RectangleShape projectileRect;
+
 
 
         public void Init()
@@ -24,6 +30,14 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
             initInvader = new InvaderController();
             invaderRect = new RectangleShape(new Vector2f(initInvader.size.X, initInvader.size.Y));
+
+            initPlayer = new PlayerController();
+            playerRect = new RectangleShape(new Vector2f(initPlayer.size.X, initPlayer.size.Y));
+
+            initProjectile = new ProjectileController();
+            projectileRect = new RectangleShape(new Vector2f(initProjectile.size.X, initProjectile.size.Y));
+
+            textureManager = new TextureManager();
 
             ContextSettings settings = new ContextSettings();
             settings.DepthBits = 24;
@@ -56,15 +70,19 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
         public void DrawPlayer(ref IPlayerController player)
         {
-            Console.WriteLine(player.PlayerRect.Position.X);
-            _window.Draw(player.PlayerRect);
+            //Console.WriteLine(player.PlayerRect.Position.X);
+            //_window.Draw(player.PlayerRect);
+
+            playerRect.Position = new Vector2f(player.position.X, player.position.Y);
+            playerRect.Texture = textureManager.GetPlayerTexture();
+            _window.Draw(playerRect);
 
             /*for (int i = 0; i < player.projectiles.Count; i++)
             {
                 _window.Draw(player.projectiles[i].projectileRect);
             }*/
         }
-        public void DrawInvaders(ref IInvaderController[,] invaders)
+        public void DrawInvaders(ref IInvaderController[,] invaders, int animation)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -75,6 +93,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                         //_window.Draw(invaders[i, j].invaderRect);
 
                         invaderRect.Position = new Vector2f(invaders[i, j].position.X, invaders[i, j].position.Y);
+                        invaderRect.Texture = textureManager.GetInvaderTextrue(animation);
                         _window.Draw(invaderRect);
 
                         /*
@@ -93,7 +112,21 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             for (int i = 0; i < barriers.Length; i++)
             {
                 barrierRect.Position = new Vector2f(barriers[i].position.X, barriers[i].position.Y);
+                barrierRect.Texture = textureManager.GetBarrierTexture();
                 _window.Draw(barrierRect);
+            }
+        }
+
+        public void DrawProjectiles(ref List<ProjectileController> projectiles)
+        {
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                if(projectiles[i] != null)
+                {
+                    projectileRect.Position = new Vector2f(projectiles[i].position.X, projectiles[i].position.Y);
+                    _window.Draw(projectileRect);
+                }
+                
             }
         }
 
@@ -108,6 +141,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             return _window.IsOpen;
         }
 
+        /*
         private static Display _Instance; // Singleton
         private Display() { }
         public static Display GetInstance()
@@ -119,6 +153,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
             return _Instance;
         }
+        */
     }
 }
 
