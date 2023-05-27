@@ -18,6 +18,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private Vector2 _size = new Vector2();
         public Vector2 size { get { return _size; } }
 
+        public bool isDead { get { return invader.isDead; } }
+
         private bool _isFire;
         public bool isFire { get { return _isFire; } }
 
@@ -114,6 +116,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private void UpdateInvaderLevel()
         {
             _position = new Vector2(_position.X, ((window.GetWindowHight() / _size.Y * 3) * invader.InvaderPosition.Y) + 33 * hight);
+        }
+
+        public void SetIsDead(bool isDead)
+        {
+            invader.SetIsDead(isDead);
         }
 
     }

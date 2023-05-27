@@ -1,4 +1,6 @@
 using bitbox.SpaceInvadersCleanArchitecture.Entitys;
+using SFML.Window;
+using System.Diagnostics;
 using System.Numerics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
@@ -37,6 +39,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             {
                 velocity.X = 0;
             }
+
             PlayerUpdate();
         }
 
@@ -49,7 +52,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         }
 
         public void PlayerUpdate()
-        {
+        {           
             if (!(_position.X < 0 && velocity.X < 0) &&
                 !((_position.X + _size.X) > window.width && velocity.X > 0)) //Window bounds
             {

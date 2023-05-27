@@ -4,8 +4,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
     public class Invader : IInvader
     {
-        public bool IsDead { get {return _IsDead;} }
-        private bool _IsDead = false;
+        private bool _isDead = false;
+        public bool isDead { get { return _isDead; } }
 
         public Vector2 InvaderPosition { get; private set; }
         public Vector2 Velocity { get; private set; }
@@ -21,8 +21,18 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         {
             InvaderPosition = position;
             Velocity = velocity;
-            _IsDead = false;
+            //_IsDead = false;
             size = _size;
+        }
+
+        public void SetIsDead(bool isDead)
+        {
+            _isDead = isDead;
+        }
+
+        public bool GetIsDead()
+        {
+            return _isDead;
         }
 
         public void Fire() //TODO: delete

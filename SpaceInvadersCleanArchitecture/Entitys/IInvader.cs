@@ -4,12 +4,15 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
 	public interface IInvader
 	{
-        bool IsDead { get; }
+        bool isDead { get; }
         Vector2 InvaderPosition { get; }
         Vector2 Velocity { get; }
         Vector2 size { get; }
 
         public void Fire();
+        public bool GetIsDead();
+
+        public void SetIsDead(bool isDead);
 
         public void ChangeDirektion();
 
