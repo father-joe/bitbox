@@ -11,6 +11,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         private bool _isDead = false;
         public bool IsDead { get {return _isDead; } }
 
+        private IGameWindow window = new GameWindow();
+
         //public RectangleShape projectileRect = new RectangleShape(new Vector2f(5, 20));
         private Vector2 _velocity = new Vector2(0, 05f);
         public Vector2 ProjectilePosition { get; private set; }
@@ -29,7 +31,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
             {
                 _isDead = true;
             }
-            else if (ProjectilePosition.Y > Globals.windowSize.Y && !_playerProjectile)
+            else if (ProjectilePosition.Y > window.height && !_playerProjectile)
             {
                 _isDead = true;
             }

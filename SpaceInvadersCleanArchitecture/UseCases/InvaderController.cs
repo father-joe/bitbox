@@ -8,6 +8,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
     public class InvaderController : IInvaderController
     {
         private IInvader invader;
+        private IWindowController window = new WindowController(); //TODO warum geht nicht IWindow        
+
         //private List<IProjectile> projectiles;
         //private RectangleShape _invaderRect = new RectangleShape(new Vector2f(40, 40));
 
@@ -39,7 +41,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         public InvaderController() { }
 
         public InvaderController(Vector2 position, Vector2 velocity, int gridX, int gridY)
-        {
+        {            
             invader = new Invader(position, velocity);
             //projectiles = new List<IProjectile>();
             grid = new Vector2(gridX, gridY);
@@ -105,7 +107,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {
             
             if (!(_position.X < 0 && invader.Velocity.X < 0) &&
-                !((_position.X + _size.X) > Globals.windowSize.X && invader.Velocity.X > 0))
+                !((_position.X + _size.X) > window.GetWindowWidth() && invader.Velocity.X > 0))
             {
 
                 if (duration > 1000 / (long)speed)
@@ -153,7 +155,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         private void UpdateInvaderLevel()
         {
-            _position = new Vector2(_position.X, ((Globals.windowSize.Y / _size.Y * 3) * invader.InvaderPosition.Y) + 33 * hight);
+            _position = new Vector2(_position.X, ((window.GetWindowHight() / _size.Y * 3) * invader.InvaderPosition.Y) + 33 * hight);
         }
 
     }

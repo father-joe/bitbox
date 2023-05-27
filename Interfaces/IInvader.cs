@@ -1,5 +1,5 @@
 ﻿using System;
-namespace bitbox.Interfaces.Interfaces
+namespace bitbox.Interfaces
 {
 	public interface IInvader
 	{

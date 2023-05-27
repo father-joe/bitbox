@@ -9,7 +9,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
     public class PlayerController : IPlayerController
     {
         private IPlayer player;
-        private IWindow window;
+        private IGameWindow window;
 
         public Vector2 velocity = new Vector2(0, 0);
         //private RectangleShape _playerRect = new RectangleShape(new Vector2f(100, 50));
@@ -28,7 +28,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public PlayerController()
         {
-            this.window = new Entitys.Window();
+            this.window = new Entitys.GameWindow();
             this.player = new Player(velocity);
             _position = new Vector2(_position.X + window.width/2 - _size.X/2, window.height - (int)(_size.Y*2));
         }

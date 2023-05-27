@@ -9,6 +9,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
     class Display : IDisplay
     {
         private RenderWindow _window;
+        private IWindowController windowController = new WindowController();
 
         private IBarrierController initBarrier;
         private IInvaderController initInvader;
@@ -44,7 +45,9 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             settings.MajorVersion = 3;
             settings.MinorVersion = 3;         
 
-            _window = new RenderWindow(new VideoMode((uint)Globals.windowSize.X, (uint)Globals.windowSize.Y), "Space Invader");
+            _window = new RenderWindow(new VideoMode((uint)windowController.GetWindowWidth(), (uint)windowController.GetWindowHight()), "Space Invader");
+            Console.WriteLine("windowController: " + windowController.GetWindowWidth());
+            Console.WriteLine("Globals: " + Globals.windowSize.X);
             _window.SetFramerateLimit(60);
         }
 
