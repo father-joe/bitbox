@@ -13,7 +13,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 
         private IGameWindow window = new GameWindow();
 
-        //public RectangleShape projectileRect = new RectangleShape(new Vector2f(5, 20));
         private Vector2 _velocity = new Vector2(0, 05f);
         public Vector2 ProjectilePosition { get; private set; }
         public Vector2 velocity { get {return _velocity; } }
@@ -25,7 +24,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
             _velocity = velocity;
         }
 
-        public void LifeSpan() // Add a life span for the projectile
+        public void LifeSpan()
         {
             if (ProjectilePosition.Y < 0 && _playerProjectile)
             {

@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
-using bitbox.Interfaces;
-//using SFML.System;
+//using bitbox.Interfaces;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
@@ -12,7 +11,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         private int _invaderAnimation;
 
         List<ProjectileController> projectiles = new List<ProjectileController>(); //TODO: Interface verwenden (aber wie?)
-        //IProjectileController[] projectiles;
 
         public void run()
         {
@@ -106,17 +104,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                             {
                                 AddProjectile(invaders[i, j].position.X + invaders[i, j].size.X/2, invaders[i, j].position.Y, false);
                             }
-                            SetInvaderAnimation(invaders[i, j].GetAnimation());
-                            
-                            /*
-                            invaders[i, j].TrackPlayerProjectile(ref player.projectiles); // tracks if the player hit invader
-                            player.TrackInvaderProjectile(ref invaders[i, j].projectiles); // tracks if the invader hit the player
-
-                            for (int p = 0; p < barriers.Length; p++)
-                            {
-                                barriers[p].TrackProjectile(ref invaders[i, j].projectiles);
-                            }
-                            */
+                            SetInvaderAnimation(invaders[i, j].GetAnimation());                            
 
                         }
                         else

@@ -1,6 +1,4 @@
 ﻿using System.Numerics;
-//using SFML.Graphics;
-//using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
@@ -8,23 +6,26 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
     {
         public bool IsDead { get {return _IsDead;} }
         private bool _IsDead = false;
-        //public RectangleShape InvaderRect { get; private set; }
-        //public Vector2i InvaderPosition { get; private set; }
-        //public Vector2f Velocity { get; private set; }
-        //new Vector2f(Globals.windowSize.X / 80, 0);
 
         public Vector2 InvaderPosition { get; private set; }
         public Vector2 Velocity { get; private set; }
+        private Vector2 _size = new Vector2(40, 40);
+        public Vector2 size { get; private set; }
+
+        public Invader()
+        {
+            size = _size;
+        }
 
         public Invader(Vector2 position, Vector2 velocity)
         {
-            //InvaderRect = new RectangleShape(new Vector2f(40, 40));
             InvaderPosition = position;
             Velocity = velocity;
             _IsDead = false;
+            size = _size;
         }
 
-        public void Fire()
+        public void Fire() //TODO: delete
         {
             //Console.WriteLine("Peng");
         }
@@ -34,7 +35,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
             Velocity *= -1;
         }
 
-        public void TrackPlayerProjectile(ref List<Projectile> playerProjectiles)
+        public void TrackPlayerProjectile(ref List<Projectile> playerProjectiles) //TODO: delete
         {
             // Logik zur Verfolgung des Spielerprojektils
         }

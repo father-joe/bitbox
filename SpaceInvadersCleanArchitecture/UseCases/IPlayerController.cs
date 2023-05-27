@@ -5,16 +5,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
     public interface IPlayerController
     {
-        //public RectangleShape PlayerRect { get; }
-        //public void PlayerControls();
         public Vector2 position { get; }
         public Vector2 size { get; }
         public void PlayerMovement(int direction);
         public void PlayerShoot(bool shoot);
-        // public void PlayerMoveRight();
-        // public void PlayerMoveLeft();
-        // public void PlayerMoveStop();
-        // public void PlayerFire();
         public void PlayerUpdate();
     }
 }

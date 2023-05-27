@@ -33,6 +33,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             invaderRect = new RectangleShape(new Vector2f(initInvader.size.X, initInvader.size.Y));
 
             initPlayer = new PlayerController();
+            Console.WriteLine("Size: " + initPlayer.size);
             playerRect = new RectangleShape(new Vector2f(initPlayer.size.X, initPlayer.size.Y));
 
             initProjectile = new ProjectileController();
@@ -73,17 +74,9 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
         public void DrawPlayer(ref IPlayerController player)
         {
-            //Console.WriteLine(player.PlayerRect.Position.X);
-            //_window.Draw(player.PlayerRect);
-
             playerRect.Position = new Vector2f(player.position.X, player.position.Y);
             playerRect.Texture = textureManager.GetPlayerTexture();
             _window.Draw(playerRect);
-
-            /*for (int i = 0; i < player.projectiles.Count; i++)
-            {
-                _window.Draw(player.projectiles[i].projectileRect);
-            }*/
         }
         public void DrawInvaders(ref IInvaderController[,] invaders, int animation)
         {
@@ -93,18 +86,9 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 {
                     if (invaders[i, j] != null) // checks if the element is null
                     {
-                        //_window.Draw(invaders[i, j].invaderRect);
-
                         invaderRect.Position = new Vector2f(invaders[i, j].position.X, invaders[i, j].position.Y);
                         invaderRect.Texture = textureManager.GetInvaderTextrue(animation);
                         _window.Draw(invaderRect);
-
-                        /*
-                        for (int p = 0; p < invaders[i, j].projectiles.Count; p++)
-                        {
-                            _window.Draw(invaders[i, j].projectiles[p].projectileRect);
-                        }
-                        */
                     }
                 }
             }
@@ -143,20 +127,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         {
             return _window.IsOpen;
         }
-
-        /*
-        private static Display _Instance; // Singleton
-        private Display() { }
-        public static Display GetInstance()
-        {
-            if (_Instance == null)
-            {
-                _Instance = new Display();
-            }
-
-            return _Instance;
-        }
-        */
     }
 }
 

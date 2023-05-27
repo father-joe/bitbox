@@ -28,12 +28,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {
             if (projectile.PlayerProjectile)
             {
-                //projectileRect.Position -= velocity;
                 _position = new Vector2(_position.X, _position.Y - projectile.velocity.Y);
             }
             else
             {
-                //projectileRect.Position += velocity;
                 _position = new Vector2(_position.X, _position.Y + projectile.velocity.Y);
             }
 

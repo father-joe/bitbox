@@ -1,26 +1,25 @@
 ﻿using System.Numerics;
-//using SFML.Graphics;
-//using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
     public class SBarrier : IBarrier
     {
-        //public RectangleShape BarrierRect { get; private set; }
         public int BarrierPosition { get; private set; }
+        private Vector2 _size = new Vector2(120, 70);
+        public Vector2 size { get; private set; }
+
+        public SBarrier()
+        {
+            size = _size;
+        }
 
         public SBarrier(int position)
         {
             BarrierPosition = position;
-
-            //BarrierRect = new RectangleShape(new Vector2f(120, 70));
-            //BarrierRect.Position = new Vector2f(BarrierRect.Size.X / 2 + (BarrierRect.Size.X * 2) * position, 600);
-
-            //Texture barrierTexture = new Texture("./Textures/barrier.png");
-            //BarrierRect.Texture = barrierTexture;
+            size = _size;
         }
 
-        public void TrackProjectile(ref List<Projectile> projectiles)
+        public void TrackProjectile(ref List<Projectile> projectiles) //TODO: delet
         {
             // Logik zum Verfolgen des Projektils
         }

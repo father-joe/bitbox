@@ -14,25 +14,5 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {
 
         }
-
-        // public void MenuSelect(int selection)
-        // {
-        //     if(selection == 1)//up
-        //     {
-        //          
-        //     }
-        //     else if (selection == 2)//down
-        //     {
-        //         
-        //     }
-        //     else if (selection == 10)
-        //     {
-        //         
-        //     }
-        //     else
-        //     {
-        //         
-        //     }
-        // }
     }
 }
