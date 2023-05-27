@@ -6,7 +6,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
     {
         public int GetPlayerInput();
         public bool Fire();
-        //public int GetMenuInput(KeyEventArgs e);
-        public int GetMenuInput();
+
     }
 }

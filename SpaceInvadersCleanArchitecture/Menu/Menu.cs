@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
+namespace bitbox.SpaceInvadersCleanArchitecture.Menu.Entitys
 {
     public class Menu:IMenu
     {
