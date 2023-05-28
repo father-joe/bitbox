@@ -68,6 +68,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 
                 display.DrawEntities(ref player, ref invaders, GetInvaderAnimation(), ref barriers, ref projectiles);
                 display.Update(); // Draws on the window from the buffer
+
+                if (player == null)
+                {
+                    display.Close();
+                }
             }
         }
 
