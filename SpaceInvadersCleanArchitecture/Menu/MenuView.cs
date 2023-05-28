@@ -142,9 +142,16 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Menu.Logic
                             //SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
                             //spaceInvaders.run();
                             IGame invaders = new TestGame();
+                            IGameObserver spaceInvadersObserver = new TestGame();
+                            IObserver spaceInvadersObserverOpen = new SpaceInvadersObserverOpen();
+                            IObserver spaceInvadersObserverClose = new SpaceInvadersObserverClose();
+                            spaceInvadersObserver.Attach(spaceInvadersObserverOpen);
+                            spaceInvadersObserver.Attach(spaceInvadersObserverClose);
                             _window.SetVisible(false);
                             invaders.run();
                             _window.SetVisible(true);
+                            spaceInvadersObserver.Detach(spaceInvadersObserverOpen);
+                            spaceInvadersObserver.Detach(spaceInvadersObserverClose);
                             return;
                         case 1:
                             Console.WriteLine("Try to open Tetris");
