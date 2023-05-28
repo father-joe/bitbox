@@ -4,7 +4,7 @@ using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
-	public class Projectile : IProjectile
+	public class Projectile : IGameObject
 	{
         private bool _playerProjectile = false;
         public bool PlayerProjectile { get {return _playerProjectile; } }
@@ -12,6 +12,28 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         private bool _isDead = false;
         public bool isDead { get { return _isDead; } }
 
+        private IGameWindow window = new GameWindow();
+
+        private Vector2 _velocity = new Vector2(0, 05f);
+        public Vector2 Position { get; private set; }
+        private Vector2 _size = new Vector2(5, 20); 
+        public Vector2 size { get; private set; }
+        public Vector2 Velocity { get {return _velocity; } }
+        
+        public int Number { get; }
+
+        public Projectile()
+        {
+            size = _size;
+        }
+        public Projectile(Vector2 position, Vector2 velocity, bool isPlayerProjectile)
+        {
+            _playerProjectile = isPlayerProjectile;    
+            Position = position;
+            _velocity = velocity;
+            size = _size;
+        }
+        
         public void SetIsDead(bool isDead)
         {
             _isDead = isDead;
@@ -21,19 +43,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         {
             return _isDead;
         }
-
-        private IGameWindow window = new GameWindow();
-
-        private Vector2 _velocity = new Vector2(0, 05f);
-        public Vector2 ProjectilePosition { get; private set; }
-        public Vector2 velocity { get {return _velocity; } }
-
-        public Projectile(Vector2 position, Vector2 velocity, bool isPlayerProjectile)
-        {
-            _playerProjectile = isPlayerProjectile;    
-            ProjectilePosition = position;
-            _velocity = velocity;
-        }
+        
+        public void ChangeDirektion(){}
     }
 }
 

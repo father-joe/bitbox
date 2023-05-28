@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
+namespace bitbox.SpaceInvadersCleanArchitecture.Entitys.alt
 {
     public interface IPlayer
     {
@@ -8,6 +8,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         Vector2 size { get; }
         bool isDead { get; set; }
 
-        void Fire();
+        //void Fire();
     }
 }

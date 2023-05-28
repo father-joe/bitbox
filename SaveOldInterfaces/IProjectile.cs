@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
+namespace bitbox.SpaceInvadersCleanArchitecture.Entitys.alt
 {
 	public interface IProjectile
 	{

@@ -23,4 +23,8 @@
     <None Remove="SpaceInvadersCleanArchitecture\Entitys\" />
     <None Remove="SpaceInvadersCleanArchitecture\UseCases\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="OldSpaceInvaders\" />
+  </ItemGroup>
 </Project>

@@ -4,9 +4,9 @@ using System.Diagnostics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
-    public class InvaderController : IInvaderController
+    public class InvaderController : IMovableObject
     {
-        private IInvader invader;
+        private IGameObject invader;
         private IWindowController window = new WindowController(); //TODO warum geht nicht IWindow
 
         private Vector2 grid;
@@ -35,6 +35,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         private Random rand = new Random();
         private int randShoot;
+        
+        public bool isPlayerProjectile { get; }
 
         public InvaderController()
         {
@@ -49,10 +51,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             _size = invader.size;
             grid = new Vector2(gridX, gridY);
             UpdateInvaderLevel();
-            _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.InvaderPosition.X, _position.Y); //TODO: Windowsizeentity verwednen
+            _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.Position.X, _position.Y); //TODO: Windowsizeentity verwednen
         }
 
-        public void Update()
+        public void Update( int direction )
         {
             if(watchOff)
             {
@@ -66,7 +68,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
             MoveInvader(speed);
 
-            if (invader.InvaderPosition.Y == 4)
+            if (invader.Position.Y == 4)
             {
                 Fire();
             }
@@ -101,7 +103,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                         _animation = 0;
                     }
                                                           
-                   watch.Restart();
+                    watch.Restart();
                 }
             }
             else
@@ -115,7 +117,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         private void UpdateInvaderLevel()
         {
-            _position = new Vector2(_position.X, ((window.GetWindowHight() / _size.Y * 3) * invader.InvaderPosition.Y) + 33 * hight);
+            _position = new Vector2(_position.X, ((window.GetWindowHight() / _size.Y * 3) * invader.Position.Y) + 33 * hight);
         }
 
         public void SetIsDead(bool isDead)

@@ -7,7 +7,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 		{
 		}
 
-        public void CheckCollision(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        public void CheckCollision(ref IMovableObject player, ref IMovableObject[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
         {
             CheckCollisionWithBorders(ref projectiles);
             CheckCollisionWithBarriers(ref barriers, ref projectiles);
@@ -64,7 +64,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             }
         }
 
-        private void CheckCollisionWithPlayer(ref IPlayerController player, ref List<ProjectileController> projectiles)
+        private void CheckCollisionWithPlayer(ref IMovableObject player, ref List<ProjectileController> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -84,7 +84,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             }
         }
 
-        private void CheckCollisionWithInvader(ref IInvaderController[,] invaders, ref List<ProjectileController> projectiles)
+        private void CheckCollisionWithInvader(ref IMovableObject[,] invaders, ref List<ProjectileController> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {

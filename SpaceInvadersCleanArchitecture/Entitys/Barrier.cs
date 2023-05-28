@@ -2,27 +2,39 @@
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
-    public class SBarrier : IBarrier
+    public class Barrier : IGameObject
     {
-        public int BarrierPosition { get; private set; }
+        public int Number { get; private set; }
         private Vector2 _size = new Vector2(120, 70);
         public Vector2 size { get; private set; }
+        public Vector2 Velocity { get; private set; }
 
-        public SBarrier()
+        public bool PlayerProjectile { get; }
+        public bool isDead { get; }
+        public Vector2 Position { get; private set; }
+
+        public Barrier()
         {
             size = _size;
         }
 
-        public SBarrier(int position)
+        public Barrier(int number)
         {
-            BarrierPosition = position;
+            Number = number;
             size = _size;
         }
+        
+        public void ChangeDirektion(){}
 
-        public void TrackProjectile(ref List<Projectile> projectiles) //TODO: delet
+        public void SetIsDead(bool isDead) { }
+
+        public bool GetIsDead()
         {
-            // Logik zum Verfolgen des Projektils
+            return false;
         }
     }
 }
+
+
+
 

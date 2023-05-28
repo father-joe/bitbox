@@ -1,22 +1,22 @@
-﻿using System.Numerics;
+using System.Numerics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
-	public interface IInvader
-	{
+    public interface IGameObject
+    {
         bool isDead { get; }
-        Vector2 InvaderPosition { get; }
+        Vector2 Position { get; }
         Vector2 Velocity { get; }
         Vector2 size { get; }
-
-        public void Fire();
+    
         public bool GetIsDead();
 
         public void SetIsDead(bool isDead);
 
         public void ChangeDirektion();
-
-        public void TrackPlayerProjectile(ref List<Projectile> playerProjectiles);
-    }
+    
+        bool PlayerProjectile { get; }
+    
+        public int Number { get; }
+    }   
 }
-

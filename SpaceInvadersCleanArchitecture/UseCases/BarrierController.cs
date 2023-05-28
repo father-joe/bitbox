@@ -1,11 +1,12 @@
 ﻿using System.Numerics;
 using bitbox.SpaceInvadersCleanArchitecture.Entitys;
+using Barrier = bitbox.SpaceInvadersCleanArchitecture.Entitys.Barrier;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
     public class BarrierController :IBarrierController
     {
-        private IBarrier barrier;
+        private IGameObject barrier;
 
         private Vector2 _position = new Vector2();
         public Vector2 position { get { return _position; } }
@@ -15,14 +16,14 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public BarrierController()
         {
-            barrier = new SBarrier();
+            barrier = new Barrier();
             _size = barrier.size;
         }
         public BarrierController(int number)
         {
-            barrier = new SBarrier(number); //TODO: Rename
+            barrier = new Barrier(number); //TODO: Rename
             _size = barrier.size;
-            _position = new Vector2(_size.X/2 + (_size.X*2) * barrier.BarrierPosition, 600);
+            _position = new Vector2(_size.X/2 + (_size.X*2) * barrier.Number, 600);
         }
     }
 }

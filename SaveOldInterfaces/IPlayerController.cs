@@ -1,7 +1,7 @@
 using SFML.Graphics;
 using System.Numerics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+namespace bitbox.SpaceInvadersCleanArchitecture.UseCases.alt
 {
     public interface IPlayerController
     {

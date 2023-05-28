@@ -12,10 +12,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         private IWindowController windowController = new WindowController();
 
         private IBarrierController initBarrier;
-        private IInvaderController initInvader;
-        private IPlayerController initPlayer;
+        private IMovableObject initInvader;
+        private IMovableObject initPlayer;
         private ITextureManager textureManager;
-        private IProjectileController initProjectile;
+        private IMovableObject initProjectile;
 
         private RectangleShape barrierRect;
         private RectangleShape invaderRect;
@@ -37,6 +37,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             playerRect = new RectangleShape(new Vector2f(initPlayer.size.X, initPlayer.size.Y));
 
             initProjectile = new ProjectileController();
+            Console.WriteLine("Projectile Size: " + initProjectile.size);
             projectileRect = new RectangleShape(new Vector2f(initProjectile.size.X, initProjectile.size.Y));
 
             textureManager = new TextureManager();
@@ -72,13 +73,22 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             _window.Display();
         }
 
-        public void DrawPlayer(ref IPlayerController player)
+        public void DrawEntities(ref IMovableObject player, ref IMovableObject[,] invaders, int animation, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        {
+            DrawPlayer(ref player);
+            DrawInvaders(ref invaders, animation);
+            DrawBarriers(ref barriers);
+            DrawProjectiles(ref projectiles);
+        }
+
+        public void DrawPlayer(ref IMovableObject player)
         {
             playerRect.Position = new Vector2f(player.position.X, player.position.Y);
             playerRect.Texture = textureManager.GetPlayerTexture();
             _window.Draw(playerRect);
         }
-        public void DrawInvaders(ref IInvaderController[,] invaders, int animation)
+        
+        public void DrawInvaders(ref IMovableObject[,] invaders, int animation)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
