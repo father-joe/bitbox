@@ -4,5 +4,7 @@ public interface IGameObserver
 {
     void Attach(IObserver observer);
     void Detach(IObserver observer);
-    void Notify();
+
+    void NotifyOpen();
+    void NotifyClose();
 }

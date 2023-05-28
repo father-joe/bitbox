@@ -2,5 +2,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic;
 
 public interface IObserver
 {
-    void Update(IGame game);
+   
+    void Open(IGame game);
+
+    void Close(IGame game);
 }

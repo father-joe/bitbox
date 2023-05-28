@@ -4,7 +4,8 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    class TestGame : IGame, IGameObserver
+    //class TestGame : IGame, IGameObserver
+    class TestGame : IGameCombined
     {
         static bool gameOver = false;
         static int invaderCount = 0;
@@ -19,6 +20,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
         public void run()
         {
+            
             IBarrierController[] barriers = new BarrierController[4];
             InitializeBarriers(ref barriers);
 
@@ -304,9 +306,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         }
         
         
-        
-        
-        
         // List of observers
         private List<IObserver> _observers = new List<IObserver>();
 
@@ -323,14 +322,24 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             Console.WriteLine("Subject: Detached an observer.");
             _observers.Remove(observer);
         }
-        public void Notify()
+      
+        
+        public void NotifyOpen()
         {
-            Console.WriteLine("SpaceInvaders: Notifying observers...");
-            foreach(IObserver observer in  _observers)
+            Console.WriteLine("Subject: Notifying observers...");
+            foreach (IObserver observer in _observers)
             {
-                observer.Update(this);
+                observer.Open(this);
             }
         }
-        
+
+        public void NotifyClose()
+        {
+            Console.WriteLine("Subject: Notifying observers...");
+            foreach (IObserver observer in _observers)
+            {
+                observer.Close(this);
+            }
+        }
     }
 }
