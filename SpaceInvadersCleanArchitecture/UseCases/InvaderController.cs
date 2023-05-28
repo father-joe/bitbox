@@ -1,26 +1,24 @@
 ﻿using System.Numerics;
-//using SFML.System;
 using bitbox.SpaceInvadersCleanArchitecture.Entitys;
 using System.Diagnostics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
-    public class InvaderController : IInvaderController
+    public class InvaderController : IMovableObject
     {
-        private IInvader invader;
-        private IWindowController window = new WindowController(); //TODO warum geht nicht IWindow        
+        private IGameObject invader;
+        private IWindowController window = new WindowController(); //TODO warum geht nicht IWindow
 
-        //private List<IProjectile> projectiles;
-        //private RectangleShape _invaderRect = new RectangleShape(new Vector2f(40, 40));
-
-        //public RectangleShape invaderRect { get { return _invaderRect; } }
         private Vector2 grid;
         private float invaderPositionInGrid;
 
         private Vector2 _position = new Vector2();
         public Vector2 position { get { return _position; } }
-        private Vector2 _size = new Vector2(40, 40);
+
+        private Vector2 _size = new Vector2();
         public Vector2 size { get { return _size; } }
+
+        public bool isDead { get { return invader.isDead; } }
 
         private bool _isFire;
         public bool isFire { get { return _isFire; } }
@@ -35,60 +33,42 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private bool watchOff = true;
         private long duration;
 
-        Random rand = new Random();
+        private Random rand = new Random();
         private int randShoot;
+        
+        public bool isPlayerProjectile { get; }
 
-        public InvaderController() { }
+        public InvaderController()
+        {
+            invader = new Invader();
+            _size = invader.size;
+            Console.WriteLine("Invader Size: " + invader.size);
+        }
 
         public InvaderController(Vector2 position, Vector2 velocity, int gridX, int gridY)
         {            
             invader = new Invader(position, velocity);
-            //projectiles = new List<IProjectile>();
+            _size = invader.size;
             grid = new Vector2(gridX, gridY);
             UpdateInvaderLevel();
-            _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.InvaderPosition.X, _position.Y); //TODO: Windowsizeentity verwednen
-            //_invaderRect.Position = new Vector2f(_invaderRect.Size.X * 2 + (Globals.windowSize.X / _invaderRect.Size.X * 3) * invader.InvaderPosition.X, _invaderRect.Position.Y);
-            // Weitere Initialisierungen
+            _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.Position.X, _position.Y); //TODO: Windowsizeentity verwednen
         }
 
-        public void Update()
+        public void Update( int direction )
         {
             if(watchOff)
             {
                 watch.Start();
                 watchOff = false;
             }
-            /*if (hight < 7)
-            {
-                speed = hight; // at high speeds the invaders get out of sequence so I limited them to speed 10 as max
-            }*/
             speed = 8;
             _isFire = false;
 
-
-
-            //moveStep = moveClock.ElapsedTime;
-            //randomTime = randomClock.ElapsedTime;
-            duration = watch.ElapsedMilliseconds;
-            
+            duration = watch.ElapsedMilliseconds;          
 
             MoveInvader(speed);
 
-            /*
-            for (int i = 0; i < projectiles.Count; i++)
-            {
-                if (!projectiles[i].isDead)
-                {
-                    projectiles[i].Update();
-                }
-                else
-                {
-                    projectiles.RemoveAt(i); // Removes the instance of the, out of window bounds, projectile
-                }
-            }
-            */
-
-            if (invader.InvaderPosition.Y == 4)
+            if (invader.Position.Y == 4)
             {
                 Fire();
             }
@@ -112,16 +92,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
                 if (duration > 1000 / (long)speed)
                 {
-                    //Console.WriteLine("invaderRect.Position.X alt = " + invaderRect.Position.X);
-
                     _position = new Vector2(_position.X + invader.Velocity.X, _position.Y + invader.Velocity.Y);
-
-                    //Console.WriteLine("Position Y = " + _invaderRect.Position.Y);
-
-                    //Console.WriteLine("invaderRect.Position.X neu = " + invaderRect.Position.X);
-                    
-
-                    //Globals.InvaderTexture(ref invader.InvaderRect, animation);
 
                     if (_animation == 0)
                     {
@@ -132,30 +103,26 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                         _animation = 0;
                     }
                                                           
-                   watch.Restart();
+                    watch.Restart();
                 }
             }
             else
             {                
                 invader.ChangeDirektion();
-                //if (hight < 10)
-                //    hight++;
                 hight++;
                 UpdateInvaderLevel();
             }
-
-            //UpdateInvaderLevel(hight);
-
-            /*if (invaderRect.Position.Y != invaderPositionInGrid)
-            {
-                invaderRect.Position = new Vector2f(invaderRect.Position.X, invaderPositionInGrid);
-            }*/
          
         }
 
         private void UpdateInvaderLevel()
         {
-            _position = new Vector2(_position.X, ((window.GetWindowHight() / _size.Y * 3) * invader.InvaderPosition.Y) + 33 * hight);
+            _position = new Vector2(_position.X, ((window.GetWindowHight() / _size.Y * 3) * invader.Position.Y) + 33 * hight);
+        }
+
+        public void SetIsDead(bool isDead)
+        {
+            invader.SetIsDead(isDead);
         }
 
     }

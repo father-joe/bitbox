@@ -1,6 +1,5 @@
-﻿using System.Numerics;
-using bitbox.Interfaces;
-//using SFML.System;
+﻿using System.Diagnostics;
+using System.Numerics;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
@@ -11,31 +10,33 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         static int invaderCount = 0;
         private int _invaderAnimation;
 
+
+        private Stopwatch watch = new Stopwatch();
+        private bool watchOff = true;
+        private long duration;
+
         List<ProjectileController> projectiles = new List<ProjectileController>(); //TODO: Interface verwenden (aber wie?)
-        //IProjectileController[] projectiles;
 
         public void run()
         {
-            //Globals g = new Globals();// DO NOT USE 
-            //Barrier[] barriers = new Barrier[4]; // Th original had 4 barriers
             IBarrierController[] barriers = new BarrierController[4];
             InitializeBarriers(ref barriers);
 
-            IInvaderController[,] invaders = new InvaderController[5, 11];
+            IMovableObject[,] invaders = new InvaderController[5, 11];
 
-            //IInvader[,] invaders = new Invader[5, 11]; // The original had a grid of 5 x 11 invaders
             InitializeInvaders(ref invaders);
 
-            //playerRect.Position.X + Globals.windowSize.X/2 - playerRect.Size.X/2, Globals.windowSize.Y - (int)(playerRect.Size.Y*1.5)
-
             Vector2 velocity = new Vector2(0, 0);
-            IPlayerController player = new PlayerController();
+            IMovableObject player = new PlayerController();
 
             IInputController input = new InputController();
 
             IDisplay display = new Display();
 
-            //Display display = Display.GetInstance();
+            ICollisionController collisionController = new CollisionController();
+
+            watch.Start();
+
             display.Init();
             while (display.IsOpen())
             {
@@ -44,35 +45,30 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
                 //player.PlayerControls();
                 //TODO: check if really Clean architecture
-                player.PlayerMovement(input.GetPlayerInput());
+                player.Update(input.GetPlayerInput());
                 if(input.Fire())
                 {
-                    AddProjectile(player.position.X + player.size.X/2, player.position.Y, true);
+                    duration = watch.ElapsedMilliseconds;                    
+                    if (duration > 300)
+                    {
+                        AddProjectile(player.position.X + player.size.X / 2, player.position.Y, true);
+                        watch.Restart();
+                    }                    
                 }
                 //input.PlayerControl();//get Playerinput and set velocity
                 //Console.WriteLine("Player: " + player.PlayerRect.Position.X);
-                Loop(ref player, ref invaders, ref barriers, ref projectiles);            
+                Loop(ref player, ref invaders, ref barriers, ref projectiles);
 
-                /*if (player.isDead || gameOver)
-                {
-                    display.Close();
-                    for (int i = 0; i < 100; i++)
-                    {
-                        Console.WriteLine("YOU LOST!");
-                    }
-                }*/
-
-                CheckCollision(ref player, ref invaders, ref barriers, ref projectiles);
-
-                display.DrawPlayer(ref player); // Player rectangle being passed to draw
-                display.DrawInvaders(ref invaders, GetInvaderAnimation()); // Invader rectangle being passed to draw
-                display.DrawBarriers(ref barriers);
-                display.DrawProjectiles(ref projectiles);
+                //CheckCollision(ref player, ref invaders, ref barriers, ref projectiles);
+                collisionController.CheckCollision(ref player, ref invaders, ref barriers, ref projectiles);
+                DeletOpjects(ref player, ref invaders, ref barriers, ref projectiles);
+                
+                display.DrawEntities(ref player, ref invaders, GetInvaderAnimation(), ref barriers, ref projectiles);
                 display.Update(); // Draws on the window from the buffer
             }
         }
 
-        private void InitializeInvaders(ref IInvaderController[,] invaders)
+        private void InitializeInvaders(ref IMovableObject[,] invaders)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -90,7 +86,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        private void Loop(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles) // Loops through all the invaders and updates their position
+        private void Loop(ref IMovableObject player, ref IMovableObject[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles) // Loops through all the invaders and updates their position
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -101,22 +97,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                         
                         if (true) //TODO if(!invader.idDead) implementieren
                         {
-                            invaders[i, j].Update();
+                            invaders[i, j].Update(0);
                             if(invaders[i, j].isFire)
                             {
                                 AddProjectile(invaders[i, j].position.X + invaders[i, j].size.X/2, invaders[i, j].position.Y, false);
                             }
-                            SetInvaderAnimation(invaders[i, j].GetAnimation());
-                            
-                            /*
-                            invaders[i, j].TrackPlayerProjectile(ref player.projectiles); // tracks if the player hit invader
-                            player.TrackInvaderProjectile(ref invaders[i, j].projectiles); // tracks if the invader hit the player
-
-                            for (int p = 0; p < barriers.Length; p++)
-                            {
-                                barriers[p].TrackProjectile(ref invaders[i, j].projectiles);
-                            }
-                            */
+                            SetInvaderAnimation(invaders[i, j].GetAnimation());                            
 
                         }
                         else
@@ -127,16 +113,16 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                     }
                 }
             }
-            for (int i = 0; i < barriers.Length; i++)
+            /*for (int i = 0; i < barriers.Length; i++)
             {
                 //barriers[i].TrackProjectile(ref player.projectiles);
-            }
+            }*/
 
             for(int i = 0; i < projectiles.Count; i++)
             {
                 if(projectiles[i] != null)
                 {
-                    projectiles[i].Update();
+                    projectiles[i].Update(0);
                 }
             }
 
@@ -146,12 +132,56 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        private void CheckCollision(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        private void DeletOpjects(ref IMovableObject player, ref IMovableObject[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        {
+            DeleteProjectiles(ref projectiles);
+            DeleteInvaders(ref invaders);
+            DeletePlayer(ref player);
+        }
+
+        private void DeleteProjectiles(ref List<ProjectileController> projectiles)
+        {
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                if (projectiles[i] != null)
+                {
+                    if (projectiles[i].isDead == true)
+                    {
+                        projectiles[i] = null;
+                    }
+                }
+            }
+        }
+
+        private void DeleteInvaders(ref IMovableObject[,] invaders)
+        {
+            for (int i = 0; i < invaders.GetLength(0); i++)
+            {
+                for (int j = 0; j < invaders.GetLength(1); j++)
+                {
+                    if (invaders[i, j] != null)
+                    {
+                        if (invaders[i, j].isDead == true)
+                        {
+                            invaders[i, j] = null;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DeletePlayer(ref IMovableObject player)
+        {
+            
+        }
+
+        /*private void CheckCollision(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
         {
             CheckCollisionWithBorders(ref projectiles);
             CheckCollisionWithBarriers(ref barriers, ref projectiles);
             CheckCollisionWithPlayer(ref player, ref projectiles);
-            CheckCollisionWithInvader(ref invaders, ref projectiles);                      
+            CheckCollisionWithInvader(ref invaders, ref projectiles);
+
         }
 
         private void CheckCollisionWithBorders(ref List<ProjectileController> projectiles)
@@ -239,7 +269,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                     }
                 }
             }            
-        }        
+        }*/        
             
         
 

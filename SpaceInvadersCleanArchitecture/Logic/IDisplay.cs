@@ -9,8 +9,9 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         public void Close();
         public void Clear();
         public void Update();
-        public void DrawPlayer(ref IPlayerController player);
-        public void DrawInvaders(ref IInvaderController[,] invaders, int animation);
+        public void DrawEntities(ref IMovableObject player, ref IMovableObject[,] invaders, int animation, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles);
+        public void DrawPlayer(ref IMovableObject player);
+        public void DrawInvaders(ref IMovableObject[,] invaders, int animation);
         public void DrawBarriers(ref IBarrierController[] barriers);
         public void DrawProjectiles(ref List<ProjectileController> projectiles);
         public void CheckForEvents();

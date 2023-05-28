@@ -1,29 +1,40 @@
 ﻿using System.Numerics;
-//using SFML.Graphics;
-//using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
-    public class SBarrier : IBarrier
+    public class Barrier : IGameObject
     {
-        //public RectangleShape BarrierRect { get; private set; }
-        public int BarrierPosition { get; private set; }
+        public int Number { get; private set; }
+        private Vector2 _size = new Vector2(120, 70);
+        public Vector2 size { get; private set; }
+        public Vector2 Velocity { get; private set; }
 
-        public SBarrier(int position)
+        public bool PlayerProjectile { get; }
+        public bool isDead { get; }
+        public Vector2 Position { get; private set; }
+
+        public Barrier()
         {
-            BarrierPosition = position;
-
-            //BarrierRect = new RectangleShape(new Vector2f(120, 70));
-            //BarrierRect.Position = new Vector2f(BarrierRect.Size.X / 2 + (BarrierRect.Size.X * 2) * position, 600);
-
-            //Texture barrierTexture = new Texture("./Textures/barrier.png");
-            //BarrierRect.Texture = barrierTexture;
+            size = _size;
         }
 
-        public void TrackProjectile(ref List<Projectile> projectiles)
+        public Barrier(int number)
         {
-            // Logik zum Verfolgen des Projektils
+            Number = number;
+            size = _size;
+        }
+        
+        public void ChangeDirektion(){}
+
+        public void SetIsDead(bool isDead) { }
+
+        public bool GetIsDead()
+        {
+            return false;
         }
     }
 }
+
+
+
 

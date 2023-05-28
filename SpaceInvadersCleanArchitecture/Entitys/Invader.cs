@@ -1,43 +1,57 @@
 ﻿using System.Numerics;
-//using SFML.Graphics;
-//using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
-    public class Invader : IInvader
+    public class Invader : IGameObject
     {
-        public bool IsDead { get {return _IsDead;} }
-        private bool _IsDead = false;
-        //public RectangleShape InvaderRect { get; private set; }
-        //public Vector2i InvaderPosition { get; private set; }
-        //public Vector2f Velocity { get; private set; }
-        //new Vector2f(Globals.windowSize.X / 80, 0);
+        private bool _isDead = false;
+        public bool isDead { get { return _isDead; } }
+        
+        public int Number { get; }
+        public bool PlayerProjectile { get; }
 
-        public Vector2 InvaderPosition { get; private set; }
+        public Vector2 Position { get; private set; }
         public Vector2 Velocity { get; private set; }
+        private Vector2 _size = new Vector2(40, 40);
+        public Vector2 size { get; private set; }
+
+        public Invader()
+        {
+            size = _size;
+        }
 
         public Invader(Vector2 position, Vector2 velocity)
         {
-            //InvaderRect = new RectangleShape(new Vector2f(40, 40));
-            InvaderPosition = position;
+            Position = position;
             Velocity = velocity;
-            _IsDead = false;
+            //_IsDead = false;
+            size = _size;
         }
 
-        public void Fire()
+        public void SetIsDead(bool isDead)
+        {
+            _isDead = isDead;
+        }
+
+        public bool GetIsDead()
+        {
+            return _isDead;
+        }
+
+        /*public void Fire() //TODO: delete
         {
             //Console.WriteLine("Peng");
-        }
+        }*/
 
         public void ChangeDirektion()
         {
             Velocity *= -1;
         }
 
-        public void TrackPlayerProjectile(ref List<Projectile> playerProjectiles)
+        /*public void TrackPlayerProjectile(ref List<Projectile> playerProjectiles) //TODO: delete
         {
             // Logik zur Verfolgung des Spielerprojektils
-        }
+        }*/
     }
 
 }
