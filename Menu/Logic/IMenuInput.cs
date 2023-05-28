@@ -1,4 +1,4 @@
-namespace bitbox.SpaceInvadersCleanArchitecture.Menu.Logic;
+namespace bitbox.Menu.Logic;
 
 public interface IMenuInput
 {

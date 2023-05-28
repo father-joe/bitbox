@@ -83,9 +83,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
         public void DrawPlayer(ref IMovableObject player)
         {
-            playerRect.Position = new Vector2f(player.position.X, player.position.Y);
-            playerRect.Texture = textureManager.GetPlayerTexture();
-            _window.Draw(playerRect);
+            if (player != null)
+            {
+                playerRect.Position = new Vector2f(player.position.X, player.position.Y);
+                playerRect.Texture = textureManager.GetPlayerTexture();
+                _window.Draw(playerRect);
+            }
+            
         }
         
         public void DrawInvaders(ref IMovableObject[,] invaders, int animation)

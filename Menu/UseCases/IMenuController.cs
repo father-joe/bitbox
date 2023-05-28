@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Menu.UseCases
+namespace bitbox.Menu.UseCases
 {
     public interface IMenuController
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using bitbox.SpaceInvadersCleanArchitecture.Menu.Entitys;
+using bitbox.Menu.Entitys;
 using SFML.Window;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Menu.UseCases
+namespace bitbox.Menu.UseCases
 {
     public class MenuController:IMenuController
     {

@@ -27,7 +27,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             InitializeInvaders(ref invaders);
 
             Vector2 velocity = new Vector2(0, 0);
-            IMovableObject player = new PlayerController();
+            IMovableObject player = new PlayerController();            
 
             IInputController input = new InputController();
 
@@ -45,16 +45,19 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
                 //player.PlayerControls();
                 //TODO: check if really Clean architecture
-                player.Update(input.GetPlayerInput());
-                if(input.Fire())
+                if (player != null)
                 {
-                    duration = watch.ElapsedMilliseconds;                    
-                    if (duration > 300)
+                    player.Update(input.GetPlayerInput());
+                    if (input.Fire())
                     {
-                        AddProjectile(player.position.X + player.size.X / 2, player.position.Y, true);
-                        watch.Restart();
-                    }                    
-                }
+                        duration = watch.ElapsedMilliseconds;
+                        if (duration > 300)
+                        {
+                            AddProjectile(player.position.X + player.size.X / 2, player.position.Y, true);
+                            watch.Restart();
+                        }
+                    }
+                }                
                 //input.PlayerControl();//get Playerinput and set velocity
                 //Console.WriteLine("Player: " + player.PlayerRect.Position.X);
                 Loop(ref player, ref invaders, ref barriers, ref projectiles);
@@ -172,7 +175,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
         private void DeletePlayer(ref IMovableObject player)
         {
-            
+            if (player != null)
+            {
+                if (player.isDead)
+                {
+                    player = null;
+                }
+            }            
         }
 
         /*private void CheckCollision(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)

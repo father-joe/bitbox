@@ -66,7 +66,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public void SetIsDead(bool isDead)
         {
-            
+            player.SetIsDead(isDead);
         }
         
     }

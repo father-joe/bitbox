@@ -1,7 +1,7 @@
 using SFML.System;
 using SFML.Window;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Menu.Logic;
+namespace bitbox.Menu.Logic;
 
 public class MenuInput:IMenuInput
 {

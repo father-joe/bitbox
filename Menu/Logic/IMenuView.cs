@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Menu.Logic
+namespace bitbox.Menu.Logic
 {
     public interface IMenuView
     {

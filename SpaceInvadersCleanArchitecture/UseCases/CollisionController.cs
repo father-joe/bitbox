@@ -68,7 +68,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
-                if (projectiles[i] != null)
+                if (projectiles[i] != null && player != null)
                 {
                     if (!projectiles[i].isPlayerProjectile)
                     {
@@ -76,6 +76,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                         ((projectiles[i].position.X >= player.position.X) && (projectiles[i].position.X <= (player.position.X + player.size.X))))
                         {
                             projectiles[i].SetIsDead(true);
+                            player.SetIsDead(true);
                             //TODO: Delete Player
                             //projectiles[i] = null;
                         }
