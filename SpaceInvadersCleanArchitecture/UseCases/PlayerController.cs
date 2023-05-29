@@ -68,6 +68,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {
             player.SetIsDead(isDead);
         }
+
+        // public void SetPointsPlayer(int additionalPoints)
+        // {
+        //     player.Points = player.Points + additionalPoints;
+        // }
         
     }
 }
