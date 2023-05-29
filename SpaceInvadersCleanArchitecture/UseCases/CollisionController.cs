@@ -2,7 +2,7 @@
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
 	public class CollisionController : ICollisionController
-	{
+	{        
 		public CollisionController()
 		{
 		}
@@ -16,13 +16,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         }
 
-        private void CheckCollisionWithBorders(ref List<ProjectileController> projectiles)
+        public void CheckCollisionWithBorders(ref List<ProjectileController> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
                 if (projectiles[i] != null)
                 {
-                    if (projectiles[i].position.Y == 0 || projectiles[i].position.Y > 1920 / 2)
+                    if (projectiles[i].position.Y == 0 || projectiles[i].position.Y >= 1920 / 2)
                     {                        
                         projectiles[i].SetIsDead(true);                        
                         //projectiles[i] = null;
@@ -32,7 +32,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         }
 
-        private void CheckCollisionWithBarriers(ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        public void CheckCollisionWithBarriers(ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -42,7 +42,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                     {
                         if (!projectiles[i].isPlayerProjectile)
                         {
-                            if (projectiles[i].position.Y > (barriers[j].position.Y) &&
+                            if (projectiles[i].position.Y >= (barriers[j].position.Y) &&
                             ((projectiles[i].position.X >= barriers[j].position.X) && (projectiles[i].position.X <= (barriers[j].position.X + barriers[j].size.X))))
                             {
                                 projectiles[i].SetIsDead(true);
@@ -51,7 +51,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                         }
                         else
                         {
-                            if (projectiles[i].position.Y < (barriers[j].position.Y + barriers[j].size.Y) &&
+                            if (projectiles[i].position.Y <= (barriers[j].position.Y + barriers[j].size.Y) &&
                             ((projectiles[i].position.X >= barriers[j].position.X) && (projectiles[i].position.X <= (barriers[j].position.X + barriers[j].size.X))))
                             {
                                 projectiles[i].SetIsDead(true);
@@ -64,7 +64,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             }
         }
 
-        private void CheckCollisionWithPlayer(ref IMovableObject player, ref List<ProjectileController> projectiles)
+        public void CheckCollisionWithPlayer(ref IMovableObject player, ref List<ProjectileController> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -72,20 +72,18 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                 {
                     if (!projectiles[i].isPlayerProjectile)
                     {
-                        if (projectiles[i].position.Y > (player.position.Y) &&
+                        if (projectiles[i].position.Y >= (player.position.Y) &&
                         ((projectiles[i].position.X >= player.position.X) && (projectiles[i].position.X <= (player.position.X + player.size.X))))
                         {
                             projectiles[i].SetIsDead(true);
-                            player.SetIsDead(true);
-                            //TODO: Delete Player
-                            //projectiles[i] = null;
+                            player.SetIsDead(true);                            
                         }
                     }
                 }
             }
         }
 
-        private void CheckCollisionWithInvader(ref IMovableObject[,] invaders, ref List<ProjectileController> projectiles)
+        public void CheckCollisionWithInvader(ref IMovableObject[,] invaders, ref List<ProjectileController> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -97,7 +95,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                         {
                             if (projectiles[i].isPlayerProjectile)
                             {
-                                if (projectiles[i].position.Y < (invaders[j, k].position.Y + invaders[j, k].size.Y) &&
+                                if (projectiles[i].position.Y <= (invaders[j, k].position.Y + invaders[j, k].size.Y) &&
                                 ((projectiles[i].position.X >= invaders[j, k].position.X) && (projectiles[i].position.X <= (invaders[j, k].position.X + invaders[j, k].size.X))))
                                 {
                                     projectiles[i].SetIsDead(true);

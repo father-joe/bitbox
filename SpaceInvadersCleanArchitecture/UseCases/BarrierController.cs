@@ -23,7 +23,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {
             barrier = new Barrier(number); //TODO: Rename
             _size = barrier.size;
-            _position = new Vector2(_size.X/2 + (_size.X*2) * barrier.Number, 600);
+            _position = new Vector2(_size.X/2 + (_size.X*2) * barrier.Number, 600);            
         }
     }
 }

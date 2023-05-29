@@ -30,6 +30,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             this.player = new Player(velocity);
             _size = player.size;            
             _position = new Vector2(_position.X + window.width/2 - _size.X/2, window.height - (int)(_size.Y*2));
+            Console.WriteLine("Player Pos: " + _position);
         }       
 
         public void Update (int direction)

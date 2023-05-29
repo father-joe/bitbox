@@ -5,7 +5,7 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
     //class TestGame : IGame, IGameObserver
-    class TestGame : IGameCombined
+    public class TestGame : IGameCombined
     {
         static bool gameOver = false;
         static int invaderCount = 0;
@@ -84,7 +84,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             {
                 for (int j = 0; j < invaders.GetLength(1); j++)
                 {
-                    invaders[i, j] = new InvaderController(new Vector2(j, i), new Vector2(3, 0), i , j); // j is row, i is column
+                    invaders[i, j] = new InvaderController(new Vector2(j, i), new Vector2(3, 0), i , j); // j is row, i is column                    
                 }
             }
         }
@@ -142,14 +142,14 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        private void DeletOpjects(ref IMovableObject player, ref IMovableObject[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        public void DeletOpjects(ref IMovableObject player, ref IMovableObject[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
         {
             DeleteProjectiles(ref projectiles);
             DeleteInvaders(ref invaders);
             DeletePlayer(ref player);
         }
 
-        private void DeleteProjectiles(ref List<ProjectileController> projectiles)
+        public void DeleteProjectiles(ref List<ProjectileController> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -163,7 +163,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        private void DeleteInvaders(ref IMovableObject[,] invaders)
+        public void DeleteInvaders(ref IMovableObject[,] invaders)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -180,7 +180,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        private void DeletePlayer(ref IMovableObject player)
+        public void DeletePlayer(ref IMovableObject player)
         {
             if (player != null)
             {
