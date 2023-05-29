@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1705.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bitbox", "bitbox.csproj", "{4524F75B-C811-4B6B-BC29-FBA4B38474C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitboxTests", "..\BitboxTests\BitboxTests.csproj", "{3CE8DFD3-EBB7-4DF8-81D3-BA6A7903FD20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4524F75B-C811-4B6B-BC29-FBA4B38474C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4524F75B-C811-4B6B-BC29-FBA4B38474C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4524F75B-C811-4B6B-BC29-FBA4B38474C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE8DFD3-EBB7-4DF8-81D3-BA6A7903FD20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE8DFD3-EBB7-4DF8-81D3-BA6A7903FD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE8DFD3-EBB7-4DF8-81D3-BA6A7903FD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE8DFD3-EBB7-4DF8-81D3-BA6A7903FD20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

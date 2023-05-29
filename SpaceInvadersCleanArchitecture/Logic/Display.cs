@@ -6,7 +6,7 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    class Display : IDisplay
+    public class Display : IDisplay
     {
         private RenderWindow _window;
         private IWindowController windowController = new WindowController();
@@ -21,8 +21,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         private RectangleShape invaderRect;
         private RectangleShape playerRect;
         private RectangleShape projectileRect;
-
-
+        private bool _isClosed;
 
         public void Init()
         {
@@ -48,9 +47,20 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             settings.MinorVersion = 3;         
 
             _window = new RenderWindow(new VideoMode((uint)windowController.GetWindowWidth(), (uint)windowController.GetWindowHight()), "Space Invader");
+            SetIsClosed(_window.IsOpen);
             Console.WriteLine("windowController: " + windowController.GetWindowWidth());
             Console.WriteLine("Globals: " + Globals.windowSize.X);
             _window.SetFramerateLimit(60);
+        }
+
+        public void SetIsClosed(bool isClosed)
+        {
+             _isClosed = isClosed;
+        }
+
+        public bool GetIsClosed()
+        {
+            return _isClosed;
         }
 
         public void OnClose(object sender, EventArgs e)
@@ -58,9 +68,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             // Close the window when OnClose event is received
             Close();
         }
+        
         public void Close()
         {
             _window.Close();
+            SetIsClosed(_window.IsOpen);
         }
 
         public void Clear()
