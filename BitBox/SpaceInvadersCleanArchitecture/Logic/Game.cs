@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
+using bitbox.Interfaces;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
@@ -7,7 +8,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
     //class TestGame : IGame, IGameObserver
     public class TestGame : IGameCombined
     {
-        static bool gameOver = false;
+        public bool gameOver = false;
         static int invaderCount = 0;
         private int _invaderAnimation;
 
@@ -71,7 +72,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 display.DrawEntities(ref player, ref invaders, GetInvaderAnimation(), ref barriers, ref projectiles);
                 display.Update(); // Draws on the window from the buffer
 
-                if (player == null)
+                if (CheckIfGameOver(ref player, ref invaders))
                 {
                     display.Close();
                 }
@@ -189,6 +190,29 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                     player = null;
                 }
             }            
+        }
+
+        public bool CheckIfGameOver(ref IMovableObject player, ref IMovableObject[,] invaders)
+        {
+            if (player == null)
+            {
+                gameOver = true;
+                return true;
+            }
+
+            for (int i = 0; i < invaders.GetLength(0); i++)
+            {
+                for (int j = 0; j < invaders.GetLength(1); j++)
+                {
+                    if (invaders[i, j] != null)
+                    {
+                        gameOver = false;
+                        return false;
+                    }                    
+                }
+            }
+            gameOver = true;
+            return true;
         }
 
         /*private void CheckCollision(ref IPlayerController player, ref IInvaderController[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)

@@ -15,6 +15,7 @@ namespace BitboxTests
 
 			Assert.That(display.GetIsClosed(), Is.EqualTo(false));
 		}
+
 	}
 }
 

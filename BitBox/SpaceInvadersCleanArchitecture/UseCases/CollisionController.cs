@@ -77,8 +77,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                         {
                             projectiles[i].SetIsDead(true);
                             player.SetIsDead(true);
-                            //TODO: Delete Player
-                            //projectiles[i] = null;
+                            
                         }
                     }
                 }
