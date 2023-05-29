@@ -28,6 +28,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
             size = _size;
         }
 
+        public void SetPlayerProjectile(bool isPlayerProjectile)
+        {
+
+        }
+
         public void SetIsDead(bool isDead)
         {
             _isDead = isDead;

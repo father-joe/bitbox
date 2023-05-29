@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using bitbox.SpaceInvadersCleanArchitecture.Logic;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+using Moq;
 using static NUnit.Framework.Constraints.Tolerance;
 
 namespace BitBoxTest
@@ -12,14 +14,17 @@ namespace BitBoxTest
 		{
             //Arrange
             var game = new TestGame();
-            IMovableObject playerController = new PlayerController();
-            IMovableObject[,] invaderController = new InvaderController[1, 1];
-            invaderController[0, 0] = new InvaderController();
-            playerController = null;
 
+            Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();            
+            IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invaderControllerMock.Object } };
 
-            //Act
-            game.CheckIfGameOver(ref playerController, ref invaderController);
+            Mock<IMovableObject> playerControllerMock = new Mock<IMovableObject>();
+
+            var player = playerControllerMock.Object;
+            player = null;
+
+            //Act           
+            game.CheckIfGameOver(player, invaderControllerMockArray);
 
             //Assert:
             Assert.That(game.gameOver, Is.EqualTo(true));
@@ -28,17 +33,18 @@ namespace BitBoxTest
         [Test]
         public void Game_Over_Invader_Test()
         {
-            // Arrange
+            //Arrange
             var game = new TestGame();
-            IMovableObject playerController = new PlayerController();
-            IMovableObject[,] invaderController = new InvaderController[1,1];            
-            invaderController[0, 0] = new InvaderController();
-            invaderController[0, 0] = null;
-            playerController = new PlayerController();
 
+            Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
+            var invader = invaderControllerMock.Object;
+            invader = null;
+            IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invader } };
 
-            //Act
-            game.CheckIfGameOver(ref playerController, ref invaderController);
+            Mock<IMovableObject> playerControllerMock = new Mock<IMovableObject>();           
+
+            //Act           
+            game.CheckIfGameOver(playerControllerMock.Object, invaderControllerMockArray);
 
             //Assert:
             Assert.That(game.gameOver, Is.EqualTo(true));

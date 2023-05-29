@@ -54,6 +54,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.Position.X, _position.Y); //TODO: Windowsizeentity verwednen
         }
 
+        public void SetPosition(Vector2 position) //TODO: einbinden, auch für ander obj.
+        {
+            _position = position;
+        }
+
         public void Update( int direction )
         {
             if(watchOff)
@@ -123,6 +128,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         public void SetIsDead(bool isDead)
         {
             invader.SetIsDead(isDead);
+        }
+
+        public void SetIsPlayerProjectile(bool playerProjectile)
+        {
+            
         }
 
     }

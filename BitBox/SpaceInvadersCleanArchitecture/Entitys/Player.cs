@@ -25,8 +25,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 		{
 			return _isDead;
 		}
-		
-		public void SetIsDead(bool isDead)
+
+        public void SetPlayerProjectile(bool isPlayerProjectile)
+        {
+            
+        }
+
+        public void SetIsDead(bool isDead)
 		{
 			_isDead = isDead;
 		}

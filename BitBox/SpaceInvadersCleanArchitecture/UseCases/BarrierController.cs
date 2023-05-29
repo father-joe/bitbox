@@ -25,6 +25,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             _size = barrier.size;
             _position = new Vector2(_size.X/2 + (_size.X*2) * barrier.Number, 600);
         }
+
+        public void SetPosition(Vector2 position) //TODO: einbinden, auch für ander obj.
+        {
+            _position = position;
+        }
     }
 }
 

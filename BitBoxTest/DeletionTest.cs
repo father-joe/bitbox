@@ -1,41 +1,44 @@
-﻿using System;
-using bitbox.SpaceInvadersCleanArchitecture.Logic;
+﻿using bitbox.SpaceInvadersCleanArchitecture.Logic;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+using Moq;
 
-namespace BitboxTests
+namespace BitBoxTest
 {
 	public class DeletionTest
 	{
-		[Test]
+
+        [Test]
 		public void Delet_Projectile_Test()
 		{
             //Arrange
             var game = new TestGame();
-            List<ProjectileController> projectileControllers = new List<ProjectileController>();
-            projectileControllers.Add(new ProjectileController());
-			projectileControllers[0].SetIsDead(true);
+
+            Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();
+            projectileControllerMock.Setup(x => x.isDead).Returns(true);
+            List<IMovableObject> projectileControllerMockList = new List<IMovableObject> { projectileControllerMock.Object };
 
             //Act
-            game.DeleteProjectiles(ref projectileControllers);
+            game.DeleteProjectiles(projectileControllerMockList);
 
             //Assert:
-            Assert.Null(projectileControllers[0]);
+            Assert.Null(projectileControllerMockList[0]);
         }
 
-		[Test]
+        [Test]
 		public void Delet_Invader_Test()
 		{
             //Arrange
+            Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
+            invaderControllerMock.Setup(x => x.isDead).Returns(true);
+            IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invaderControllerMock.Object } };
+
             var game = new TestGame();
-            IMovableObject[,] invaderController = new InvaderController[1, 1];
-			invaderController[0, 0] = new InvaderController();
-			invaderController[0, 0].SetIsDead(true);
 
             //Act
-            game.DeleteInvaders(ref invaderController);
+            game.DeleteInvaders(invaderControllerMockArray);
 
-            //Assert:
-            Assert.Null(invaderController[0,0]);
+            //Assert
+            Assert.Null(invaderControllerMockArray[0, 0]);
         }
 
 		[Test]
@@ -47,11 +50,11 @@ namespace BitboxTests
 			playerController.SetIsDead(true);
 
             //Act
-            game.DeletePlayer(ref playerController);
+            var deletetPlayer = game.DeletePlayer(playerController);
 
             //Assert:
-            Assert.Null(playerController);
+            Assert.Null(deletetPlayer);
         }
-	}
+    }
 }
 

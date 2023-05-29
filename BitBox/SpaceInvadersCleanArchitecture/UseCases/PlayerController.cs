@@ -30,7 +30,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             this.player = new Player(velocity);
             _size = player.size;            
             _position = new Vector2(_position.X + window.width/2 - _size.X/2, window.height - (int)(_size.Y*2));
-        }       
+        }
+
+        public void SetPosition(Vector2 position) //TODO: einbinden, auch für ander obj.
+        {
+            _position = position;
+        }
 
         public void Update (int direction)
         {
@@ -69,10 +74,15 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             player.SetIsDead(isDead);
         }
 
+        public void SetIsPlayerProjectile(bool playerProjectile)
+        {
+            
+        }
+
         // public void SetPointsPlayer(int additionalPoints)
         // {
         //     player.Points = player.Points + additionalPoints;
         // }
-        
+
     }
 }

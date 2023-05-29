@@ -16,7 +16,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         public void ChangeDirektion();
     
         bool PlayerProjectile { get; }
-    
+
+        public void SetPlayerProjectile(bool isPlayerProjectile);
+
+
         public int Number { get; }
     }   
 }

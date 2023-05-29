@@ -3,20 +3,22 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
 	public class CollisionController : ICollisionController
 	{
+        public bool collisionDetected = false;
 		public CollisionController()
 		{
 		}
 
-        public void CheckCollision(ref IMovableObject player, ref IMovableObject[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        //public void CheckCollision(ref IMovableObject player, ref IMovableObject[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        public void CheckCollision( IMovableObject player,  IMovableObject[,] invaders,  IBarrierController[] barriers,  List<IMovableObject> projectiles)
         {
-            CheckCollisionWithBorders(ref projectiles);
-            CheckCollisionWithBarriers(ref barriers, ref projectiles);
-            CheckCollisionWithPlayer(ref player, ref projectiles);
-            CheckCollisionWithInvader(ref invaders, ref projectiles);
+            CheckCollisionWithBorders( projectiles);
+            CheckCollisionWithBarriers( barriers,  projectiles);
+            CheckCollisionWithPlayer( player,  projectiles);
+            CheckCollisionWithInvader( invaders,  projectiles);
 
         }
 
-        public void CheckCollisionWithBorders(ref List<ProjectileController> projectiles)
+        public void CheckCollisionWithBorders( List<IMovableObject> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -24,15 +26,21 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                 {
                     if (projectiles[i].position.Y == 0 || projectiles[i].position.Y >= 1920 / 2)
                     {                        
-                        projectiles[i].SetIsDead(true);                        
+                        projectiles[i].SetIsDead(true);
+                        collisionDetected = true;
                         //projectiles[i] = null;
                     }
-                }
-            }
+                    else
+                    {
+                        collisionDetected = false;
+                    }
+                                      
+                }                
+            }            
 
         }
 
-        public void CheckCollisionWithBarriers(ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        public void CheckCollisionWithBarriers( IBarrierController[] barriers,  List<IMovableObject> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -46,7 +54,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                             ((projectiles[i].position.X >= barriers[j].position.X) && (projectiles[i].position.X <= (barriers[j].position.X + barriers[j].size.X))))
                             {
                                 projectiles[i].SetIsDead(true);
+                                collisionDetected = true;
                                 //projectiles[i] = null;
+                            }
+                            else
+                            {
+                                collisionDetected = false;
                             }
                         }
                         else
@@ -55,16 +68,22 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                             ((projectiles[i].position.X >= barriers[j].position.X) && (projectiles[i].position.X <= (barriers[j].position.X + barriers[j].size.X))))
                             {
                                 projectiles[i].SetIsDead(true);
+                                collisionDetected = true;
                                 //projectiles[i] = null;
                             }
+                            else
+                            { 
+                                collisionDetected = false;
+                            }
+                            
                         }
 
-                    }
+                    }                   
                 }
             }
         }
 
-        public void CheckCollisionWithPlayer(ref IMovableObject player, ref List<ProjectileController> projectiles)
+        public void CheckCollisionWithPlayer( IMovableObject player,  List<IMovableObject> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -77,14 +96,18 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                         {
                             projectiles[i].SetIsDead(true);
                             player.SetIsDead(true);
-                            
+                            collisionDetected = true;
+                        }
+                        else
+                        {
+                            collisionDetected = false;
                         }
                     }
                 }
             }
         }
 
-        public void CheckCollisionWithInvader(ref IMovableObject[,] invaders, ref List<ProjectileController> projectiles)
+        public void CheckCollisionWithInvader( IMovableObject[,] invaders,  List<IMovableObject> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -101,13 +124,35 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                                 {
                                     projectiles[i].SetIsDead(true);
                                     invaders[j, k].SetIsDead(true);
+                                    collisionDetected = true;
                                     //projectiles[i] = null;
+                                }
+                                else
+                                {
+                                    collisionDetected = false;
                                 }
                             }
                         }
                     }
                 }
             }
+        }
+
+
+        public bool CollisionTest(IMovableObject projectiles)
+        {            
+            if (projectiles != null)
+            {
+                if (projectiles.position.Y == 0 || projectiles.position.Y >= 1920 / 2)
+                {
+                    projectiles.SetIsDead(true);
+                    return true;
+                    //projectiles[i] = null;
+                }
+
+                return false;
+            }
+            return false;
         }
     }
 }

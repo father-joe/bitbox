@@ -9,11 +9,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         public void Close();
         public void Clear();
         public void Update();
-        public void DrawEntities(ref IMovableObject player, ref IMovableObject[,] invaders, int animation, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles);
-        public void DrawPlayer(ref IMovableObject player);
-        public void DrawInvaders(ref IMovableObject[,] invaders, int animation);
-        public void DrawBarriers(ref IBarrierController[] barriers);
-        public void DrawProjectiles(ref List<ProjectileController> projectiles);
+        //public void DrawEntities(ref IMovableObject player, ref IMovableObject[,] invaders, int animation, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles);
+        public void DrawEntities( IMovableObject player,  IMovableObject[,] invaders, int animation,  IBarrierController[] barriers,  List<IMovableObject> projectiles);
+        public void DrawPlayer( IMovableObject player);
+        public void DrawInvaders( IMovableObject[,] invaders, int animation);
+        public void DrawBarriers( IBarrierController[] barriers);
+        public void DrawProjectiles( List<IMovableObject> projectiles);
         public void CheckForEvents();
         public bool IsOpen();
     }

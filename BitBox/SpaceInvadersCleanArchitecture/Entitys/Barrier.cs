@@ -23,7 +23,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
             Number = number;
             size = _size;
         }
-        
+
+        public void SetPlayerProjectile(bool isPlayerProjectile)
+        {
+
+        }
+
         public void ChangeDirektion(){}
 
         public void SetIsDead(bool isDead) { }

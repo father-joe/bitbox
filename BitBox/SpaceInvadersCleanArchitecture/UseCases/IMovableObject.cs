@@ -11,10 +11,14 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public void Update(int direction);
 
+        public void SetPosition(Vector2 position);
+
         public bool isFire { get; }
         public int GetAnimation();
 
         public void SetIsDead(bool isDead);
+
+        public void SetIsPlayerProjectile(bool playerProjectile);
 
         public bool isPlayerProjectile { get; }
     }

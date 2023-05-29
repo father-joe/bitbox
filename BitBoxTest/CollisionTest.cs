@@ -1,79 +1,98 @@
 ﻿using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+using Moq;
+using System.Numerics;
 
-namespace BitboxTests
+namespace BitBoxTest
 {
     public class CollisionTest
     {
         [Test]
         public void Collision_With_Border_Test()
-        {            
+        {
             //Arrange
-            var collisionController = new CollisionController();
-            List<ProjectileController> projectileControllers = new List<ProjectileController>();
-            projectileControllers.Add(new ProjectileController(new System.Numerics.Vector2(0, 1920 / 2), true));
+            Vector2 position = new Vector2(10, 1920 / 2);
+            Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();          
+            projectileControllerMock.Setup(x => x.position).Returns(position);
+            List<IMovableObject> projectileControllerMockList = new List<IMovableObject> { projectileControllerMock.Object };
 
+            var collisionController = new CollisionController();
+            
             //Act
-            collisionController.CheckCollisionWithBorders(ref projectileControllers);
+            collisionController.CheckCollisionWithBorders(projectileControllerMockList);
 
             //Assert
-            Assert.That(projectileControllers[0].isDead, Is.EqualTo(true));
+            Assert.That(collisionController.collisionDetected, Is.EqualTo(true));
+
         }
 
         [Test]
         public void Collision_With_Barrier_Test()
         {
             //Arrange
-            var collisionController = new CollisionController();
+            Vector2 position = new Vector2(10, 50);
+            Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();
+            projectileControllerMock.Setup(x => x.position).Returns(position);            
+            List<IMovableObject> projectileControllerMockList = new List<IMovableObject> { projectileControllerMock.Object };
 
-            List<ProjectileController> projectileControllers = new List<ProjectileController>();
-            projectileControllers.Add(new ProjectileController(new System.Numerics.Vector2(60, 600), false));
+            Mock<IBarrierController> barrierControllerMock = new Mock<IBarrierController>();
+            barrierControllerMock.Setup(x => x.position).Returns(position);            
+            IBarrierController[] barrierControllerMockArray = new IBarrierController[] { barrierControllerMock.Object };
 
-            IBarrierController[] barrierControllers = new BarrierController[1];
-            barrierControllers[0] = new BarrierController(0);
+            var collisinController = new CollisionController();
 
             //Act
-            collisionController.CheckCollisionWithBarriers(ref barrierControllers, ref projectileControllers);
+            collisinController.CheckCollisionWithBarriers(barrierControllerMockArray, projectileControllerMockList);
 
-            //Assert:
-            Assert.That(projectileControllers[0].isDead, Is.EqualTo(true));
+            //Assert
+            Assert.That(collisinController.collisionDetected, Is.EqualTo(true));
         }
 
         [Test]
         public void Collision_With_Player_Test()
         {
             //Arrange
-            var collisionController = new CollisionController();
-            List<ProjectileController> projectileControllers = new List<ProjectileController>();
-            projectileControllers.Add(new ProjectileController(new System.Numerics.Vector2(390, 820), false));
+            Vector2 position = new Vector2(10, 50);
+            Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();
+            projectileControllerMock.Setup(x => x.position).Returns(position);
+            List<IMovableObject> projectileControllerMockList = new List<IMovableObject> { projectileControllerMock.Object };
 
-            IMovableObject playerController = new PlayerController();
+            Mock<IMovableObject> playerControllerMock = new Mock<IMovableObject>();
+            playerControllerMock.Setup(x => x.position).Returns(position);
 
-            //Act
-            collisionController.CheckCollisionWithPlayer(ref playerController, ref projectileControllers);
+            var collisinController = new CollisionController();
 
-            //Assert:
-            Assert.That(projectileControllers[0].isDead, Is.EqualTo(true));
-            Assert.That(playerController.isDead, Is.EqualTo(true));
+            //Act            
+            collisinController.CheckCollisionWithPlayer(playerControllerMock.Object, projectileControllerMockList);
+
+            //Assert
+            Assert.That(collisinController.collisionDetected, Is.EqualTo(true));
         }
 
         [Test]
         public void Collision_With_Invader_Test()
         {
             //Arrange
-            var collisionController = new CollisionController();
+            Vector2 positionInvader = new Vector2(10, 50);
+            Vector2 size = new Vector2(40, 40);
+            Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
+            invaderControllerMock.Setup(x => x.position).Returns(positionInvader);
+            invaderControllerMock.Setup(x => x.size).Returns(size);
+            IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invaderControllerMock.Object } };
 
-            List<ProjectileController> projectileControllers = new List<ProjectileController>();
-            projectileControllers.Add(new ProjectileController(new System.Numerics.Vector2(80, 33), true));
+            Vector2 positionProjectile = new Vector2(10, 50);            
+            Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();            
+            projectileControllerMock.Setup(x => x.position).Returns(positionProjectile);
+            projectileControllerMock.Setup(x => x.isPlayerProjectile).Returns(true);            
+            
+            List<IMovableObject> projectileControllerMockList = new List<IMovableObject> { projectileControllerMock.Object };
 
-            IMovableObject[,] invaderController = new InvaderController[1, 1];
-            invaderController[0, 0] = new InvaderController(new System.Numerics.Vector2(0, 0), new System.Numerics.Vector2(3, 0), 0, 0);
+            var collisinController = new CollisionController();
 
             //Act
-            collisionController.CheckCollisionWithInvader(ref invaderController, ref projectileControllers);
+            collisinController.CheckCollisionWithInvader(invaderControllerMockArray, projectileControllerMockList);
 
-            //Assert:
-            Assert.That(projectileControllers[0].isDead, Is.EqualTo(true));
-            Assert.That(invaderController[0, 0].isDead, Is.EqualTo(true));
+            //Assert
+            Assert.That(collisinController.collisionDetected, Is.EqualTo(true));
         }
     }
 }

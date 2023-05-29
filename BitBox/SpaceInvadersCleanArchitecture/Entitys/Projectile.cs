@@ -26,12 +26,18 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         {
             size = _size;
         }
+
         public Projectile(Vector2 position, Vector2 velocity, bool isPlayerProjectile)
         {
             _playerProjectile = isPlayerProjectile;    
             Position = position;
             _velocity = velocity;
             size = _size;
+        }
+
+        public void SetPlayerProjectile(bool isPlayerProjectile)
+        {
+            _playerProjectile = isPlayerProjectile;
         }
         
         public void SetIsDead(bool isDead)

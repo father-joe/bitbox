@@ -32,7 +32,17 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         { 
             projectile = new Projectile(position, velocity, isPlayerProjectile);
             _size = projectile.size;
+            SetPosition(position);
+        }
+
+        public void SetPosition(Vector2 position) //TODO: einbinden, auch für ander obj.
+        {
             _position = position;
+        }
+
+        public void SetIsPlayerProjectile(bool playerProjectile)
+        {
+            projectile.SetPlayerProjectile(playerProjectile);             
         }
 
         public void Update( int direction )

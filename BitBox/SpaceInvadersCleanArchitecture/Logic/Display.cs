@@ -86,15 +86,16 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             _window.Display();
         }
 
-        public void DrawEntities(ref IMovableObject player, ref IMovableObject[,] invaders, int animation, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        //public void DrawEntities(ref IMovableObject player, ref IMovableObject[,] invaders, int animation, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        public void DrawEntities( IMovableObject player,  IMovableObject[,] invaders, int animation,  IBarrierController[] barriers,  List<IMovableObject> projectiles)
         {
-            DrawPlayer(ref player);
-            DrawInvaders(ref invaders, animation);
-            DrawBarriers(ref barriers);
-            DrawProjectiles(ref projectiles);
+            DrawPlayer( player);
+            DrawInvaders( invaders, animation);
+            DrawBarriers( barriers);
+            DrawProjectiles( projectiles);
         }
 
-        public void DrawPlayer(ref IMovableObject player)
+        public void DrawPlayer( IMovableObject player)
         {
             if (player != null)
             {
@@ -105,7 +106,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             
         }
         
-        public void DrawInvaders(ref IMovableObject[,] invaders, int animation)
+        public void DrawInvaders( IMovableObject[,] invaders, int animation)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
@@ -121,7 +122,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        public void DrawBarriers(ref IBarrierController[] barriers)
+        public void DrawBarriers( IBarrierController[] barriers)
         {
             for (int i = 0; i < barriers.Length; i++)
             {
@@ -131,7 +132,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        public void DrawProjectiles(ref List<ProjectileController> projectiles)
+        public void DrawProjectiles( List<IMovableObject> projectiles)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {

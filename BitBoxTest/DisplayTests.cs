@@ -1,7 +1,7 @@
 ﻿using System;
 using bitbox.SpaceInvadersCleanArchitecture.Logic;
 
-namespace BitboxTests
+namespace BitBoxTest
 {
 	public class DisplayTests
 	{
