@@ -29,8 +29,7 @@ namespace bitbox.Menu.Logic
         private Clock clock;
         private Time elapsedTime;
         private Time delayTime;
-
-        
+       
         
         private static RenderWindow _window;
         // private static IMenu _menu;
