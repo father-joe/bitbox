@@ -3,7 +3,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic;
 public interface IObserver
 {
    
-    void Open(IGame game);
+    void Open(IGameCombined game);
 
-    void Close(IGame game);
+    void Close(IGameCombined game);
 }
