@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Drawing;
+using System.Numerics;
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
 	public class Player : IGameObject
@@ -13,12 +14,15 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 		public int Number { get; }
         public bool PlayerProjectile { get; }
 
+        // public int Points;
+
 		public Player(Vector2 velocity)
 		{
 			Velocity = velocity;
 			//isDead = false;
             size = _size;
-        }
+            // Points = 0;
+		}
 		
 		public bool GetIsDead()
 		{

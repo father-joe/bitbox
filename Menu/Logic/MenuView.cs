@@ -145,19 +145,22 @@ namespace bitbox.Menu.Logic
                             // IGameObserver spaceInvadersObserver = new TestGame();
                             IGameCombined invaders = new TestGame();
                             IObserver observerSI = new SpaceInvadersObserver();
-                            IGameCombined spaceInvadersObserver = new TestGame();
-                            spaceInvadersObserver.Attach(observerSI);
-                            spaceInvadersObserver.NotifyOpen();
+                            //IGameCombined spaceInvadersObserver = new TestGame();
+                            invaders.Attach(observerSI);
+                            invaders.NotifyOpen();
                             _window.SetVisible(false);
                             invaders.run();
                             _window.SetVisible(true);
-                            spaceInvadersObserver.NotifyClose();
-                            spaceInvadersObserver.Detach(observerSI);
+                            invaders.NotifyClose();
+                            invaders.Detach(observerSI);
                             return;
                         case 1:
                             Console.WriteLine("Try to open Tetris");
-                            // Tetris tetris = new Tetris();
-                            // tetris.Run();
+                            //TODO decide use of Tetris
+                            Tetris tetris = new Tetris();
+                            _window.SetVisible(false);
+                            tetris.Run();
+                            _window.SetVisible(true);
                             return;
                         case 2:
                             _window.Close();

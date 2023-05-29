@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ObserverMenu" />
     <Folder Include="OldSpaceInvaders\" />
   </ItemGroup>
 </Project>
