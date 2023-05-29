@@ -3,7 +3,7 @@ using bitbox.SpaceInvadersCleanArchitecture.Logic;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 using static NUnit.Framework.Constraints.Tolerance;
 
-namespace BitBoxTest
+namespace BitboxTests
 {
 	public class GameTest
 	{
