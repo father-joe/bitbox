@@ -55,7 +55,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                         }
                     }
                 }                
-                Loop(player, invaders, barriers, projectiles);
+                Loop(invaders, projectiles);
        
                 collisionController.CheckCollision( player,  invaders,  barriers,  projectiles);                
                 
@@ -89,7 +89,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        private void Loop( IMovableObject player,  IMovableObject[,] invaders,  IBarrierController[] barriers,  List<IMovableObject> projectiles) // Loops through all the invaders and updates their position
+        private void Loop(IMovableObject[,] invaders, List<IMovableObject> projectiles) // Loops through all the invaders and updates their position
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
