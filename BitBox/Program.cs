@@ -8,7 +8,7 @@ using bitbox.SpaceInvadersCleanArchitecture.Logic;
 
 namespace bitbox
 {
-    class Program
+    public static class Program
     {
         // private static RenderWindow _window;
         // private static IMenu _menu;
