@@ -39,7 +39,9 @@ namespace BitboxTests
             Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
             var invader = invaderControllerMock.Object;
             invader = null;
-            IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invader } };
+            var invader2 = invaderControllerMock.Object;
+            invader2 = null;
+            IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invader }, { invader2 } };
 
             Mock<IMovableObject> playerControllerMock = new Mock<IMovableObject>();           
 
