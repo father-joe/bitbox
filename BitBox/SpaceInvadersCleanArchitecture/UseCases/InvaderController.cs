@@ -24,7 +24,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         public int GetAnimation() { return _animation;}
 
         private int hight = 1;
-        private int speed = 8;       
+        private readonly int speed = 8;       
 
         private readonly Stopwatch watch = new Stopwatch();
         private bool watchOff = true;
