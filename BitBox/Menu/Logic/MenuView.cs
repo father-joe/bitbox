@@ -126,11 +126,6 @@ namespace bitbox.Menu.Logic
                             return;
                         case 1:
                             Console.WriteLine("Try to open Tetris");
-                            //TODO decide use of Tetris
-                            Tetris tetris = new Tetris();
-                            _window.SetVisible(false);
-                            tetris.Run();
-                            _window.SetVisible(true);
                             return;
                         case 2:
                             _window.Close();
