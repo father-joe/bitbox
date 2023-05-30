@@ -7,7 +7,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
     public class InvaderController : IMovableObject
     {
         private readonly IGameObject invader;
-        private IWindowController window = new WindowController(); //TODO warum geht nicht IWindow
+        private readonly IWindowController window = new WindowController(); //TODO warum geht nicht IWindow
 
         private Vector2 grid;
         private float invaderPositionInGrid;
@@ -29,11 +29,11 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private int hight = 1;
         private int speed = 0;       
 
-        private Stopwatch watch = new Stopwatch();
+        private readonly Stopwatch watch = new Stopwatch();
         private bool watchOff = true;
         private long duration;
 
-        private Random rand = new Random();
+        private readonly Random rand = new Random();
         private int randShoot;
         
         public bool isPlayerProjectile { get; }
