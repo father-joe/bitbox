@@ -9,9 +9,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private readonly IGameObject invader;
         private readonly IWindowController window = new WindowController(); //TODO warum geht nicht IWindow
 
-        private Vector2 grid;
-        private float invaderPositionInGrid;
-
         private Vector2 _position = new Vector2();
         public Vector2 position { get { return _position; } }
 
@@ -49,7 +46,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {            
             invader = new Invader(position, velocity);
             _size = invader.size;
-            grid = new Vector2(gridX, gridY);
             UpdateInvaderLevel();
             _position = new Vector2(_size.X * 2 + ((1920 / 2) / _size.X * 3) * invader.Position.X, _position.Y); //TODO: Windowsizeentity verwednen
         }
