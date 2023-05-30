@@ -78,11 +78,5 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         {
             throw new NotImplementedException();
         }
-
-        // public void SetPointsPlayer(int additionalPoints)
-        // {
-        //     player.Points = player.Points + additionalPoints;
-        // }
-
     }
 }

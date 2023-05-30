@@ -5,7 +5,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
     public class ProjectileController : IMovableObject
     {
-        IGameObject projectile;
+        readonly IGameObject projectile;
 
         private Vector2 _position = new Vector2();
         public Vector2 position { get { return _position; } }
@@ -15,7 +15,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public bool isDead { get { return projectile.isDead; } }
         
-        private bool _isFire = false;
+        private readonly bool _isFire = false;
         public bool isFire { get { return _isFire; } }
 
         private Vector2 velocity = new Vector2(0, 05f);
