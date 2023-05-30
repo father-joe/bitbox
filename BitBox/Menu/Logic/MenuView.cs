@@ -173,7 +173,7 @@ namespace bitbox.Menu.Logic
         
         public void showMenu()
         {
-            //menuView = new MenuView();
+            menuView = new MenuView();
             //menuEntity = new Menu.Entity.Menu();
             // const int WINDOW_WIDTH = 640;
             // const int WINDOW_HEIGHT = 480;
@@ -187,7 +187,7 @@ namespace bitbox.Menu.Logic
             {               
                 _window.DispatchEvents();
                 _window.Clear(Color.Black);
-                menuView.draw(_window);
+                menuView.draw(_window);    //null Exeption
                 _window.Display();
             }
         }
