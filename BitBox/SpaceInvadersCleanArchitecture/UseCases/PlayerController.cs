@@ -76,7 +76,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public void SetIsPlayerProjectile(bool playerProjectile)
         {
-            
+            throw new NotImplementedException();
         }
 
         // public void SetPointsPlayer(int additionalPoints)
