@@ -51,7 +51,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             _window = new RenderWindow(new VideoMode((uint)windowController.GetWindowWidth(), (uint)windowController.GetWindowHight()), "Space Invader");
             SetIsClosed(_window.IsOpen);
             Console.WriteLine("windowController: " + windowController.GetWindowWidth());
-            Console.WriteLine("Globals: " + Globals.windowSize.X);
             _window.SetFramerateLimit(60);
         }
 
