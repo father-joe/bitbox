@@ -12,7 +12,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         private Vector2 _position = new Vector2();
         public Vector2 position { get { return _position; } }
 
-        private Vector2 _size = new Vector2();
+        private Vector2 _size;
         public Vector2 size { get { return _size; } }
 
         public bool isDead { get { return invader.isDead; } }
