@@ -7,8 +7,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
     public class PlayerController : IMovableObject
     {
-        private IGameObject player;
-        private IGameWindow window;
+        private readonly IGameObject player;
+        private readonly IGameWindow window;
 
         public Vector2 velocity = new Vector2(0, 0);
 
@@ -19,7 +19,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         
         public bool isDead { get { return player.isDead; } }
 
-        private bool _isFire = false;
+        private readonly bool _isFire = false;
         public bool isFire { get { return _isFire; } }
 
         public bool isPlayerProjectile { get; }
