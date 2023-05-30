@@ -24,7 +24,7 @@ namespace bitbox.Menu.UseCases
             menuElements = new string[menu.numberItems];
             menuElements[0] = "SpaceInvaders";
             menuElements[1] = "Tetris";
-            menuElements[0] = "Exit";
+            menuElements[2] = "Exit";
         }
 
         public int moveMenuSelect(int menuInput)

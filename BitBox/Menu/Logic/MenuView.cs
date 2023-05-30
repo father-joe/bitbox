@@ -43,36 +43,14 @@ namespace bitbox.Menu.Logic
             menuInput = new MenuInput();
 
 
-            // for (int x = 0; x < menuWindow.numberItems; x++)
-            // {
-            //     menu[x] = new Text(menuController.menuElements[x], font, 24);
-            //     float textWidth = menu[x].GetLocalBounds().Width;
-            //     menu[x].FillColor = Color.White;
-            //     menu[x].Position = new Vector2f((menuWindow.width - textWidth) / 2, menuWindow.height / (menuWindow.numberItems + 1) * (x+1));
-            // }
+            for (int x = 0; x < menuWindow.numberItems; x++)
+            {
+                menu[x] = new Text(menuController.menuElements[x], font, 24);
+                float textWidth = menu[x].GetLocalBounds().Width;
+                menu[x].FillColor = Color.White;
+                menu[x].Position = new Vector2f((menuWindow.width - textWidth) / 2, menuWindow.height / (menuWindow.numberItems + 1) * (x+1));
+            }
 
-            menu[0] = new Text("Space Invaders", font, 24);
-            // get width of the text
-            float textWidth0 = menu[0].GetLocalBounds().Width;
-            menu[0].FillColor = Color.Red;
-            menu[0].Position = new Vector2f((menuWindow.width - textWidth0) / 2,
-                menuWindow.height / (menuWindow.numberItems + 1) * 1);
-
-            menu[1] = new Text("Tetris", font, 24);
-            // get width of the text
-            float textWidth1 = menu[1].GetLocalBounds().Width;
-            menu[1].FillColor = Color.White;
-            menu[1].Position = new Vector2f((menuWindow.width - textWidth1) / 2,
-                menuWindow.height / (menuWindow.numberItems + 1) * 2);
-
-            menu[2] = new Text("Exit", font, 24);
-            // get width of the text
-            float textWidth2 = menu[2].GetLocalBounds().Width;
-            menu[2].FillColor = Color.White;
-            menu[2].Position = new Vector2f((menuWindow.width - textWidth2) / 2,
-                menuWindow.height / (menuWindow.numberItems + 1) * 3);
-
- 
             clock = new Clock();
             elapsedTime = Time.Zero;
             delayTime = Time.FromSeconds(0.09f);
