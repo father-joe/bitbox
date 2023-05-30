@@ -19,7 +19,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         
         public bool isDead { get { return player.isDead; } }
 
-        private bool _isFire;
+        private bool _isFire = false;
         public bool isFire { get { return _isFire; } }
 
         public bool isPlayerProjectile { get; }

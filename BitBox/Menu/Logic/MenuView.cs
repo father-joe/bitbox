@@ -15,25 +15,22 @@ namespace bitbox.Menu.Logic
 {
     public class MenuView : IMenuView
     {
-        private int selectedItemIndex;
-        private Font font;
-        private IMenu menuWindow;
+        private readonly Font font = new Font("./Fonts/Anonymice Powerline Bold Italic.ttf");
+        private readonly IMenu menuWindow;
         const int MAX_NUMBER_OF_ITEMS = 3;
-        private Text[] menu = new Text[MAX_NUMBER_OF_ITEMS];
+        private readonly Text[] menu = new Text[MAX_NUMBER_OF_ITEMS];
 
 
-        private IMenuController menuController = new MenuController();
-        private IMenuInput menuInput = new MenuInput();
+        private readonly IMenuController menuController;
+        private readonly IMenuInput menuInput;
 
 
-        private Clock clock;
+        private readonly Clock clock;
         private Time elapsedTime;
         private Time delayTime;
        
         
         private static RenderWindow _window;
-        // private static IMenu _menu;
-        // private static readonly EventHandler<KeyEventArgs> onKeyPress;
         private static IMenuView menuView;
 
 
@@ -45,7 +42,6 @@ namespace bitbox.Menu.Logic
             menuController = new MenuController();
             menuInput = new MenuInput();
 
-            font = new Font("./Fonts/Anonymice Powerline Bold Italic.ttf");
 
             // for (int x = 0; x < menuWindow.numberItems; x++)
             // {
@@ -76,27 +72,7 @@ namespace bitbox.Menu.Logic
             menu[2].Position = new Vector2f((menuWindow.width - textWidth2) / 2,
                 menuWindow.height / (menuWindow.numberItems + 1) * 3);
 
-
-            // menu[0] = new Text("Space Invaders", font, 24);
-            // // get width of the text
-            // float textWidth0 = menu[0].GetLocalBounds().Width;
-            // menu[0].FillColor = Color.Red;
-            // menu[0].Position = new Vector2f((menuWindow.width - textWidth0) / 2, menuWindow.height / (MAX_NUMBER_OF_ITEMS + 1) * 1);
-            //
-            // menu[1] = new Text("Tetris", font, 24);
-            // // get width of the text
-            // float textWidth1 = menu[1].GetLocalBounds().Width;
-            // menu[1].FillColor = Color.White;
-            // menu[1].Position = new Vector2f((menuWindow.width - textWidth1) / 2, menuWindow.height / (MAX_NUMBER_OF_ITEMS + 1) * 2);
-            //
-            // menu[2] = new Text("Exit", font, 24);
-            // // get width of the text
-            // float textWidth2 = menu[2].GetLocalBounds().Width;
-            // menu[2].FillColor = Color.White;
-            // menu[2].Position = new Vector2f((menuWindow.width - textWidth2) / 2, menuWindow.height / (MAX_NUMBER_OF_ITEMS + 1) * 3);
-
-            // selectedItemIndex = 0;
-            
+ 
             clock = new Clock();
             elapsedTime = Time.Zero;
             delayTime = Time.FromSeconds(0.09f);
@@ -138,13 +114,8 @@ namespace bitbox.Menu.Logic
                     {
                         case 0:
                             Console.WriteLine("Try to open Space Invaders");
-                            //SpaceInvadersGame spaceInvaders = new SpaceInvadersGame();
-                            //spaceInvaders.run();
-                            // IGame invaders = new TestGame();
-                            // IGameObserver spaceInvadersObserver = new TestGame();
                             IGameCombined invaders = new TestGame();
                             IObserver observerSI = new SpaceInvadersObserver();
-                            //IGameCombined spaceInvadersObserver = new TestGame();
                             invaders.Attach(observerSI);
                             invaders.NotifyOpen();
                             _window.SetVisible(false);
@@ -174,14 +145,9 @@ namespace bitbox.Menu.Logic
         public void showMenu()
         {
             menuView = new MenuView();
-            //menuEntity = new Menu.Entity.Menu();
-            // const int WINDOW_WIDTH = 640;
-            // const int WINDOW_HEIGHT = 480;
             _window = new RenderWindow(new VideoMode(menuWindow.width, menuWindow.height), menuWindow.name);
             _window.SetVisible(true);
-            //_menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
-            // _window.KeyPressed += new EventHandler<KeyEventArgs>(onKeyPressed);
             
             while (_window.IsOpen)
             {               
@@ -197,46 +163,5 @@ namespace bitbox.Menu.Logic
         {
             _window.Close();
         }
-
-
-        
-        
-        
-        
-
-        // public void moveUp()
-        // {
-        //     if (selectedItemIndex - 1 >= 0)
-        //     {
-        //         menu[selectedItemIndex].FillColor = Color.White;
-        //         selectedItemIndex--;
-        //         menu[selectedItemIndex].FillColor = Color.Red;
-        //     }
-        // }
-        //
-        // public void moveDown()
-        // {
-        //     if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
-        //     {
-        //         menu[selectedItemIndex].FillColor = Color.White;
-        //         selectedItemIndex++;
-        //         menu[selectedItemIndex].FillColor = Color.Red;
-        //     }
-        // }
-
-        // public int GetPressedItem()
-        // {
-        //     return selectedItemIndex;
-        // }
-
-        // public void hideMenu()
-        // {
-        //     _window.setVisible = false;
-        // }
-        //
-        // public void showMenu()
-        // {
-        //     _window.setVisible = true;
-        // }
     }
 }

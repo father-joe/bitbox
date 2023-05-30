@@ -12,25 +12,19 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         private int _invaderAnimation;
 
 
-        private Stopwatch watch = new Stopwatch();
-        private bool watchOff = true;
-        private long duration;
-
-        List<IMovableObject> projectiles = new List<IMovableObject>(); //TODO: Interface verwenden (aber wie?)
+        private readonly Stopwatch watch = new Stopwatch();
+     
+        readonly List<IMovableObject> projectiles = new List<IMovableObject>();
 
         public void run()
         {
             
             IBarrierController[] barriers = new BarrierController[4];
-            //InitializeBarriers(ref barriers);
             InitializeBarriers(barriers);
 
             IMovableObject[,] invaders = new InvaderController[5, 11];         
-
-            //InitializeInvaders(ref invaders);
             InitializeInvaders(invaders);
 
-            Vector2 velocity = new Vector2(0, 0);
             IMovableObject player = new PlayerController();            
 
             IInputController input = new InputController();
@@ -47,14 +41,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 display.Clear(); // Clears the window from the previous display
                 display.CheckForEvents(); // Checks for events such as closing the window
 
-                //player.PlayerControls();
-                //TODO: check if really Clean architecture
                 if (player != null)
                 {
                     player.Update(input.GetPlayerInput());
                     if (input.Fire())
                     {
-                        duration = watch.ElapsedMilliseconds;
+                        long duration = watch.ElapsedMilliseconds;
                         if (duration > 300)
                         {
                 
@@ -63,24 +55,15 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                         }
                     }
                 }                
-                //input.PlayerControl();//get Playerinput and set velocity
-                //Console.WriteLine("Player: " + player.PlayerRect.Position.X);
-                //Loop(ref player, ref invaders, ref barriers, ref projectiles);
                 Loop(player, invaders, barriers, projectiles);
-
-                //CheckCollision(ref player, ref invaders, ref barriers, ref projectiles);
-
-                //collisionController.CheckCollision(ref player, ref invaders, ref barriers, ref projectiles);                
+       
                 collisionController.CheckCollision( player,  invaders,  barriers,  projectiles);                
                 
-                //DeletOpjects(ref player, ref invaders, ref barriers, ref projectiles);
                 DeletOpjects( invaders,  barriers,  projectiles);
-                var updatedPlayer = DeletePlayer(player);
-                //display.DrawEntities(ref player, ref invaders, GetInvaderAnimation(), ref barriers, ref projectiles);                
+                var updatedPlayer = DeletePlayer(player); 
                 display.DrawEntities(updatedPlayer,  invaders, GetInvaderAnimation(),  barriers,  projectiles);
                 display.Update(); // Draws on the window from the buffer
 
-                //if (CheckIfGameOver(ref player, ref invaders))
                 if (CheckIfGameOver(updatedPlayer,  invaders))
                 {
                     display.Close();
@@ -115,21 +98,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                     if (invaders[i, j] != null) // checks if the element is already null
                     {
                         
-                        if (true) //TODO if(!invader.idDead) implementieren
+                        invaders[i, j].Update(0);
+                        if(invaders[i, j].isFire)
                         {
-                            invaders[i, j].Update(0);
-                            if(invaders[i, j].isFire)
-                            {
-                                AddProjectile(invaders[i, j].position.X + invaders[i, j].size.X/2, invaders[i, j].position.Y, false);
-                            }
-                            SetInvaderAnimation(invaders[i, j].GetAnimation());                            
-
+                            AddProjectile(invaders[i, j].position.X + invaders[i, j].size.X/2, invaders[i, j].position.Y, false);
                         }
-                        else
-                        {
-                            invaders[i, j] = null;
-                        }
-                        
+                        SetInvaderAnimation(invaders[i, j].GetAnimation());                            
+                       
                     }
                 }
             }

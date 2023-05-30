@@ -7,8 +7,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
     public class InputController : IInputController
     {
         private IMovableObject playerController;
-        private Time moveStep = new Time();
-        private Clock moveClock = new Clock();
+        //private Time moveStep = new Time();
+        //private Clock moveClock = new Clock();
 
         public InputController()
         {

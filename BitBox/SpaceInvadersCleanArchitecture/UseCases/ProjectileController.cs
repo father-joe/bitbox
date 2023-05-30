@@ -15,7 +15,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public bool isDead { get { return projectile.isDead; } }
         
-        private bool _isFire;
+        private bool _isFire = false;
         public bool isFire { get { return _isFire; } }
 
         private Vector2 velocity = new Vector2(0, 05f);
