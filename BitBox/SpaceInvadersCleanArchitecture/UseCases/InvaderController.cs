@@ -24,14 +24,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         public int GetAnimation() { return _animation;}
 
         private int hight = 1;
-        private int speed = 0;       
+        private int speed = 8;       
 
         private readonly Stopwatch watch = new Stopwatch();
         private bool watchOff = true;
         private long duration;
 
         private readonly Random rand = new Random();
-        private int randShoot;
         
         public bool isPlayerProjectile { get; }
 
@@ -62,7 +61,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                 watch.Start();
                 watchOff = false;
             }
-            speed = 8;
             _isFire = false;
 
             duration = watch.ElapsedMilliseconds;          
@@ -77,7 +75,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         private void Fire()
         {
-            randShoot = rand.Next(0, 300);
+             int randShoot = rand.Next(0, 300);
             if (randShoot < 1)
             {                
                 _isFire = true;
