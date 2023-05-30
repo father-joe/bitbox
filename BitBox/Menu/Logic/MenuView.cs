@@ -35,11 +35,7 @@ namespace bitbox.Menu.Logic
         // private static IMenu _menu;
         // private static readonly EventHandler<KeyEventArgs> onKeyPress;
         private static IMenuView menuView;
-        private  IMenu menuEntity;
 
-
-
-        //private static IMenu menuEntity;
 
         //TODO ggf in mehrere Klassen trennen oder ShowMenu, ... zurück in Programm
 
@@ -177,11 +173,11 @@ namespace bitbox.Menu.Logic
         
         public void showMenu()
         {
-            menuView = new MenuView();
-            menuEntity = new Entitys.Menu();
+            //menuView = new MenuView();
+            //menuEntity = new Menu.Entity.Menu();
             // const int WINDOW_WIDTH = 640;
             // const int WINDOW_HEIGHT = 480;
-            _window = new RenderWindow(new VideoMode(menuEntity.width, menuEntity.height), menuEntity.name);
+            _window = new RenderWindow(new VideoMode(menuWindow.width, menuWindow.height), menuWindow.name);
             _window.SetVisible(true);
             //_menu = new Menu(WINDOW_WIDTH, WINDOW_HEIGHT);
             _window.Closed += new EventHandler(OnClosed);
