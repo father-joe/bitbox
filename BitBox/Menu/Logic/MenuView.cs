@@ -35,8 +35,12 @@ namespace bitbox.Menu.Logic
         // private static IMenu _menu;
         // private static readonly EventHandler<KeyEventArgs> onKeyPress;
         private static IMenuView menuView;
-        private static IMenu menuEntity;
-        
+        private  IMenu menuEntity;
+
+
+
+        //private static IMenu menuEntity;
+
         //TODO ggf in mehrere Klassen trennen oder ShowMenu, ... zurück in Programm
 
         public MenuView()
