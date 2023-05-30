@@ -6,7 +6,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
     public class InvaderController : IMovableObject
     {
-        private IGameObject invader;
+        private readonly IGameObject invader;
         private IWindowController window = new WindowController(); //TODO warum geht nicht IWindow
 
         private Vector2 grid;
