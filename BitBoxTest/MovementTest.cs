@@ -1,6 +1,6 @@
 ﻿using Moq;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
-using bitbox.SpaceInvadersCleanArchitecture.Entitys;
+using bitbox.SpaceInvadersCleanArchitecture.Domain;
 using System.Numerics;
 
 namespace BitBoxTest

@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
+namespace bitbox.SpaceInvadersCleanArchitecture.Domain
 {
     public interface IGameObject
     {

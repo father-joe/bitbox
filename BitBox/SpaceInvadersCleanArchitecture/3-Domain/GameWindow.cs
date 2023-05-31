@@ -1,4 +1,4 @@
-﻿namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
+﻿namespace bitbox.SpaceInvadersCleanArchitecture.Domain
 {
 	public class GameWindow : IGameWindow
 	{

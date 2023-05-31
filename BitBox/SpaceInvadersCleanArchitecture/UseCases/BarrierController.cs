@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
-using bitbox.SpaceInvadersCleanArchitecture.Entitys;
-using Barrier = bitbox.SpaceInvadersCleanArchitecture.Entitys.Barrier; //TODO: Was das?
+using bitbox.SpaceInvadersCleanArchitecture.Domain;
+using Barrier = bitbox.SpaceInvadersCleanArchitecture.Domain.Barrier; //TODO: Was das?
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {

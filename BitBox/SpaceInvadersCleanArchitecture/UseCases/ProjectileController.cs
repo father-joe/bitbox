@@ -1,5 +1,5 @@
 using System.Numerics;
-using bitbox.SpaceInvadersCleanArchitecture.Entitys;
+using bitbox.SpaceInvadersCleanArchitecture.Domain;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {

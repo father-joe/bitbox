@@ -1,4 +1,4 @@
-using bitbox.SpaceInvadersCleanArchitecture.Entitys;
+using bitbox.SpaceInvadersCleanArchitecture.Domain;
 using System.Numerics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
@@ -24,7 +24,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         public PlayerController()
         {
-            this.window = new Entitys.GameWindow();
+            this.window = new Domain.GameWindow();
             this.player = new Player(velocity);
             _size = player.size;            
             _position = new Vector2(_position.X + window.width/2 - _size.X/2, window.height - (int)(_size.Y*2));
