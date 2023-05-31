@@ -1,9 +1,6 @@
-﻿using System;
-using System.Drawing;
-using bitbox.SpaceInvadersCleanArchitecture.Logic;
+﻿using bitbox.SpaceInvadersCleanArchitecture.Logic;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 using Moq;
-using static NUnit.Framework.Constraints.Tolerance;
 
 namespace BitBoxTest
 {
