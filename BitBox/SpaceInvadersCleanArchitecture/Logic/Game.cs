@@ -10,6 +10,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         public bool gameOver = false;
         static int invaderCount = 0;
         private int _invaderAnimation;
+        public bool GameOpen { get; set; } = false;
 
 
         private readonly Stopwatch watch = new Stopwatch();
@@ -17,8 +18,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         readonly List<IMovableObject> projectiles = new List<IMovableObject>();
 
         public void run()
-        {
-            
+        {           
             IBarrierController[] barriers = new BarrierController[4];
             InitializeBarriers(barriers);
 
@@ -214,7 +214,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         {
             return _invaderAnimation;
         }
-        
+
         
         // List of observers
         private List<IObserver> _observers = new List<IObserver>();
@@ -232,23 +232,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             Console.WriteLine("Subject: Detached an observer.");
             _observers.Remove(observer);
         }
-      
-        
-        public void NotifyOpen()
-        {
-            Console.WriteLine("Subject: Notifying observers...");
-            foreach (IObserver observer in _observers)
-            {
-                observer.Open(this);
-            }
-        }
 
-        public void NotifyClose()
+        public void Notify()
         {
-            Console.WriteLine("Subject: Notifying observers...");
-            foreach (IObserver observer in _observers)
+            foreach (var observer in _observers)
             {
-                observer.Close(this);
+                observer.Update(this);
             }
         }
     }

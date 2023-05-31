@@ -10,6 +10,7 @@ using bitbox.SpaceInvadersCleanArchitecture.Logic;
 using bitbox.Menu.Logic;
 using bitbox.Menu.UseCases;
 using SFML.Window;
+using bitbox.ObserverGame;
 
 namespace bitbox.Menu.Logic
 {
@@ -48,7 +49,8 @@ namespace bitbox.Menu.Logic
                 menu[x] = new Text(menuController.menuElements[x], font, 24);
                 float textWidth = menu[x].GetLocalBounds().Width;
                 menu[x].FillColor = Color.White;
-                menu[x].Position = new Vector2f((menuWindow.width - textWidth) / 2, menuWindow.height / (menuWindow.numberItems + 1) * (x+1));
+                menu[x].Position = new Vector2f((menuWindow.width - textWidth) / 2, 
+                    menuWindow.height / (menuWindow.numberItems + 1) * (x+1));
             }
 
             clock = new Clock();
@@ -93,14 +95,24 @@ namespace bitbox.Menu.Logic
                         case 0:
                             Console.WriteLine("Try to open Space Invaders");
                             IGameCombined invaders = new TestGame();
-                            IObserver observerSI = new SpaceInvadersObserver();
-                            invaders.Attach(observerSI);
-                            invaders.NotifyOpen();
+                            //IObserver observerSI = new SpaceInvadersObserver();
+                            IObserver siOpen = new SpaceInvadersObserverOpen();
+                            IObserver siClose = new SpaceInvadersObserverClose();
+                            //invaders.Attach(observerSI);
+                            //invaders.NotifyOpen();
+                            invaders.Attach(siOpen);
+                            invaders.Attach(siClose);
+                            invaders.GameOpen = true;
+                            invaders.Notify();
                             _window.SetVisible(false);
                             invaders.run();
                             _window.SetVisible(true);
-                            invaders.NotifyClose();
-                            invaders.Detach(observerSI);
+                            invaders.GameOpen = false;
+                            invaders.Notify();
+                            //invaders.NotifyClose();
+                            //invaders.Detach(observerSI);
+                            invaders.Detach(siOpen);
+                            invaders.Detach(siClose);
                             return;
                         case 1:
                             Console.WriteLine("Try to open Tetris");
