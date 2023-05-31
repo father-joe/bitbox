@@ -1,6 +1,6 @@
 ﻿using SFML.Graphics;
 
-namespace bitbox.Menu.Logic
+namespace bitbox.Menu.Presentation
 {
     public interface IMenuView
     {

@@ -6,7 +6,7 @@ using bitbox.Menu.Application;
 using SFML.Window;
 using bitbox.ObserverGame;
 
-namespace bitbox.Menu.Logic
+namespace bitbox.Menu.Presentation
 {
     public class MenuView : IMenuView
     {

@@ -1,4 +1,4 @@
-namespace bitbox.Menu.Logic;
+namespace bitbox.Menu.Presentation;
 
 public interface IMenuInput
 {

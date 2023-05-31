@@ -1,6 +1,6 @@
 using SFML.Window;
 
-namespace bitbox.Menu.Logic;
+namespace bitbox.Menu.Presentation;
 
 public class MenuInput:IMenuInput
 {
