@@ -8,12 +8,15 @@ namespace BitBoxTest
 		[Test]
 		public void Close_Display_Test()
 		{
-			var display = new Display();
+            //Arrange
+            var display = new Display();
 			display.Init();
 
-			display.Close();
+            //Act  
+            display.Close();
 
-			Assert.That(display.GetIsClosed(), Is.EqualTo(false));
+            //Assert:
+            Assert.That(display.GetIsClosed(), Is.EqualTo(false));
 		}
 
 	}

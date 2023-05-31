@@ -28,7 +28,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 
         private readonly Stopwatch watch = new Stopwatch();
         private bool watchOff = true;
-        private long duration;
+        public long duration;
 
         private readonly Random rand = new Random();
         
@@ -82,7 +82,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             }
         }
 
-        private void MoveInvader(int speed)
+        public void MoveInvader(int speed)
         {
             
             if (!(_position.X < 0 && invader.Velocity.X < 0) &&
@@ -114,7 +114,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
          
         }
 
-        private void UpdateInvaderLevel()
+        public void UpdateInvaderLevel()
         {
             _position = new Vector2(_position.X, ((window.GetWindowHight() / _size.Y * 3) * invader.Position.Y) + 33 * hight);
         }

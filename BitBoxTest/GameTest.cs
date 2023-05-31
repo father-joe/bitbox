@@ -5,7 +5,7 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 using Moq;
 using static NUnit.Framework.Constraints.Tolerance;
 
-namespace BitboxTests
+namespace BitBoxTests
 {
 	public class GameTest
 	{
@@ -28,6 +28,8 @@ namespace BitboxTests
 
             //Assert:
             Assert.That(game.gameOver, Is.EqualTo(true));
+            Mock.Verify(invaderControllerMock);
+            Mock.Verify(playerControllerMock);
         }
 
         [Test]
@@ -39,8 +41,10 @@ namespace BitboxTests
             Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
             var invader = invaderControllerMock.Object;
             invader = null;
+
             var invader2 = invaderControllerMock.Object;
             invader2 = null;
+
             IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invader }, { invader2 } };
 
             Mock<IMovableObject> playerControllerMock = new Mock<IMovableObject>();           
@@ -50,6 +54,8 @@ namespace BitboxTests
 
             //Assert:
             Assert.That(game.gameOver, Is.EqualTo(true));
+            Mock.Verify(invaderControllerMock);
+            Mock.Verify(playerControllerMock);
         }
     }
 }

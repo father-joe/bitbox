@@ -22,23 +22,25 @@ namespace BitBoxTest
 
             //Assert:
             Assert.Null(projectileControllerMockList[0]);
+            Mock.Verify(projectileControllerMock);
         }
 
         [Test]
 		public void Delet_Invader_Test()
 		{
             //Arrange
+            var game = new TestGame();
+
             Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
             invaderControllerMock.Setup(x => x.isDead).Returns(true);
-            IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invaderControllerMock.Object } };
-
-            var game = new TestGame();
+            IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invaderControllerMock.Object } };        
 
             //Act
             game.DeleteInvaders(invaderControllerMockArray);
 
             //Assert
             Assert.Null(invaderControllerMockArray[0, 0]);
+            Mock.Verify(invaderControllerMock);
         }
 
 		[Test]
@@ -46,14 +48,15 @@ namespace BitBoxTest
 		{
             //Arrange
             var game = new TestGame();
-            IMovableObject playerController = new PlayerController();
-			playerController.SetIsDead(true);
+            Mock<IMovableObject> playerControllerMock = new Mock<IMovableObject>();
+            playerControllerMock.Setup(x => x.isDead).Returns(true);
 
             //Act
-            var deletetPlayer = game.DeletePlayer(playerController);
+            var deletetPlayer = game.DeletePlayer(playerControllerMock.Object);
 
             //Assert:
             Assert.Null(deletetPlayer);
+            Mock.Verify(playerControllerMock);
         }
     }
 }

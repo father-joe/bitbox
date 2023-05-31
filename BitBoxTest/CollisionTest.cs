@@ -11,6 +11,7 @@ namespace BitBoxTest
         {
             //Arrange
             Vector2 position = new Vector2(10, 1920 / 2);
+
             Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();          
             projectileControllerMock.Setup(x => x.position).Returns(position);
             List<IMovableObject> projectileControllerMockList = new List<IMovableObject> { projectileControllerMock.Object };
@@ -22,6 +23,7 @@ namespace BitBoxTest
 
             //Assert
             Assert.That(collisionController.collisionDetected, Is.EqualTo(true));
+            Mock.Verify(projectileControllerMock);
 
         }
 
@@ -30,6 +32,7 @@ namespace BitBoxTest
         {
             //Arrange
             Vector2 position = new Vector2(10, 50);
+
             Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();
             projectileControllerMock.Setup(x => x.position).Returns(position);            
             List<IMovableObject> projectileControllerMockList = new List<IMovableObject> { projectileControllerMock.Object };
@@ -45,6 +48,8 @@ namespace BitBoxTest
 
             //Assert
             Assert.That(collisinController.collisionDetected, Is.EqualTo(true));
+            Mock.Verify(projectileControllerMock);
+            Mock.Verify(barrierControllerMock);
         }
 
         [Test]
@@ -52,6 +57,7 @@ namespace BitBoxTest
         {
             //Arrange
             Vector2 position = new Vector2(10, 50);
+
             Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();
             projectileControllerMock.Setup(x => x.position).Returns(position);
             List<IMovableObject> projectileControllerMockList = new List<IMovableObject> { projectileControllerMock.Object };
@@ -66,6 +72,8 @@ namespace BitBoxTest
 
             //Assert
             Assert.That(collisinController.collisionDetected, Is.EqualTo(true));
+            Mock.Verify(playerControllerMock);
+            Mock.Verify(projectileControllerMock);
         }
 
         [Test]
@@ -74,6 +82,7 @@ namespace BitBoxTest
             //Arrange
             Vector2 positionInvader = new Vector2(10, 50);
             Vector2 size = new Vector2(40, 40);
+
             Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
             invaderControllerMock.Setup(x => x.position).Returns(positionInvader);
             invaderControllerMock.Setup(x => x.size).Returns(size);
@@ -93,6 +102,8 @@ namespace BitBoxTest
 
             //Assert
             Assert.That(collisinController.collisionDetected, Is.EqualTo(true));
+            Mock.Verify(projectileControllerMock);
+            Mock.Verify(invaderControllerMock);
         }
     }
 }
