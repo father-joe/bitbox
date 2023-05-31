@@ -21,12 +21,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         }
         public BarrierController(int number)
         {
-            barrier = new Barrier(number); //TODO: Rename
+            barrier = new Barrier(number);
             _size = barrier.size;
             _position = new Vector2(_size.X/2 + (_size.X*2) * barrier.Number, 600);
         }
 
-        public void SetPosition(Vector2 position) //TODO: einbinden, auch für ander obj.
+        public void SetPosition(Vector2 position)
         {
             _position = position;
         }

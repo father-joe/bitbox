@@ -27,10 +27,7 @@ namespace bitbox.Menu.Logic
         
         private static RenderWindow _window;
         private static IMenuView menuView;
-
-
-        //TODO ggf in mehrere Klassen trennen oder ShowMenu, ... zurück in Programm
-
+        
         public MenuView()
         {
             menuWindow = new Menu.Entitys.Menu();

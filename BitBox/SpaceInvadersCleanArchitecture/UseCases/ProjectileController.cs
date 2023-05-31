@@ -35,7 +35,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             SetPosition(position);
         }
 
-        public void SetPosition(Vector2 position) //TODO: einbinden, auch für ander obj.
+        public void SetPosition(Vector2 position)
         {
             _position = position;
         }
