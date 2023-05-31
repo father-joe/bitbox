@@ -1,5 +1,3 @@
-using SFML.Window;
-
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
     public interface IInputController

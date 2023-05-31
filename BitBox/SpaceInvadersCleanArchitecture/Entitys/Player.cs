@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using System.Numerics;
+﻿using System.Numerics;
+
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
 	public class Player : IGameObject

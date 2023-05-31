@@ -1,5 +1,4 @@
-﻿using System;
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+﻿namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {
 	public interface ICollisionController
 	{

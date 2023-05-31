@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bitbox.Menu.Entitys;
-using SFML.Window;
+﻿using bitbox.Menu.Entitys;
 
 namespace bitbox.Menu.UseCases
 {

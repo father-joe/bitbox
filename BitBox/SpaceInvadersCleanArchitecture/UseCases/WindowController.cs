@@ -1,5 +1,4 @@
-﻿using System;
-using bitbox.SpaceInvadersCleanArchitecture.Entitys;
+﻿using bitbox.SpaceInvadersCleanArchitecture.Entitys;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 {

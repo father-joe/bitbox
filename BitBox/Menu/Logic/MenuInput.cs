@@ -1,4 +1,3 @@
-using SFML.System;
 using SFML.Window;
 
 namespace bitbox.Menu.Logic;

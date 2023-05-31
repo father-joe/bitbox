@@ -1,4 +1,3 @@
-using SFML.Graphics;
 using System.Numerics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases

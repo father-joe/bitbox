@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace bitbox.Menu.Entitys
+﻿namespace bitbox.Menu.Entitys
 {
     public class Menu:IMenu
     {

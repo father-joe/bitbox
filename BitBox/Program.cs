@@ -1,10 +1,4 @@
-﻿
-using SFML.Graphics;
-using SFML.Window;
-using bitbox.Menu.Entitys;
-using bitbox.Menu.UseCases;
-using bitbox.Menu.Logic;
-using bitbox.SpaceInvadersCleanArchitecture.Logic;
+﻿using bitbox.Menu.Logic;
 
 namespace bitbox
 {

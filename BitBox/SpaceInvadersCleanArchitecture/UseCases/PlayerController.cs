@@ -1,6 +1,4 @@
 using bitbox.SpaceInvadersCleanArchitecture.Entitys;
-using SFML.Window;
-using System.Diagnostics;
 using System.Numerics;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.UseCases

@@ -1,5 +1,4 @@
-﻿using System;
-namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
+﻿namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
 	public class GameWindow : IGameWindow
 	{

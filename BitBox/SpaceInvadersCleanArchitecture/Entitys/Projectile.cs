@@ -1,6 +1,4 @@
 ﻿using System.Numerics;
-using SFML.Graphics;
-using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 {
