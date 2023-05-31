@@ -1,6 +1,6 @@
 ﻿using bitbox.Menu.Domain;
 
-namespace bitbox.Menu.UseCases
+namespace bitbox.Menu.Application
 {
     public class MenuController:IMenuController
     {

@@ -2,7 +2,7 @@
 using SFML.Graphics;
 using SFML.System;
 using bitbox.SpaceInvadersCleanArchitecture.Presentation;
-using bitbox.Menu.UseCases;
+using bitbox.Menu.Application;
 using SFML.Window;
 using bitbox.ObserverGame;
 

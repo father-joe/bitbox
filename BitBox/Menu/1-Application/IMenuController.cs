@@ -1,4 +1,4 @@
-﻿namespace bitbox.Menu.UseCases
+﻿namespace bitbox.Menu.Application
 {
     public interface IMenuController
     {
