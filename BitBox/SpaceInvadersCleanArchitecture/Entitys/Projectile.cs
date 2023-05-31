@@ -50,7 +50,10 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
             return _isDead;
         }
         
-        public void ChangeDirektion(){}
+        public void ChangeDirektion()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

@@ -26,12 +26,12 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 
         public void SetPlayerProjectile(bool isPlayerProjectile)
         {
-
+            throw new NotImplementedException();
         }
 
-        public void ChangeDirektion(){}
+        public void ChangeDirektion(){ throw new NotImplementedException();  }
 
-        public void SetIsDead(bool isDead) { }
+        public void SetIsDead(bool isDead) { throw new NotImplementedException(); }
 
         public bool GetIsDead()
         {

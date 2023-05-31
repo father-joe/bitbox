@@ -28,7 +28,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 
         public void SetPlayerProjectile(bool isPlayerProjectile)
         {
-            
+			throw new NotImplementedException();
         }
 
         public void SetIsDead(bool isDead)
@@ -36,7 +36,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 			_isDead = isDead;
 		}
 		
-		public void ChangeDirektion(){}
+		public void ChangeDirektion(){ throw new NotImplementedException(); }
 
 		/*public void Fire()
         {

@@ -30,7 +30,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 
         public void SetPlayerProjectile(bool isPlayerProjectile)
         {
-
+            throw new NotImplementedException();
         }
 
         public void SetIsDead(bool isDead)
