@@ -89,8 +89,8 @@ namespace bitbox.Menu.Logic
                         case 0:
                             Console.WriteLine("Try to open Space Invaders");
                             IGameCombined invaders = new TestGame();
-                            IObserver siOpen = new SpaceInvadersObserverOpen();
-                            IObserver siClose = new SpaceInvadersObserverClose();
+                            IObserverListener siOpen = new ListenerOpenSi();
+                            IObserverListener siClose = new ListenerCloseSi();
                             invaders.Attach(siOpen);
                             invaders.Attach(siClose);
                             invaders.GameOpen = true;

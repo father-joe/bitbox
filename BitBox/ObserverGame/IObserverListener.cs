@@ -1,6 +1,6 @@
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic;
 
-public interface IObserver
+public interface IObserverListener
 {
     void Update(IGameCombined game);
 }

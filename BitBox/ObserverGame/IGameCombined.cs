@@ -1,6 +1,6 @@
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic;
 
-public interface IGameCombined : IGameObserver, IGame
+public interface IGameCombined : IGameObserverSender, IGame
 {
     //TODO: Liskov
 }
