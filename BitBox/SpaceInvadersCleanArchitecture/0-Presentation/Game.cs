@@ -2,7 +2,7 @@
 using System.Numerics;
 using bitbox.SpaceInvadersCleanArchitecture.Application;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Logic
+namespace bitbox.SpaceInvadersCleanArchitecture.Presentation
 {
     public class Game : IGameCombined
     {

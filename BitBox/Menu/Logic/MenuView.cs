@@ -1,7 +1,7 @@
 ﻿using bitbox.Menu.Entitys;
 using SFML.Graphics;
 using SFML.System;
-using bitbox.SpaceInvadersCleanArchitecture.Logic;
+using bitbox.SpaceInvadersCleanArchitecture.Presentation;
 using bitbox.Menu.UseCases;
 using SFML.Window;
 using bitbox.ObserverGame;

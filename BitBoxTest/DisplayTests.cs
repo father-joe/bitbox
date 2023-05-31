@@ -1,4 +1,4 @@
-﻿using bitbox.SpaceInvadersCleanArchitecture.Logic;
+﻿using bitbox.SpaceInvadersCleanArchitecture.Presentation;
 
 namespace BitBoxTest
 {

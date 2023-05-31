@@ -1,4 +1,4 @@
-﻿using bitbox.SpaceInvadersCleanArchitecture.Logic;
+﻿using bitbox.SpaceInvadersCleanArchitecture.Presentation;
 using bitbox.SpaceInvadersCleanArchitecture.Application;
 using Moq;
 

@@ -1,6 +1,6 @@
 using SFML.Graphics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Logic
+namespace bitbox.SpaceInvadersCleanArchitecture.Presentation
 {
     public class TextureManager : ITextureManager
     {

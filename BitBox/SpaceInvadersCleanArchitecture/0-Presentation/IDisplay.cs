@@ -1,6 +1,6 @@
 using bitbox.SpaceInvadersCleanArchitecture.Application;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Logic
+namespace bitbox.SpaceInvadersCleanArchitecture.Presentation
 {
     public interface IDisplay
     {

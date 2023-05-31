@@ -2,7 +2,7 @@ using SFML.Window;
 using bitbox.SpaceInvadersCleanArchitecture.Application;
 using SFML.System;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Logic
+namespace bitbox.SpaceInvadersCleanArchitecture.Presentation
 {
     public class InputController : IInputController
     {

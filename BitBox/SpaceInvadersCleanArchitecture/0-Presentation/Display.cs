@@ -3,7 +3,7 @@ using SFML.Window;
 using SFML.System;
 using bitbox.SpaceInvadersCleanArchitecture.Application;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.Logic
+namespace bitbox.SpaceInvadersCleanArchitecture.Presentation
 {
     public class Display : IDisplay
     {
