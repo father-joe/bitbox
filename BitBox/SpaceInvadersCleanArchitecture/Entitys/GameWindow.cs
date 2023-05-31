@@ -10,7 +10,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         public GameWindow()
         {
             height = 960;
-            width = (int)((double)1080 / (double)1.2);
+            width = (int)((double)1080 / 1.2);
         }
     }
 }

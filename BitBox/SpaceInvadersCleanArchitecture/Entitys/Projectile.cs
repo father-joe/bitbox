@@ -12,8 +12,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
         private bool _isDead = false;
         public bool isDead { get { return _isDead; } }
 
-        private IGameWindow window = new GameWindow();
-
         private Vector2 _velocity = new Vector2(0, 05f);
         public Vector2 Position { get; private set; }
         private Vector2 _size = new Vector2(5, 20); 

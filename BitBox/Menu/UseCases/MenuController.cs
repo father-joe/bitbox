@@ -10,7 +10,7 @@ namespace bitbox.Menu.UseCases
 {
     public class MenuController:IMenuController
     {
-        private IMenu menu = new Entitys.Menu();
+        private readonly IMenu menu = new Entitys.Menu();
 
         public int currentIndex { get; set; }
 
@@ -20,11 +20,10 @@ namespace bitbox.Menu.UseCases
         {
             menu = new Entitys.Menu();
             currentIndex = 0;
-            // menuElements= {"SpaceInvaders", "Tetris", "Exit"};
             menuElements = new string[menu.numberItems];
             menuElements[0] = "SpaceInvaders";
             menuElements[1] = "Tetris";
-            menuElements[0] = "Exit";
+            menuElements[2] = "Exit";
         }
 
         public int moveMenuSelect(int menuInput)
@@ -50,58 +49,6 @@ namespace bitbox.Menu.UseCases
                     break;
             }
             return currentIndex;
-
-                // if(menuInput == 1)//up
-                // {
-                //     if (currentIndex - 1 >= 0)
-                //     {
-                //         currentIndex = currentIndex - 1;
-                //         Console.WriteLine("currentIndex: " + currentIndex); 
-                //     }
-                // }
-                // else if (menuInput == 2)//down
-                // {
-                //     if (currentIndex + 1 <= menu.numberItems - 1)
-                //     {
-                //         currentIndex = currentIndex + 1;
-                //         Console.WriteLine("currentIndex: " + currentIndex);
-                //     }
-                // }
-                // else if (menuInput == 10)
-                // {
-                //     
-                // }
-                // else
-                // {
-                //     
-                // }
-                //
-                // return currentIndex;
         }
-            
-        
-
-
-
-
-        // public void MenuSelect(int selection)
-        // {
-        //     if(selection == 1)//up
-        //     {
-        //          
-        //     }
-        //     else if (selection == 2)//down
-        //     {
-        //         
-        //     }
-        //     else if (selection == 10)
-        //     {
-        //         
-        //     }
-        //     else
-        //     {
-        //         
-        //     }
-        // }
     }
 }

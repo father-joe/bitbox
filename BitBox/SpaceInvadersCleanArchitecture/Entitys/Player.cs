@@ -17,7 +17,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 		public Player(Vector2 velocity)
 		{
 			Velocity = velocity;
-			//isDead = false;
             size = _size;
 		}
 		
