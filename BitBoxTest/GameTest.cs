@@ -5,7 +5,7 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 using Moq;
 using static NUnit.Framework.Constraints.Tolerance;
 
-namespace BitBoxTests
+namespace BitBoxTest
 {
 	public class GameTest
 	{
