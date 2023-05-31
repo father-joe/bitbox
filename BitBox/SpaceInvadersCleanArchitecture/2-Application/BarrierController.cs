@@ -2,7 +2,7 @@
 using bitbox.SpaceInvadersCleanArchitecture.Domain;
 using Barrier = bitbox.SpaceInvadersCleanArchitecture.Domain.Barrier; //TODO: Was das?
 
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+namespace bitbox.SpaceInvadersCleanArchitecture.Application
 {
     public class BarrierController :IBarrierController
     {

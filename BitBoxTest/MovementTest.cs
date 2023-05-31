@@ -1,5 +1,5 @@
 ﻿using Moq;
-using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+using bitbox.SpaceInvadersCleanArchitecture.Application;
 using bitbox.SpaceInvadersCleanArchitecture.Domain;
 using System.Numerics;
 

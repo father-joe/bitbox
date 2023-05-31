@@ -1,5 +1,5 @@
 ﻿using bitbox.SpaceInvadersCleanArchitecture.Logic;
-using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+using bitbox.SpaceInvadersCleanArchitecture.Application;
 using Moq;
 
 namespace BitBoxTest

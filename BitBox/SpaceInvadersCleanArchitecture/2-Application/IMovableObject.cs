@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+namespace bitbox.SpaceInvadersCleanArchitecture.Application
 {
     public interface IMovableObject
     {

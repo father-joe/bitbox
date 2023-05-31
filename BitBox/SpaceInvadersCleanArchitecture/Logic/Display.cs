@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
-using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+using bitbox.SpaceInvadersCleanArchitecture.Application;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {

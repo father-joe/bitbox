@@ -1,7 +1,7 @@
 using bitbox.SpaceInvadersCleanArchitecture.Domain;
 using System.Numerics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+namespace bitbox.SpaceInvadersCleanArchitecture.Application
 {
     public class PlayerController : IMovableObject
     {

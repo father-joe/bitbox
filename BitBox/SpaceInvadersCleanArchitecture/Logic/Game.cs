@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
-using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+using bitbox.SpaceInvadersCleanArchitecture.Application;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {

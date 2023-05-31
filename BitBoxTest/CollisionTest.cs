@@ -1,4 +1,4 @@
-﻿using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+﻿using bitbox.SpaceInvadersCleanArchitecture.Application;
 using Moq;
 using System.Numerics;
 

@@ -2,7 +2,7 @@
 using bitbox.SpaceInvadersCleanArchitecture.Domain;
 using System.Diagnostics;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+namespace bitbox.SpaceInvadersCleanArchitecture.Application
 {
     public class InvaderController : IMovableObject
     {

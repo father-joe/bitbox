@@ -1,5 +1,5 @@
 using SFML.Window;
-using bitbox.SpaceInvadersCleanArchitecture.UseCases;
+using bitbox.SpaceInvadersCleanArchitecture.Application;
 using SFML.System;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic

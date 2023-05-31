@@ -1,6 +1,6 @@
 ﻿using bitbox.SpaceInvadersCleanArchitecture.Domain;
 
-namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
+namespace bitbox.SpaceInvadersCleanArchitecture.Application
 {
 	public class WindowController : IWindowController
 	{
