@@ -4,7 +4,6 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    //class TestGame : IGame, IGameObserver
     public class TestGame : IGameCombined
     {
         public bool gameOver = false;
@@ -38,8 +37,8 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             display.Init();
             while (display.IsOpen())
             {
-                display.Clear(); // Clears the window from the previous display
-                display.CheckForEvents(); // Checks for events such as closing the window
+                display.Clear();
+                display.CheckForEvents();
 
                 if (player != null)
                 {
@@ -62,7 +61,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 DeletOpjects( invaders,  barriers,  projectiles);
                 var updatedPlayer = DeletePlayer(player); 
                 display.DrawEntities(updatedPlayer,  invaders, GetInvaderAnimation(),  barriers,  projectiles);
-                display.Update(); // Draws on the window from the buffer
+                display.Update();
 
                 if (CheckIfGameOver(updatedPlayer,  invaders))
                 {
@@ -77,7 +76,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             {
                 for (int j = 0; j < invaders.GetLength(1); j++)
                 {
-                    invaders[i, j] = new InvaderController(new Vector2(j, i), new Vector2(3, 0), i , j); // j is row, i is column
+                    invaders[i, j] = new InvaderController(new Vector2(j, i), new Vector2(3, 0), i , j);
                 }
             }
         }
@@ -89,13 +88,13 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             }
         }
 
-        private void Loop(IMovableObject[,] invaders, List<IMovableObject> projectiles) // Loops through all the invaders and updates their position
+        private void Loop(IMovableObject[,] invaders, List<IMovableObject> projectiles)
         {
             for (int i = 0; i < invaders.GetLength(0); i++)
             {
                 for (int j = 0; j < invaders.GetLength(1); j++)
                 {
-                    if (invaders[i, j] != null) // checks if the element is already null
+                    if (invaders[i, j] != null) 
                     {
                         
                         invaders[i, j].Update(0);

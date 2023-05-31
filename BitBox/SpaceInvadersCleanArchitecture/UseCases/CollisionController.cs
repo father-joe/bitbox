@@ -7,8 +7,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
 		public CollisionController()
 		{
 		}
-
-        //public void CheckCollision(ref IMovableObject player, ref IMovableObject[,] invaders, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        
         public void CheckCollision( IMovableObject player,  IMovableObject[,] invaders,  IBarrierController[] barriers,  List<IMovableObject> projectiles)
         {
             CheckCollisionWithBorders( projectiles);
@@ -28,7 +27,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                     {                        
                         projectiles[i].SetIsDead(true);
                         collisionDetected = true;
-                        //projectiles[i] = null;
                     }
                     else
                     {
@@ -55,7 +53,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                             {
                                 projectiles[i].SetIsDead(true);
                                 collisionDetected = true;
-                                //projectiles[i] = null;
                             }
                             else
                             {
@@ -69,7 +66,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                             {
                                 projectiles[i].SetIsDead(true);
                                 collisionDetected = true;
-                                //projectiles[i] = null;
                             }
                             else
                             { 
@@ -125,7 +121,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                                     projectiles[i].SetIsDead(true);
                                     invaders[j, k].SetIsDead(true);
                                     collisionDetected = true;
-                                    //projectiles[i] = null;
                                 }
                                 else
                                 {
@@ -147,7 +142,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
                 {
                     projectiles.SetIsDead(true);
                     return true;
-                    //projectiles[i] = null;
                 }
 
                 return false;

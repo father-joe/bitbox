@@ -66,7 +66,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
         public void OnClose(object sender, EventArgs e)
         {
-            // Close the window when OnClose event is received
             Close();
         }
         public void Close()
@@ -84,8 +83,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         {
             _window.Display();
         }
-
-        //public void DrawEntities(ref IMovableObject player, ref IMovableObject[,] invaders, int animation, ref IBarrierController[] barriers, ref List<ProjectileController> projectiles)
+        
         public void DrawEntities( IMovableObject player,  IMovableObject[,] invaders, int animation,  IBarrierController[] barriers,  List<IMovableObject> projectiles)
         {
             DrawPlayer( player);
@@ -111,7 +109,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             {
                 for (int j = 0; j < invaders.GetLength(1); j++)
                 {
-                    if (invaders[i, j] != null) // checks if the element is null
+                    if (invaders[i, j] != null)
                     {
                         invaderRect.Position = new Vector2f(invaders[i, j].position.X, invaders[i, j].position.Y);
                         invaderRect.Texture = textureManager.GetInvaderTextrue(animation);

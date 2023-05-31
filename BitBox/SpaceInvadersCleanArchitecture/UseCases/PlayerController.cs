@@ -32,7 +32,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
             _position = new Vector2(_position.X + window.width/2 - _size.X/2, window.height - (int)(_size.Y*2));
         }
 
-        public void SetPosition(Vector2 position) //TODO: einbinden, auch für ander obj.
+        public void SetPosition(Vector2 position) //TODO: einbinden, auch fï¿½r ander obj.
         {
             _position = position;
         }
@@ -58,9 +58,9 @@ namespace bitbox.SpaceInvadersCleanArchitecture.UseCases
         public void PlayerMovement()
         {           
             if (!(_position.X < 0 && velocity.X < 0) &&
-                !((_position.X + _size.X) > window.width && velocity.X > 0)) //Window bounds
+                !((_position.X + _size.X) > window.width && velocity.X > 0))
             {
-                _position = new Vector2(_position.X + velocity.X, _position.Y + velocity.Y); //Sets the players position
+                _position = new Vector2(_position.X + velocity.X, _position.Y + velocity.Y);
             }            
         }
 

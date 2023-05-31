@@ -37,16 +37,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 		
 		public void ChangeDirektion(){ throw new NotImplementedException(); }
 
-		/*public void Fire()
-        {
-            Console.WriteLine("Peng");
-        }
-
-		public void TrackInvaderProjectile(ref List<Projectile> invaderProjectile) //TODO: delete
-        {
-            // Logik zur Verfolgung des Spielerprojektils
-        }*/
-		
 	}
 }
 
