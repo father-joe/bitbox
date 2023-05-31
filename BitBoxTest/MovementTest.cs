@@ -1,13 +1,6 @@
 ﻿using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 using bitbox.SpaceInvadersCleanArchitecture.Entitys;
-using bitbox.SpaceInvadersCleanArchitecture.Logic;
 using System.Numerics;
 
 namespace BitBoxTest

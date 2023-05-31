@@ -27,10 +27,7 @@ namespace bitbox.Menu.Logic
         
         private static RenderWindow _window;
         private static IMenuView menuView;
-
-
-        //TODO ggf in mehrere Klassen trennen oder ShowMenu, ... zurück in Programm
-
+        
         public MenuView()
         {
             menuWindow = new Menu.Entitys.Menu();
@@ -88,9 +85,9 @@ namespace bitbox.Menu.Logic
                     {
                         case 0:
                             Console.WriteLine("Try to open Space Invaders");
-                            IGameCombined invaders = new TestGame();
-                            IObserverListener siOpen = new ListenerOpenSi();
-                            IObserverListener siClose = new ListenerCloseSi();
+                            IGameCombined invaders = new Game();
+                            IObserver siOpen = new SpaceInvadersObserverOpen();
+                            IObserver siClose = new SpaceInvadersObserverClose();
                             invaders.Attach(siOpen);
                             invaders.Attach(siClose);
                             invaders.GameOpen = true;

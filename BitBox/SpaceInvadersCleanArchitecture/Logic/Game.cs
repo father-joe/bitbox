@@ -4,17 +4,17 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    public class TestGame : IGameCombined
+    public class Game : IGameCombined
     {
         public bool gameOver = false;
-        static int invaderCount = 0;
+        static readonly int InvaderCount = 0;
         private int _invaderAnimation;
         public bool GameOpen { get; set; } = false;
 
 
-        private readonly Stopwatch watch = new Stopwatch();
+        private readonly Stopwatch _watch = new Stopwatch();
      
-        readonly List<IMovableObject> projectiles = new List<IMovableObject>();
+        readonly List<IMovableObject> _projectiles = new List<IMovableObject>();
 
         public void run()
         {           
@@ -32,7 +32,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 
             ICollisionController collisionController = new CollisionController();
 
-            watch.Start();
+            _watch.Start();
 
             display.Init();
             while (display.IsOpen())
@@ -45,22 +45,22 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                     player.Update(input.GetPlayerInput());
                     if (input.Fire())
                     {
-                        long duration = watch.ElapsedMilliseconds;
+                        long duration = _watch.ElapsedMilliseconds;
                         if (duration > 300)
                         {
                 
                             AddProjectile(player.position.X + player.size.X / 2, player.position.Y, true);
-                            watch.Restart();
+                            _watch.Restart();
                         }
                     }
                 }                
-                Loop(invaders, projectiles);
+                Loop(invaders, _projectiles);
        
-                collisionController.CheckCollision( player,  invaders,  barriers,  projectiles);                
+                collisionController.CheckCollision( player,  invaders,  barriers,  _projectiles);                
                 
-                DeletOpjects( invaders,  barriers,  projectiles);
+                DeletOpjects( invaders,  barriers,  _projectiles);
                 var updatedPlayer = DeletePlayer(player); 
-                display.DrawEntities(updatedPlayer,  invaders, GetInvaderAnimation(),  barriers,  projectiles);
+                display.DrawEntities(updatedPlayer,  invaders, GetInvaderAnimation(),  barriers,  _projectiles);
                 display.Update();
 
                 if (CheckIfGameOver(updatedPlayer,  invaders))
@@ -116,7 +116,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 }
             }
 
-            if (invaderCount == invaders.GetLength(0) * invaders.GetLength(1))
+            if (InvaderCount == invaders.GetLength(0) * invaders.GetLength(1))
             {
                 gameOver = true;
             }
@@ -134,7 +134,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
             {
                 if (projectiles[i] != null)
                 {
-                    if (projectiles[i].isDead == true)
+                    if (projectiles[i].isDead)
                     {
                         projectiles[i] = null;
                     }
@@ -150,7 +150,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
                 {
                     if (invaders[i, j] != null)
                     {
-                        if (invaders[i, j].isDead == true)
+                        if (invaders[i, j].isDead)
                         {
                             invaders[i, j] = null;
                         }
@@ -201,7 +201,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Logic
         private void AddProjectile(float positionX, float positionY, bool playerProjectile)
         {
 
-            projectiles.Add(new ProjectileController(new Vector2(positionX, positionY), playerProjectile));
+            _projectiles.Add(new ProjectileController(new Vector2(positionX, positionY), playerProjectile));
         }
 
         private void SetInvaderAnimation(int animation)
