@@ -1,10 +1,10 @@
-﻿using bitbox.Menu.Entitys;
+﻿using bitbox.Menu.Domain;
 
 namespace bitbox.Menu.UseCases
 {
     public class MenuController:IMenuController
     {
-        private readonly IMenu menu = new Entitys.Menu();
+        private readonly IMenu menu = new Domain.Menu();
 
         public int currentIndex { get; set; }
 
@@ -12,7 +12,7 @@ namespace bitbox.Menu.UseCases
         
         public MenuController()
         {
-            menu = new Entitys.Menu();
+            menu = new Domain.Menu();
             currentIndex = 0;
             menuElements = new string[menu.numberItems];
             menuElements[0] = "SpaceInvaders";

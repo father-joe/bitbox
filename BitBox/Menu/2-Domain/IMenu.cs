@@ -1,4 +1,4 @@
-﻿namespace bitbox.Menu.Entitys
+﻿namespace bitbox.Menu.Domain
 {
     public interface IMenu
     {

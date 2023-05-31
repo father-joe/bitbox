@@ -1,4 +1,4 @@
-﻿using bitbox.Menu.Entitys;
+﻿using bitbox.Menu.Domain;
 using SFML.Graphics;
 using SFML.System;
 using bitbox.SpaceInvadersCleanArchitecture.Presentation;
@@ -30,7 +30,7 @@ namespace bitbox.Menu.Logic
         
         public MenuView()
         {
-            menuWindow = new Menu.Entitys.Menu();
+            menuWindow = new Menu.Domain.Menu();
             menuController = new MenuController();
             menuInput = new MenuInput();
 
