@@ -17,7 +17,6 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 		public Player(Vector2 velocity)
 		{
 			Velocity = velocity;
-			//isDead = false;
             size = _size;
 		}
 		
@@ -28,7 +27,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 
         public void SetPlayerProjectile(bool isPlayerProjectile)
         {
-            
+            //TODO: empty Method
         }
 
         public void SetIsDead(bool isDead)
@@ -37,16 +36,7 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Entitys
 		}
 		
 		public void ChangeDirektion(){}
-
-		/*public void Fire()
-        {
-            Console.WriteLine("Peng");
-        }
-
-		public void TrackInvaderProjectile(ref List<Projectile> invaderProjectile) //TODO: delete
-        {
-            // Logik zur Verfolgung des Spielerprojektils
-        }*/
+		//TODO: empty Method
 		
 	}
 }
