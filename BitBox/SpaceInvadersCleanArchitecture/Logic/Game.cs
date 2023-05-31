@@ -4,7 +4,7 @@ using bitbox.SpaceInvadersCleanArchitecture.UseCases;
 
 namespace bitbox.SpaceInvadersCleanArchitecture.Logic
 {
-    public class TestGame : IGameCombined
+    public class Game : IGameCombined
     {
         public bool gameOver = false;
         static int invaderCount = 0;

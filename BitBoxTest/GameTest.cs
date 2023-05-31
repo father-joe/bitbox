@@ -10,7 +10,7 @@ namespace BitBoxTest
         public void Game_Over_Player_Test()
 		{
             //Arrange
-            var game = new TestGame();
+            var game = new Game();
 
             Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();            
             IMovableObject[,] invaderControllerMockArray = new IMovableObject[,] { { invaderControllerMock.Object } };
@@ -33,7 +33,7 @@ namespace BitBoxTest
         public void Game_Over_Invader_Test()
         {
             //Arrange
-            var game = new TestGame();
+            var game = new Game();
 
             Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
             var invader = invaderControllerMock.Object;

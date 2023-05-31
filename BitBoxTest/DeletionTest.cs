@@ -11,7 +11,7 @@ namespace BitBoxTest
 		public void Delet_Projectile_Test()
 		{
             //Arrange
-            var game = new TestGame();
+            var game = new Game();
 
             Mock<IMovableObject> projectileControllerMock = new Mock<IMovableObject>();
             projectileControllerMock.Setup(x => x.isDead).Returns(true);
@@ -29,7 +29,7 @@ namespace BitBoxTest
 		public void Delet_Invader_Test()
 		{
             //Arrange
-            var game = new TestGame();
+            var game = new Game();
 
             Mock<IMovableObject> invaderControllerMock = new Mock<IMovableObject>();
             invaderControllerMock.Setup(x => x.isDead).Returns(true);
@@ -47,7 +47,7 @@ namespace BitBoxTest
 		public void Delet_Player_Test()
 		{
             //Arrange
-            var game = new TestGame();
+            var game = new Game();
             Mock<IMovableObject> playerControllerMock = new Mock<IMovableObject>();
             playerControllerMock.Setup(x => x.isDead).Returns(true);
 
