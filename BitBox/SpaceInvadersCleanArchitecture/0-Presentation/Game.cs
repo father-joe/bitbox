@@ -216,17 +216,17 @@ namespace bitbox.SpaceInvadersCleanArchitecture.Presentation
 
         
         // List of observers
-        private List<IObserver> _observers = new List<IObserver>();
+        private List<IObserverListener> _observers = new List<IObserverListener>();
 
         // Method for adding an observer
-        public void Attach(IObserver observer)
+        public void Attach(IObserverListener observer)
         {
             Console.WriteLine("Subject: Attached an observer.");
             _observers.Add(observer);
         }
 
         // Method for removing an observer
-        public void Detach(IObserver observer)
+        public void Detach(IObserverListener observer)
         {
             Console.WriteLine("Subject: Detached an observer.");
             _observers.Remove(observer);

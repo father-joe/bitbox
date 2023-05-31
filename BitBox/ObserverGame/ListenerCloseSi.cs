@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace bitbox.ObserverGame
 {
-    public class SpaceInvadersObserverClose:IObserver
+    public class ListenerCloseSi:IObserverListener
     {
         public void Update(IGameCombined game)
         {
